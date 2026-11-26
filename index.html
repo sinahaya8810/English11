@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1026">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>挑め！大学受験英語 — 中学〜共テ 250問</title>
+<style>
+:root{
+  --text:#eef2ff; --sub:#aab4d6;
+  --glass:rgba(255,255,255,.075); --glass2:rgba(255,255,255,.13);
+  --stroke:rgba(255,255,255,.16);
+  --accent:#7dd3fc; --accent2:#a78bfa; --gold:#f5cf73;
+  --ok:#34d399; --ng:#fb7185; --warn:#fbbf24;
+  --r:22px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;overflow:hidden;background:#0b1026}
+body{
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic UI",system-ui,sans-serif;
+  color:var(--text);touch-action:manipulation;-webkit-user-select:none;user-select:none;
+  -webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;
+}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;touch-action:manipulation}
+
+/* ===== 背景 ===== */
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden;
+  background:
+    radial-gradient(110% 70% at 15% 0%,#26387f 0%,transparent 60%),
+    radial-gradient(90% 70% at 100% 100%,#45196a 0%,transparent 60%),
+    linear-gradient(165deg,#0a0f27 0%,#171c4a 48%,#25124a 100%);}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.45;will-change:transform}
+.blob.b1{width:60vmax;height:60vmax;left:-20vmax;top:-25vmax;background:#3b82f6;animation:drift1 22s ease-in-out infinite}
+.blob.b2{width:50vmax;height:50vmax;right:-18vmax;top:20vh;background:#8b5cf6;animation:drift2 26s ease-in-out infinite}
+.blob.b3{width:45vmax;height:45vmax;left:20vw;bottom:-25vmax;background:#06b6d4;opacity:.28;animation:drift3 30s ease-in-out infinite}
+@keyframes drift1{50%{transform:translate3d(12vw,8vh,0) scale(1.1)}}
+@keyframes drift2{50%{transform:translate3d(-10vw,-6vh,0) scale(.9)}}
+@keyframes drift3{50%{transform:translate3d(-8vw,-10vh,0) scale(1.15)}}
+#snow{position:fixed;inset:0;z-index:1;pointer-events:none}
+
+/* ===== レイアウト ===== */
+#app{position:relative;z-index:2;height:100vh;height:100dvh;max-width:1180px;margin:0 auto;
+  display:flex;flex-direction:column;gap:10px;
+  padding:calc(env(safe-area-inset-top) + 10px) calc(env(safe-area-inset-right) + 14px) calc(env(safe-area-inset-bottom) + 12px) calc(env(safe-area-inset-left) + 14px);}
+.topbar{display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;letter-spacing:.04em;font-size:15px}
+.brand .logo{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#60a5fa,#a78bfa);box-shadow:0 4px 14px rgba(96,165,250,.45)}
+.pill{padding:7px 14px;border-radius:999px;background:var(--glass);border:1px solid var(--stroke);
+  font-size:14px;font-weight:700;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+
+.layout{flex:1;min-height:0;display:flex;flex-direction:column;gap:10px}
+.stage{position:relative;display:flex;flex-shrink:0;max-height:32dvh}
+@media (min-width:768px){.bubble-text{font-size:16px}.bubble{padding:16px 22px 16px 24px}}
+
+.glass{background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.04));
+  border:1px solid var(--stroke);border-radius:var(--r);
+  backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);
+  box-shadow:0 20px 50px rgba(3,6,30,.45),inset 0 1px 0 rgba(255,255,255,.18)}
+
+/* ナレーション */
+.bubble{position:relative;flex:1;min-width:0;max-height:100%;min-height:92px;padding:14px 18px 14px 20px;cursor:pointer;
+  display:flex;flex-direction:column;border-radius:20px;overflow:hidden;
+  background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.05));border:1px solid var(--stroke);
+  backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);
+  box-shadow:0 16px 40px rgba(3,6,30,.4),inset 0 1px 0 rgba(255,255,255,.18)}
+.bubble::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#7dd3fc,#a78bfa,#f5cf73)}
+.bubble.pop{animation:bubblePop .4s cubic-bezier(.2,.9,.3,1)}
+@keyframes bubblePop{0%{transform:translateY(6px);opacity:.3}100%{transform:none;opacity:1}}
+.bubble.tone-ok::before{background:linear-gradient(180deg,#34d399,#6ee7b7)}
+.bubble.tone-ng::before{background:linear-gradient(180deg,#fb7185,#fbbf24)}
+.bubble.tone-hint::before{background:linear-gradient(180deg,#fbbf24,#fde68a)}
+.bubble-title{position:relative;font-weight:800;font-size:15px;margin-bottom:4px;color:#c4b5fd}
+.bubble.tone-ok .bubble-title{color:#6ee7b7}.bubble.tone-ng .bubble-title{color:#fda4af}.bubble.tone-hint .bubble-title{color:#fde68a}
+.bubble-title:empty{display:none}
+.bubble-text{position:relative;font-size:14.5px;line-height:1.75;white-space:pre-wrap;overflow-y:auto;color:#e6eaff;
+  -webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-right:2px}
+.caret{display:inline-block;width:6px;height:1em;vertical-align:-2px;margin-left:2px;background:#a5b4fc;border-radius:2px;animation:caret .8s steps(2) infinite}
+@keyframes caret{50%{opacity:0}}
+
+.panel{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:18px}
+.view{animation:viewIn .45s cubic-bezier(.2,.9,.3,1)}
+@keyframes viewIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hidden{display:none !important}
+
+/* 横向き・iPad横 */
+@media (orientation:landscape) and (min-width:640px){
+  .stage{max-height:28dvh}
+  .panel{padding:24px}
+}
+@media (min-width:768px) and (orientation:portrait){
+  .bubble-text{font-size:16px}
+  .panel{padding:26px}
+}
+
+/* ===== ボタン ===== */
+.btn{min-height:54px;padding:0 22px;border-radius:16px;font-weight:800;font-size:16px;letter-spacing:.02em;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  transition:transform .15s ease,box-shadow .2s ease,opacity .2s}
+.btn:active{transform:scale(.97)}
+.btn.primary{color:#fff;background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+  box-shadow:0 10px 26px rgba(99,102,241,.45),inset 0 1px 0 rgba(255,255,255,.3)}
+.btn.ghost{background:var(--glass2);border:1px solid var(--stroke)}
+.btn.hintbtn{background:linear-gradient(135deg,rgba(251,191,36,.22),rgba(251,191,36,.08));border:1px solid rgba(251,191,36,.45);color:#fde68a}
+.btn:disabled{opacity:.45;pointer-events:none}
+.btn.big{min-height:62px;font-size:18px;width:100%}
+@media (hover:hover){.btn.primary:hover{box-shadow:0 14px 32px rgba(99,102,241,.6)}}
+
+/* ===== スタート ===== */
+.hero{display:flex;flex-direction:column;gap:14px;max-width:560px;margin:0 auto}
+.eyebrow{margin:0;font-size:11px;letter-spacing:.22em;color:var(--accent);font-weight:700}
+.hero h1{margin:0;font-size:clamp(26px,6.5vw,40px);line-height:1.25;font-weight:900}
+.hero h1 span{background:linear-gradient(90deg,#7dd3fc,#c4b5fd,#f5cf73);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{margin:0;color:var(--sub);line-height:1.7;font-size:14.5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{padding:8px 12px;border-radius:12px;background:var(--glass2);border:1px solid var(--stroke);font-size:13px;font-weight:700}
+.record{font-size:13px;color:var(--sub);padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.08)}
+.record b{color:var(--gold)}
+
+/* ===== クイズ ===== */
+.qmeta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.cat-chip{padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:800;background:rgba(125,211,252,.16);border:1px solid rgba(125,211,252,.4);color:#bae6fd}
+.qnum{font-size:13px;color:var(--sub);font-weight:700}
+.timer{margin-left:auto;font-variant-numeric:tabular-nums;font-size:13px;font-weight:700;color:var(--sub);
+  padding:5px 10px;border-radius:10px;background:rgba(0,0,0,.2)}
+.progress{height:7px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden;margin-bottom:16px}
+.progress i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#7dd3fc,#a78bfa);
+  box-shadow:0 0 12px rgba(167,139,250,.8);transition:width .6s cubic-bezier(.2,.9,.3,1)}
+.question{margin:0 0 16px;font-size:clamp(18px,4.6vw,23px);line-height:1.6;font-weight:700;
+  font-family:"Avenir Next","Segoe UI","Hiragino Sans",system-ui,sans-serif;-webkit-user-select:text;user-select:text}
+.blank{display:inline-block;min-width:4.2em;padding:0 8px;margin:0 2px;border-bottom:3px solid var(--accent);color:var(--accent);text-align:center;transition:color .3s}
+.blank.filled{color:var(--ok);border-color:var(--ok)}
+.choices{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:600px){.choices{grid-template-columns:1fr 1fr}}
+.choice{position:relative;min-height:60px;padding:12px 16px 12px 58px;border-radius:16px;text-align:left;
+  font-size:17px;font-weight:700;font-family:"Avenir Next","Segoe UI","Hiragino Sans",system-ui,sans-serif;
+  background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.04));border:1.5px solid var(--stroke);
+  transition:transform .15s,border-color .25s,background .25s,opacity .3s,box-shadow .25s}
+.choice .key{position:absolute;left:12px;top:50%;width:34px;height:34px;margin-top:-17px;border-radius:11px;
+  display:grid;place-items:center;font-size:14px;font-weight:900;background:rgba(255,255,255,.1);border:1px solid var(--stroke);color:var(--sub)}
+.choice:active{transform:scale(.98)}
+@media (hover:hover){.choice:not(:disabled):hover{border-color:rgba(125,211,252,.6);background:rgba(125,211,252,.1)}}
+.choice.correct{border-color:var(--ok);background:rgba(52,211,153,.17);box-shadow:0 0 0 3px rgba(52,211,153,.18),0 0 24px rgba(52,211,153,.3)}
+.choice.correct .key{background:var(--ok);color:#06281c;border-color:var(--ok)}
+.choice.wrong{border-color:var(--ng);background:rgba(251,113,133,.15);animation:shake .45s}
+.choice.wrong .key{background:var(--ng);color:#3b0711;border-color:var(--ng)}
+.choice.dim{opacity:.42}
+.choice:disabled{cursor:default}
+@keyframes shake{20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(2px)}}
+.actions{display:flex;gap:10px;margin-top:16px}
+.actions .btn{flex:1}
+
+/* ===== リザルト ===== */
+.res-head{display:flex;align-items:center;gap:18px;margin-bottom:16px}
+.ring{position:relative;width:118px;height:118px;flex-shrink:0}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring .val{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-weight:900;font-size:28px;line-height:1.05}
+.ring .val small{display:block;font-size:12px;color:var(--sub);font-weight:700}
+.rank{font-size:13px;color:var(--sub);font-weight:700}
+.rank b{display:block;font-size:44px;line-height:1;margin:4px 0;background:linear-gradient(135deg,#fde68a,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
+.stat{padding:12px 8px;border-radius:14px;background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.08);text-align:center}
+.stat b{display:block;font-size:19px;font-variant-numeric:tabular-nums}
+.stat span{font-size:11.5px;color:var(--sub);font-weight:700}
+.sec-title{font-size:14px;font-weight:800;margin:6px 0 10px;color:#c7d2fe;letter-spacing:.04em}
+.cat-row{margin-bottom:12px}
+.cat-row .top{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;margin-bottom:6px}
+.cat-row .top .meta{margin-left:auto;font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums}
+.tag{font-size:10.5px;padding:3px 8px;border-radius:99px;font-weight:800}
+.tag.weak{background:rgba(251,113,133,.2);color:#fecdd3;border:1px solid rgba(251,113,133,.5)}
+.tag.slow{background:rgba(251,191,36,.18);color:#fde68a;border:1px solid rgba(251,191,36,.45)}
+.tag.good{background:rgba(52,211,153,.18);color:#a7f3d0;border:1px solid rgba(52,211,153,.45)}
+.bar{height:10px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;transition:width 1s cubic-bezier(.2,.9,.3,1)}
+.insights{display:flex;flex-direction:column;gap:8px;margin:16px 0}
+.insight{display:flex;gap:10px;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.08);font-size:13.5px;line-height:1.65}
+.insight .ic{font-size:18px;line-height:1.4}
+.review details{border-radius:14px;background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.08);margin-bottom:8px;overflow:hidden}
+.review summary{padding:12px 14px;font-size:14px;font-weight:700;cursor:pointer;list-style:none;line-height:1.5}
+.review summary::-webkit-details-marker{display:none}
+.review summary::before{content:"▸ ";color:var(--accent)}
+.review details[open] summary::before{content:"▾ "}
+.review .body{padding:0 14px 14px;font-size:13.5px;line-height:1.7;color:#dbe2ff;white-space:pre-wrap}
+.review .ans{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.review .ans span{padding:4px 10px;border-radius:10px;font-size:12.5px;font-weight:700}
+.res-actions{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+@media (min-width:600px){.res-actions{flex-direction:row}.res-actions .btn{flex:1}}
+
+.toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top) + 64px);transform:translate(-50%,-20px);opacity:0;z-index:10;
+  padding:10px 18px;border-radius:999px;font-weight:800;font-size:15px;pointer-events:none;transition:all .35s cubic-bezier(.2,1.3,.4,1)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast.ok{background:rgba(16,185,129,.92);box-shadow:0 10px 30px rgba(16,185,129,.5)}
+.toast.ng{background:rgba(244,63,94,.92);box-shadow:0 10px 30px rgba(244,63,94,.5)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+}
+
+/* ===== ユニット選択 ===== */
+.hero h1 span{margin-left:.15em}
+.lead b{color:#e0e7ff}
+.overall{padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.08)}
+.ov-top{display:flex;justify-content:space-between;font-size:13px;color:var(--sub);font-weight:700;margin-bottom:8px}
+.ov-top b{color:var(--gold);font-size:16px}
+.overall .bar i{background:linear-gradient(90deg,#7dd3fc,#a78bfa,#f5cf73)}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quick .btn{font-size:14.5px;padding:0 10px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;border-radius:16px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.08)}
+.tab{min-height:46px;border-radius:12px;font-weight:800;font-size:14.5px;color:var(--sub);transition:background .25s,color .25s}
+.tab.active{background:linear-gradient(135deg,rgba(96,165,250,.35),rgba(167,139,250,.35));color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.units{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:560px){.units{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){.units{grid-template-columns:1fr 1fr 1fr}}
+.unit{position:relative;display:flex;align-items:center;gap:12px;min-height:72px;padding:12px 14px;border-radius:16px;text-align:left;
+  background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.035));border:1.5px solid var(--stroke);transition:transform .15s,border-color .25s}
+.unit:active{transform:scale(.98)}
+@media (hover:hover){.unit:hover{border-color:rgba(125,211,252,.55)}}
+.unit .no{flex-shrink:0;width:44px;height:44px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:15px;
+  background:rgba(255,255,255,.08);border:1px solid var(--stroke);color:#c7d2fe}
+.unit.cleared .no{background:linear-gradient(135deg,#f5cf73,#f59e0b);color:#3a2503;border-color:transparent}
+.unit .tt{flex:1;min-width:0}
+.unit .tt b{display:block;font-size:15px;line-height:1.35}
+.unit .tt small{font-size:12px;color:var(--sub);font-weight:700}
+.unit .st{font-size:18px}
+.lv-chip{padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800}
+.lv-chip.basic{background:rgba(52,211,153,.15);border:1px solid rgba(52,211,153,.45);color:#a7f3d0}
+.lv-chip.adv{background:rgba(251,113,133,.16);border:1px solid rgba(251,113,133,.5);color:#fecdd3}
+.back{width:36px;height:36px;border-radius:11px;background:rgba(255,255,255,.08);border:1px solid var(--stroke);font-weight:900;color:var(--sub)}
+.cat-chip{max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.empty{padding:16px;border-radius:14px;background:rgba(0,0,0,.2);color:var(--sub);font-size:14px;line-height:1.7;text-align:center}
+</style>
+</head>
+<body>
+<div class="bg"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<canvas id="snow"></canvas>
+<div class="toast" id="toast"></div>
+
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><div class="logo">❄</div>Exam English</div>
+    <div class="pill" id="scorePill">⭐ 0</div>
+  </header>
+
+  <main class="layout">
+    <!-- ナレーション -->
+    <section class="stage" id="stage">
+      <div class="bubble" id="bubble" role="status" aria-live="polite">
+        <div class="bubble-title" id="bubbleTitle"></div>
+        <div class="bubble-text" id="bubbleText"></div>
+      </div>
+    </section>
+
+    <!-- パネル -->
+    <section class="panel glass" id="panel">
+      <!-- ユニット選択 -->
+      <div class="view" id="viewStart">
+        <div class="hero">
+          <p class="eyebrow">JUNIOR HIGH → HIGH SCHOOL → 共通テスト</p>
+          <h1>挑め！<span>大学受験英語</span></h1>
+          <p class="lead">中学の基礎から高校・共テレベルまで <b>全<span id="unitCount"></span>ユニット・<span id="qCount"></span>問</b>。各ユニット10問（基礎7問＋応用3問）。8問以上正解でクリア！</p>
+          <div class="overall">
+            <div class="ov-top"><span>クリア <b id="ovClear">0</b> / <span id="ovTotal">0</span></span><span id="ovSolved"></span></div>
+            <div class="bar"><i id="ovBar"></i></div>
+          </div>
+          <div class="quick">
+            <button class="btn primary" id="btnRandom">🎲 全範囲ランダム20問</button>
+            <button class="btn hintbtn" id="btnWeakList">📕 苦手リスト</button>
+          </div>
+          <div class="tabs" role="tablist">
+            <button class="tab active" data-grade="中学">中学レベル</button>
+            <button class="tab" data-grade="高校">高校・共テレベル</button>
+          </div>
+          <div class="units" id="units"></div>
+        </div>
+      </div>
+
+      <!-- クイズ -->
+      <div class="view hidden" id="viewQuiz">
+        <div class="qmeta">
+          <button class="back" id="btnQuit" aria-label="ユニット選択へ戻る">✕</button>
+          <span class="cat-chip" id="qCat"></span>
+          <span class="lv-chip" id="qLv"></span>
+          <span class="qnum" id="qNum"></span>
+          <span class="timer" id="qTimer">⏱ 0.0s</span>
+        </div>
+        <div class="progress"><i id="progBar"></i></div>
+        <h2 class="question" id="qText"></h2>
+        <div class="choices" id="choices"></div>
+        <div class="actions">
+          <button class="btn hintbtn" id="btnHint">💡 ヒントを見る</button>
+          <button class="btn primary hidden" id="btnNext">次の問題へ →</button>
+        </div>
+      </div>
+
+      <!-- リザルト -->
+      <div class="view hidden" id="viewResult"></div>
+    </section>
+  </main>
+</div>
+<script>
+(() => {
+'use strict';
+const UNITS = [];
+function U(id, grade, title, tip, qs){ UNITS.push({ id, grade, title, tip, qs }); }
+/* ===== 中学 ===== 各ユニット：0〜6が基礎、7〜9が応用。choices[0] が正解 */
+U('j1','中学','be動詞・一般動詞','主語が「三人称単数（he / she / it / 単数の名詞）」かどうかを最初にチェック！ be動詞と一般動詞を混ぜて使わないことも大切だよ。',[
+['My sister ___ a high school student.',['is','are','am','be'],'主語の My sister は「三人称単数」だね。','三人称単数の主語に続く be動詞は is。\n訳：私の姉は高校生です。'],
+['Tom ___ soccer every Sunday.',['plays','play','playing','is play'],'主語は Tom（三人称単数）、時制は現在。','三人称単数・現在の一般動詞には s をつけるよ（三単現の s）。is play のように be動詞と一般動詞を並べるのは×。\n訳：トムは毎週日曜日にサッカーをする。'],
+['___ your brother like music?',['Does','Do','Is','Are'],'like は一般動詞。主語 your brother は三人称単数。','一般動詞の疑問文は Do / Does を文頭に置くよ。主語が三人称単数なので Does。\n訳：あなたのお兄さんは音楽が好きですか。'],
+['We ___ in the library now.',['are','is','am','be'],'主語の We は複数だよ。','We / You / They と複数の主語には are。\n訳：私たちは今、図書館にいます。'],
+['She ___ have a cat.',['doesn\'t','don\'t','isn\'t','not'],'have は一般動詞。否定文の形は？','三人称単数の一般動詞の否定は doesn\'t＋動詞の原形。has ではなく have になっている点にも注目！\n訳：彼女は猫を飼っていない。'],
+['My father ___ to work by train.',['goes','go','going','is go'],'go に三単現の s をつけるとどうなる？','go / do / watch など、o・sh・ch で終わる動詞は es をつけるよ（goes）。\n訳：父は電車で仕事に行く。'],
+['They ___ not busy today.',['are','do','does','is'],'busy は形容詞。動詞は一般動詞？ be動詞？','形容詞（busy）が続くときは be動詞。They なので are not。\n訳：彼らは今日は忙しくない。'],
+['Each of the students ___ a tablet.',['has','have','having','are have'],'Each of 〜 は「〜のそれぞれ」。数えるのは1人ずつ？','Each of 〜 は「一人ひとり」を指すので単数扱い。have ではなく has になるよ。\n訳：生徒たちはそれぞれタブレットを持っている。'],
+['My parents and my sister ___ in Osaka.',['live','lives','is living','does live'],'A and B で主語は何人になる？','A and B が主語のときは複数扱い。だから三単現の s はつけない。\n訳：両親と姉は大阪に住んでいる。'],
+['The number of students in my class ___ thirty.',['is','are','have','has'],'主語の中心は students？ それとも number？','The number of 〜 は「〜の数」で、中心は number なので単数扱い。a number of 〜（多くの〜）は複数扱いになるので区別してね。\n訳：私のクラスの生徒数は30人です。']
+]);
+
+U('j2','中学','過去形・過去進行形','last 〜 / ago / yesterday など「過去の目印」を探そう。「〜していた（最中）」なら過去進行形 was / were＋ -ing だよ。',[
+['I ___ to Kyoto last summer.',['went','go','goes','have gone'],'last summer は過去の一時点。','last 〜 は過去を表す目印。go の過去形は went（不規則変化）。現在完了は last 〜 と一緒に使えないよ。\n訳：私は去年の夏、京都に行った。'],
+['She ___ TV when I called her.',['was watching','watched','is watching','watches'],'電話したとき、彼女は「〜している最中」だった。','過去のある時点で進行中だった動作は過去進行形 was / were＋ -ing。\n訳：私が電話したとき、彼女はテレビを見ていた。'],
+['___ you see the movie yesterday?',['Did','Do','Were','Have'],'yesterday があり、see は一般動詞。','一般動詞の過去の疑問文は Did＋主語＋原形。\n訳：昨日その映画を見ましたか。'],
+['We ___ at home yesterday evening.',['were','was','are','did'],'主語は We、時は yesterday evening。','be動詞の過去形は was / were。We には were を使うよ。\n訳：私たちは昨日の夕方、家にいた。'],
+['He didn\'t ___ breakfast this morning.',['eat','ate','eats','eating'],'didn\'t の後ろの動詞の形は？','didn\'t の後ろは必ず動詞の原形。過去の意味は didn\'t が担当しているよ。\n訳：彼は今朝、朝食を食べなかった。'],
+['What ___ you doing at eight last night?',['were','did','are','was'],'doing があるので進行形の疑問文だよ。','過去進行形の疑問文は be動詞（were / was）を前に出す。you なので were。\n訳：昨夜8時に何をしていたの？'],
+['My mother ___ a cake for me two days ago.',['made','makes','has made','making'],'two days ago は「2日前」。','ago は過去形と一緒に使う目印。現在完了とは一緒に使えないよ。make の過去形は made。\n訳：母が2日前、私にケーキを作ってくれた。'],
+['I ___ dinner when the earthquake happened.',['was having','have','am having','have had'],'地震が起きた「その瞬間」、私は何をしている最中だった？','過去の出来事（地震）が起きたときに進行中だった動作は過去進行形。have は「食べる」の意味なら進行形にできるよ。\n訳：地震が起きたとき、私は夕食を食べていた。'],
+['While I ___ home, I met an old friend.',['was walking','walk','am walking','have walked'],'While 〜「〜している間に」、時制は met（過去）に合わせる。','while の節には進行形がよく使われるよ。過去の話なので was walking。\n訳：家に歩いて帰る途中、旧友に会った。'],
+['When did you ___ him?',['meet','met','meeting','have met'],'did の後ろの形を思い出して。','did があるので動詞は原形 meet。when は「いつ」とピンポイントの時を聞くので現在完了とは一緒に使えないんだ。\n訳：いつ彼に会ったの？']
+]);
+
+U('j3','中学','未来表現・助動詞','助動詞の後ろは必ず動詞の原形！ must（〜しなければならない / 〜に違いない）と must not（禁止）、don\'t have to（不要）の違いがよく狙われるよ。',[
+['It ___ rain tomorrow.',['will','is','does','was'],'tomorrow は未来。後ろの rain は原形だね。','未来のことは will＋動詞の原形で表せるよ。\n訳：明日は雨が降るだろう。'],
+['I\'m ___ to visit my grandmother next week.',['going','go','will','went'],'I\'m 〜 to visit の形を完成させよう。','be going to＋原形で「〜するつもり・予定」。\n訳：来週、祖母を訪ねる予定です。'],
+['You ___ run in the hallway. It\'s dangerous.',['must not','must','have to','can'],'「危ない」と言っているね。禁止の表現は？','must not は「〜してはいけない」という強い禁止。\n訳：廊下を走ってはいけません。危ないです。'],
+['___ I open the window? — Sure.',['May','Must','Will','Do'],'「窓を開けてもいいですか」と許可を求めているよ。','May I 〜? は「〜してもよいですか」と丁寧に許可を求める表現。\n訳：窓を開けてもいいですか。—どうぞ。'],
+['She ___ speak three languages.',['can','cans','can to','is can'],'助動詞には s がつく？ to はいる？','助動詞は主語が三人称単数でも形が変わらず、後ろは原形。can to や is can は×。\n訳：彼女は3か国語を話せる。'],
+['You don\'t ___ to come tomorrow. It\'s a holiday.',['have','must','can','should'],'don\'t 〜 to で「〜する必要はない」。','don\'t have to は「〜しなくてよい（不要）」。must not（禁止）とは意味が違うから注意！\n訳：明日は来なくていいよ。休日だから。'],
+['___ you help me with this box?',['Could','Must','Shall','May'],'相手に「〜してもらえますか」と丁寧に頼む表現。','Could you 〜? は Can you 〜? より丁寧な依頼。May you や Shall you という言い方はしないよ。\n訳：この箱を運ぶのを手伝っていただけますか。'],
+['He will ___ able to swim next year.',['be','can','is','being'],'will と can は並べられる？','助動詞は2つ重ねられないので、will can ではなく will be able to にするよ。\n訳：彼は来年泳げるようになるだろう。'],
+['You ___ be tired after the long trip. Take a rest.',['must','mustn\'t','don\'t have to','shall'],'「長旅のあとだから〜に違いない」という推量。','must には「〜に違いない」という強い推量の意味もあるよ。\n訳：長旅のあとだから疲れているに違いない。休んでね。'],
+['"Shall we go shopping?" — "___"',['Yes, let\'s.','Yes, we shall.','No, we don\'t.','Yes, please.'],'Shall we 〜?（〜しましょうか）への定番の答え方は？','Shall we 〜? = Let\'s 〜. なので、答えは Yes, let\'s. / No, let\'s not.。Yes, please. は Shall I 〜?（私が〜しましょうか）への答え方だよ。\n訳：買い物に行かない？—うん、行こう。']
+]);
+
+U('j4','中学','疑問詞・命令文・感嘆文','答えの部分（By bus. / About fifty. など）から逆算して疑問詞を選ぼう。間接疑問は「疑問詞＋主語＋動詞」の語順だよ。',[
+['___ is that tall man? — He is my uncle.',['Who','What','Where','Which'],'答えは「私のおじです」。人について聞いているね。','人が誰かを尋ねるのは Who。\n訳：あの背の高い男性は誰？—私のおじです。'],
+['___ do you go to school? — By bus.',['How','What','When','Why'],'答えは「バスで」。手段を聞く疑問詞は？','手段・方法は How。\n訳：どうやって学校に行くの？—バスで。'],
+['___ books do you have? — About fifty.',['How many','How much','What','How long'],'books は数えられる名詞。数を聞いているよ。','数えられる名詞の「数」は How many＋複数名詞。量や値段なら How much。\n訳：本を何冊持っているの？—50冊くらい。'],
+['___ careful. The road is icy.',['Be','Are','Being','Is'],'careful は形容詞。命令文は動詞の原形で始めるよ。','be動詞の命令文は Be＋形容詞。\n訳：気をつけて。道が凍っているよ。'],
+['___ is this bag? — It\'s 3,000 yen.',['How much','How many','What','Which'],'答えは値段だね。','値段を尋ねるのは How much。\n訳：このかばんはいくらですか。—3,000円です。'],
+['___ don\'t you join us? — Sure!',['Why','What','How','When'],'「一緒にどう？」と誘う表現。','Why don\'t you 〜? は「〜したらどう？」という提案・誘いの表現。\n訳：一緒に来ない？—もちろん！'],
+['___ beautiful flowers these are!',['What','How','Which','So'],'後ろに「形容詞＋名詞（flowers）」が続いているよ。','感嘆文は What＋（a）＋形容詞＋名詞＋S＋V! / How＋形容詞＋S＋V! 名詞があるので What。\n訳：これらはなんて美しい花なんだろう！'],
+['___ do you like better, tea or coffee?',['Which','What','Who','How'],'tea or coffee と選択肢が示されているね。','限られた選択肢から選ばせるのは Which。Which do you like better, A or B? の形で覚えよう。\n訳：紅茶とコーヒー、どちらが好き？'],
+['How ___ have you lived in this town? — For five years.',['long','many','often','far'],'答えは「5年間」。期間を聞いているよ。','期間は How long。How often は頻度、How far は距離だよ。\n訳：この町にどのくらい住んでいるの？—5年です。'],
+['I don\'t know ___ he lives.',['where','where does','does where','what'],'文の中に疑問文が入る「間接疑問」。語順に注意！','間接疑問は「疑問詞＋主語＋動詞」の普通の語順。does は使わず where he lives になるよ。\n訳：彼がどこに住んでいるのか知らない。']
+]);
+
+U('j5','中学','比較','比較級（-er / more）と最上級（the -est / the most）の形をまず確実に。as 〜 as の間は原級、比較級の強調は much だよ。',[
+['This box is ___ than that one.',['heavier','heavy','heaviest','more heavy'],'than があるので比較級。heavy の比較級は？','heavy のように「子音＋y」で終わる語は y を i に変えて -er（heavier）。\n訳：この箱はあの箱より重い。'],
+['Mt. Fuji is the ___ mountain in Japan.',['highest','higher','high','most high'],'the と in Japan があるね。','「〜の中で一番」は最上級 the＋ -est。\n訳：富士山は日本で一番高い山だ。'],
+['This book is ___ interesting than that one.',['more','most','much','very'],'interesting は長い単語。比較級の作り方は？','長い形容詞は more＋原級で比較級を作るよ。\n訳：この本はあの本よりおもしろい。'],
+['Ken runs as ___ as Taro.',['fast','faster','fastest','more fast'],'as 〜 as の間に入るのは？','as＋原級＋as で「〜と同じくらい」。間は原級のまま！\n訳：ケンはタロウと同じくらい速く走る。'],
+['She is the best singer ___ the three.',['of','in','than','at'],'the three は「3人」という複数の仲間。','最上級の範囲は、複数の仲間なら of（of the three / of all）、場所や集団なら in（in my class）。\n訳：彼女は3人の中で一番歌がうまい。'],
+['I like summer ___ than winter.',['better','more good','best','well'],'like A better than B の形。','「BよりAが好き」は like A better than B。good / well の比較級は better。\n訳：私は冬より夏が好きだ。'],
+['Tokyo is one of the largest ___ in the world.',['cities','city','city\'s','a city'],'one of the 最上級＋名詞 の名詞の形は？','one of the 最上級＋複数名詞 で「最も〜なものの1つ」。\n訳：東京は世界で最も大きな都市の1つだ。'],
+['This question is ___ easier than that one.',['much','very','more','most'],'比較級 easier を強める語は？','比較級を強めるのは much / far / a lot など。very は比較級を強められないよ。\n訳：この問題はあの問題よりずっと簡単だ。'],
+['No other student in the class is ___ than Mika.',['taller','tallest','as tall','tall'],'No other 〜 は「他のどの〜も…ない」。後ろに than があるよ。','No other＋単数名詞＋比較級＋than A で「Aほど〜な人は他にいない」＝最上級の意味。\n訳：クラスでミカより背の高い生徒は他にいない。'],
+['My room is three times as ___ as yours.',['large','larger','largest','more large'],'「〜倍」も as 〜 as の形を使うよ。','X times as＋原級＋as で「〜のX倍…」。\n訳：私の部屋はあなたの部屋の3倍の広さだ。']
+]);
+U('j6','中学','不定詞・動名詞（基礎）','want / hope / decide は to 不定詞、enjoy / finish / stop は動名詞と「動詞ごとにセット」で覚えよう。前置詞の後ろは必ず -ing だよ。',[
+['I want ___ a doctor.',['to be','being','be','to being'],'want の後ろは to 不定詞？ 動名詞？','want to＋原形で「〜したい」。\n訳：私は医者になりたい。'],
+['She enjoys ___ the piano.',['playing','to play','play','played'],'enjoy の後ろの形は決まっているよ。','enjoy の後ろは動名詞（-ing）。enjoy to do は×。\n訳：彼女はピアノを弾くのを楽しむ。'],
+['I went to the park ___ tennis.',['to play','playing','play','played'],'公園に行った「目的」は？','「〜するために」は to 不定詞の副詞的用法（目的）。\n訳：私はテニスをするために公園へ行った。'],
+['He finished ___ his room.',['cleaning','to clean','clean','cleaned'],'finish の後ろの形は？','finish は動名詞をとる動詞。finish to do は×。\n訳：彼は部屋の掃除を終えた。'],
+['It is important ___ breakfast every day.',['to eat','eating','eat','ate'],'It は仮の主語。本当の主語は？','It is 〜 to do で「…することは〜だ」。It は後ろの to 不定詞を指しているよ。\n訳：毎日朝食を食べることは大切だ。'],
+['I have a lot of homework ___ today.',['to do','doing','do','did'],'「今日やるべき宿題」と名詞を後ろから説明しているよ。','名詞＋to 不定詞で「〜するべき…」（形容詞的用法）。\n訳：今日はやるべき宿題がたくさんある。'],
+['Thank you for ___ me.',['helping','to help','help','helped'],'for は前置詞。前置詞の後ろは？','前置詞の後ろは名詞か動名詞。Thank you for -ing で「〜してくれてありがとう」。\n訳：手伝ってくれてありがとう。'],
+['I don\'t know what ___ next.',['to do','doing','do','did'],'「次に何をすればいいか」を表す形は？','疑問詞＋to 不定詞で「何を〜すべきか」。how to / where to なども同じ仲間。\n訳：次に何をすればいいのかわからない。'],
+['My dream is ___ around the world.',['to travel','travel','traveled','travels'],'is の後ろで「〜すること」を表す形を選ぼう。','be動詞の後ろで「〜すること」は to 不定詞（名詞的用法）か動名詞。選択肢の中では to travel だけが正しい形だよ。\n訳：私の夢は世界中を旅することだ。'],
+['She was surprised ___ the news.',['to hear','hearing','hear','heard'],'驚いた「原因」を表す形は？','感情を表す形容詞＋to 不定詞で「〜して…」（感情の原因）。glad to / sad to も同じだよ。\n訳：彼女はその知らせを聞いて驚いた。']
+]);
+
+U('j7','中学','受動態','受動態は「be動詞＋過去分詞」。時制は be動詞で表し、「〜によって」は by。by 以外の前置詞をとる熟語（be covered with など）は要暗記！',[
+['English ___ in many countries.',['is spoken','speaks','is speaking','spoke'],'英語は「話される」側だね。','「〜される」は be動詞＋過去分詞（受動態）。speak の過去分詞は spoken。\n訳：英語は多くの国で話されている。'],
+['This temple ___ about 500 years ago.',['was built','built','is built','has built'],'寺は「建てられた」。ago があるので過去。','過去の受動態は was / were＋過去分詞。\n訳：この寺は約500年前に建てられた。'],
+['The window was broken ___ Tom.',['by','with','of','from'],'「トムによって」を表す前置詞は？','受動態で動作をした人は by〜で表すよ。\n訳：その窓はトムに割られた。'],
+['Is this room ___ every day?',['cleaned','clean','cleaning','cleans'],'Is が前に出た受動態の疑問文。','受動態の疑問文は be動詞＋主語＋過去分詞〜?\n訳：この部屋は毎日掃除されていますか。'],
+['These pictures were ___ by my father.',['taken','took','take','taking'],'take の過去分詞は？','take - took - taken。受動態には過去分詞 taken を使うよ。\n訳：これらの写真は父が撮った。'],
+['The song is loved ___ young people.',['by','to','at','for'],'「若者に愛されている」の「に」は？','受動態の動作主は by。be loved by 〜 で「〜に愛されている」。\n訳：その歌は若者に愛されている。'],
+['The letter ___ written in English.',['wasn\'t','didn\'t','doesn\'t','hasn\'t'],'written は過去分詞。受動態の否定形を作ろう。','受動態の否定は be動詞＋not＋過去分詞。\n訳：その手紙は英語で書かれていなかった。'],
+['The top of the mountain is covered ___ snow.',['with','by','of','in'],'be covered 〜 の決まった前置詞は？','be covered with 〜 で「〜でおおわれている」。by 以外をとる受動態の熟語だよ。\n訳：山頂は雪でおおわれている。'],
+['I am interested ___ Japanese history.',['in','at','with','by'],'be interested 〜「〜に興味がある」。','be interested in 〜。be surprised at / be known to なども一緒に覚えよう。\n訳：私は日本の歴史に興味がある。'],
+['The new bridge will ___ next year.',['be built','build','built','be building'],'助動詞 will＋受動態の形は？','助動詞のある受動態は 助動詞＋be＋過去分詞。\n訳：新しい橋は来年建設される予定だ。']
+]);
+
+U('j8','中学','現在完了','現在完了は「過去から今につながっている」感覚。ago / yesterday / when など「過去の一点」を表す語とは一緒に使えないよ。for（期間）と since（起点）の区別も大事！',[
+['I ___ in Tokyo since 2015.',['have lived','lived','live','am living'],'since 2015「2015年からずっと」。','過去から今まで続いている状態は現在完了（継続）have＋過去分詞。\n訳：私は2015年から東京に住んでいる。'],
+['Have you ever ___ to Hokkaido?',['been','gone','go','went'],'「〜に行ったことがある」の決まった形は？','have been to 〜 で「〜に行ったことがある」（経験）。have gone to は「行ってしまって今いない」だよ。\n訳：北海道に行ったことはありますか。'],
+['She has ___ finished her homework.',['already','yet','ever','ago'],'肯定文で「もう〜した」。','肯定文の「もう」は already、否定・疑問文の「まだ・もう」は yet。\n訳：彼女はもう宿題を終えた。'],
+['I haven\'t read the book ___.',['yet','already','ever','still'],'否定文の文末に置く「まだ」は？','否定文の文末の yet は「まだ（〜していない）」。\n訳：私はまだその本を読んでいない。'],
+['How ___ have you known him?',['long','many','much','often'],'知り合ってからの「期間」を聞いているよ。','How long have you 〜? で期間を尋ねる（継続）。\n訳：彼とはどのくらいの知り合いですか。'],
+['He has visited Kyoto three ___.',['times','time','timing','a time'],'回数の言い方は？','「〜回」は once / twice / three times。経験の現在完了と一緒によく使うよ。\n訳：彼は京都を3回訪れたことがある。'],
+['We ___ each other for ten years.',['have known','knew','are knowing','know'],'for ten years「10年間ずっと」。','know は状態動詞なので進行形にせず、継続は現在完了で表すよ。\n訳：私たちは10年来の知り合いだ。'],
+['I ___ my homework an hour ago.',['finished','have finished','have been finishing','had finished'],'an hour ago に注目！','ago は過去の一点を表すので、現在完了とは一緒に使えない。過去形 finished が正解。\n訳：私は1時間前に宿題を終えた。'],
+['My father has gone to London, so he ___ here now.',['isn\'t','is','was','has been'],'has gone to の意味を思い出して。','has gone to 〜 は「〜に行ってしまって今はここにいない」。だから now は isn\'t here。\n訳：父はロンドンに行ってしまったので、今ここにいない。'],
+['It has been raining ___ this morning.',['since','for','from','during'],'this morning は期間？ 起点？','現在完了進行形で「〜からずっと」は since＋起点。for は「期間（for two hours）」だよ。\n訳：今朝からずっと雨が降っている。']
+]);
+
+U('j9','中学','関係代名詞・後置修飾','先行詞が「人」なら who、「物」なら which、どちらでも that。後ろに主語が欠けているか、目的語が欠けているかをチェック！ 分詞（-ing / 過去分詞）の後置修飾もセットで。',[
+['I have a friend ___ lives in Canada.',['who','which','what','whose'],'先行詞は a friend（人）。後ろに主語が欠けているよ。','先行詞が人で、関係詞が主語の役割なら who（主格）。\n訳：私にはカナダに住んでいる友達がいる。'],
+['This is the book ___ I bought yesterday.',['which','who','what','whose'],'先行詞は the book（物）。bought の目的語が欠けているね。','先行詞が物で目的語の役割なら which（目的格）。省略もできるよ。\n訳：これは私が昨日買った本だ。'],
+['Look at the boy ___ under the tree.',['sitting','sat','sits','to sit'],'「木の下に座っている少年」。','名詞＋現在分詞（-ing）で「〜している…」と後ろから説明するよ。\n訳：木の下に座っている少年を見て。'],
+['I have a car ___ in Germany.',['made','making','makes','to make'],'車は「作られた」側だね。','名詞＋過去分詞で「〜された…」。a car made in Germany＝ドイツ製の車。\n訳：私はドイツ製の車を持っている。'],
+['The girl ___ hair is long is my sister.',['whose','who','which','that'],'「その少女の髪」と所有を表しているよ。','whose＋名詞で「その〜が」（所有格）。\n訳：髪の長いその少女は私の妹だ。'],
+['This is the cat ___ was found in the park.',['that','who','what','whose'],'先行詞は the cat（動物）。','動物・物が先行詞の主格は which か that。who は人にしか使えないよ。\n訳：これは公園で見つかった猫だ。'],
+['The man ___ I met yesterday is a teacher.',['whom','which','whose','what'],'先行詞は人で、met の目的語が欠けている。','人が先行詞の目的格は whom（会話では who や省略が多い）。\n訳：私が昨日会った男性は教師だ。'],
+['The language ___ in Brazil is Portuguese.',['spoken','speaking','speaks','to speak'],'言語は「話される」側だね。','名詞＋過去分詞の後置修飾。the language spoken in Brazil＝ブラジルで話されている言語。\n訳：ブラジルで話されている言語はポルトガル語だ。'],
+['She is the first person ___ came here.',['that','which','whose','what'],'先行詞に the first がついているよ。','the first / the only / 最上級 などがつく先行詞には that がよく使われる。which は人には使えないね。\n訳：彼女はここに来た最初の人だ。'],
+['All ___ you have to do is study hard.',['that','what','which','who'],'先行詞は All。what は先行詞を含むので…？','All that 〜 で「〜するすべてのこと」。what はそれ自体に先行詞を含むので All の後ろには置けないよ。\n訳：あなたがすべきことは一生懸命勉強することだけだ。']
+]);
+
+U('j10','中学','接続詞・前置詞','because（理由）/ so（結果）/ but（逆接）/ if（条件）の意味のつながりで選ぼう。前置詞は at（時刻）/ on（日付・曜日）/ in（月・年）が基本！',[
+['I like cats, ___ my sister likes dogs.',['but','so','because','if'],'猫と犬、好みが対照的だね。','対照・逆接は but。\n訳：私は猫が好きだが、妹は犬が好きだ。'],
+['I stayed home ___ it was raining.',['because','but','so','though'],'家にいた「理由」は雨。','理由を表すのは because。\n訳：雨が降っていたので家にいた。'],
+['___ it is sunny tomorrow, let\'s go hiking.',['If','Because','But','That'],'「もし晴れたら」。','条件は if。条件の if 節では未来のことも現在形で表すよ（is）。\n訳：明日晴れたらハイキングに行こう。'],
+['I was born ___ April 10.',['on','in','at','for'],'日付の前の前置詞は？','特定の日付・曜日は on。月だけなら in April。\n訳：私は4月10日に生まれた。'],
+['Let\'s meet ___ six o\'clock.',['at','on','in','by'],'時刻の前の前置詞は？','時刻は at。\n訳：6時に会おう。'],
+['I think ___ he is right.',['that','what','which','because'],'think の後ろに「〜ということ」が続くよ。','think that S＋V で「〜だと思う」。that は省略もよくされる。\n訳：彼は正しいと思う。'],
+['Wash your hands ___ you eat.',['before','during','while','until'],'手を洗うのは食べる「前」だね。','before S＋V で「〜する前に」。during は前置詞なので後ろに文は置けないよ。\n訳：食べる前に手を洗いなさい。'],
+['I have lived here ___ I was a child.',['since','for','during','from'],'子どもの頃「から」ずっと。後ろは文（S＋V）だよ。','現在完了と一緒に「〜して以来」は since。since は接続詞として文も続けられる。\n訳：子どもの頃からここに住んでいる。'],
+['Please wait here ___ I come back.',['until','by','since','during'],'戻ってくる「まで」ずっと待つ。','until は「〜までずっと（継続）」。by は「〜までに（期限）」で前置詞だよ。\n訳：私が戻るまでここで待っていてください。'],
+['Study hard, ___ you will pass the exam.',['and','or','but','so'],'命令文のあとに「そうすれば」を続けるよ。','命令文, and 〜「…しなさい、そうすれば〜」。命令文, or 〜は「さもないと」。\n訳：一生懸命勉強しなさい、そうすれば試験に受かるよ。']
+]);
+/* ===== 高校 ===== */
+U('h1','高校','時制（応用）','「基準点はいつか」を常に意識しよう。時・条件の副詞節（when / if / by the time）では未来も現在形、名詞節の if（〜かどうか）では will を使う、の区別が超頻出！',[
+['By the time you arrive at the station, the train ___ .',['will have left','has left','left','will leave'],'「By the time 〜」は「〜するときまでには」。未来のある時点までに"完了している"形は？','「By the time＋現在形」は未来の基準点。その時点までに電車は「もう出てしまっている」ので未来完了 will have left。\n訳：あなたが駅に着くころには、電車はもう出発してしまっているだろう。'],
+['I ___ in Tokyo for ten years when I moved to Osaka.',['had lived','have lived','was living','am living'],'"when I moved" は過去の一時点。その時点まで「ずっと〜していた」形は？','過去のある時点までの継続は過去完了 had＋過去分詞。have lived は「現在まで」の継続なので×。\n訳：大阪に引っ越したとき、私は10年間東京に住んでいた。'],
+['I\'ll call you when he ___ home.',['comes','will come','came','would come'],'when 〜 は「時」を表す副詞節だよ。','時・条件を表す副詞節の中では、未来のことでも現在形を使う。\n訳：彼が帰ってきたら電話するね。'],
+['She ___ for two hours when I got there.',['had been waiting','has been waiting','is waiting','waits'],'私が着いた（過去）時点まで、ずっと待ち続けていた。','過去のある時点まで続いていた動作は過去完了進行形 had been -ing。\n訳：私が着いたとき、彼女は2時間待ち続けていた。'],
+['I lost the umbrella I ___ the day before.',['had bought','have bought','buy','am buying'],'「なくした（過去）」より「買った」のほうがさらに前だね。','過去の出来事よりさらに前のことは過去完了（大過去）had＋過去分詞。\n訳：私は前日に買った傘をなくした。'],
+['Water ___ at 100℃.',['boils','is boiling','boiled','has boiled'],'いつでも成り立つ「一般的な真理」だよ。','不変の真理・習慣は現在形で表す。\n訳：水は100℃で沸騰する。'],
+['This time next week, I ___ on the beach in Hawaii.',['will be lying','lie','have lain','lay'],'「来週の今ごろ」＝未来のある時点で「〜している最中」。','未来のある時点で進行中の動作は未来進行形 will be -ing。lie（横たわる）の -ing は lying。\n訳：来週の今ごろ、私はハワイのビーチで寝そべっているだろう。'],
+['I don\'t know if it ___ tomorrow.',['will rain','rains','rained','has rained'],'この if は「もし〜なら」？ それとも「〜かどうか」？','know の目的語になる if 節は「〜かどうか」という名詞節。名詞節では未来のことに will を使うよ。副詞節の if と区別しよう！\n訳：明日雨が降るかどうかわからない。'],
+['It is ten years since he ___.',['died','has died','dies','had died'],'It is ＋期間＋since 〜 の since 節の時制は？','It is (has been)＋期間＋since S＋過去形 で「〜してから…になる」。\n訳：彼が亡くなってから10年になる。'],
+['If I read this book again, I ___ it three times.',['will have read','have read','had read','would read'],'「もう一度読んだら」＝未来の時点で、それまでの経験は？','未来のある時点までの経験は未来完了 will have＋過去分詞。\n訳：この本をもう一度読めば、3回読んだことになる。']
+]);
+
+U('h2','高校','助動詞（応用）','「助動詞＋have＋過去分詞」は過去への推量・後悔の4点セット（must / can\'t / may / should have p.p.）を完璧に。may well / may as well / would rather などの慣用表現も頻出！',[
+['He ___ have been sick yesterday; he was absent from school.',['must','can\'t','should','need'],'学校を休んでいた → 病気だった「に違いない」。','must have p.p. で「〜したに違いない」（過去への強い推量）。\n訳：彼は昨日病気だったに違いない。学校を休んでいたから。'],
+['You ___ have told me earlier. I could have helped you.',['should','must','can','will'],'「もっと早く言ってくれればよかったのに」という気持ち。','should have p.p. で「〜すべきだったのに（しなかった）」という後悔・非難。\n訳：もっと早く言ってくれればよかったのに。手伝えたのに。'],
+['She ___ have said such a thing. She\'s always kind.',['can\'t','must','should','would'],'いつも優しい人 → そんなことを言った「はずがない」。','can\'t（cannot）have p.p. で「〜したはずがない」。\n訳：彼女がそんなことを言ったはずがない。いつも優しいもの。'],
+['You ___ well be surprised at the news.',['may','must','can','should'],'〜 well で「〜するのももっともだ」。','may well＋原形で「〜するのももっともだ・たぶん〜だろう」。\n訳：あなたがその知らせに驚くのも無理はない。'],
+['It\'s late. You ___ as well go home now.',['may','must','should','can'],'〜 as well で「〜したほうがいい」。','may (might) as well＋原形で「〜したほうがいい・〜してもいい」。\n訳：遅いから、もう帰ったほうがいいよ。'],
+['I ___ often go fishing with my father when I was a child.',['would','should','must','might'],'子どもの頃「よく〜したものだ」。','would＋原形（often を伴うことが多い）で過去の習慣「よく〜したものだ」。\n訳：子どもの頃、よく父と釣りに行ったものだ。'],
+['There ___ to be a big tree here.',['used','would','should','must'],'昔は大きな木が「あった」（今はない）。状態だよ。','used to＋原形は過去の習慣・状態の両方に使える。would は状態には使えないのがポイント。\n訳：ここには昔、大きな木があった。'],
+['It is necessary that he ___ there by noon.',['be','is','was','will be'],'necessary that の後ろは「仮定法現在」。','necessary / important / essential that S (should)＋原形。should が省略されると原形 be が残るよ。\n訳：彼は正午までにそこにいる必要がある。'],
+['You need not ___ worried about it.',['be','to be','being','been'],'この need は助動詞？ 一般動詞？','need not の need は助動詞なので後ろは原形。一般動詞なら don\'t need to be になるよ。\n訳：そのことは心配しなくていいよ。'],
+['I\'d rather ___ home than go out tonight.',['stay','to stay','staying','stayed'],'would rather A than B の A, B の形は？','would rather＋原形＋than＋原形 で「BするよりむしろAしたい」。\n訳：今夜は出かけるより家にいたい。']
+]);
+
+U('h3','高校','仮定法','「現在の反実仮想＝過去形」「過去の反実仮想＝過去完了」の一段ずらしが基本。If の省略による倒置（Were I / Had I / Should you）と混合仮定法が応用の山場！',[
+['If I ___ you, I would accept the offer.',['were','am','had been','will be'],'主節に would。現実と違う"今"の話だよ。','現在の事実に反する仮定は仮定法過去。be動詞は主語に関係なく were が正式。\n訳：もし私があなたなら、その申し出を受けるだろう。'],
+['___ your help, I could not have finished the work.',['Without','Unless','Despite','Instead of'],'主節は could not have finished。「〜がなかったら」を表す前置詞は？','Without＋名詞 は if 節の代わりになる。ここでは If it had not been for your help の意味。Unless は後ろに文が必要。\n訳：あなたの助けがなかったら、その仕事を終えられなかっただろう。'],
+['If I had studied harder, I ___ the exam.',['would have passed','would pass','passed','will pass'],'if 節は had studied（過去完了）。過去の話だね。','過去の事実に反する仮定は If S had p.p., S would have p.p.\n訳：もっと勉強していたら、試験に受かっていただろう。'],
+['I wish I ___ a bird.',['were','am','will be','have been'],'鳥になれないのは「今」の話。','I wish＋仮定法過去で「今〜ならいいのに」。\n訳：鳥だったらいいのになあ。'],
+['It\'s time you ___ to bed.',['went','go','will go','have gone'],'It\'s time 〜 の後ろは仮定法過去。','It is (high) time S＋過去形 で「もう〜してもいい頃だ」。\n訳：もう寝る時間だよ。'],
+['If it ___ for water, nothing could live.',['were not','is not','had not been','will not be'],'主節は could live（今の話）。','If it were not for 〜 で「（今）〜がなければ」。過去の話なら If it had not been for 〜。\n訳：もし水がなければ、何も生きられないだろう。'],
+['He talks as if he ___ everything, but actually he knows nothing.',['knew','knows','will know','has known'],'実際は何も知らない＝事実に反する。','as if＋仮定法過去で「まるで〜であるかのように」。\n訳：彼はまるで何でも知っているかのように話すが、実は何も知らない。'],
+['___ I you, I would not do that.',['Were','If','Had','Should'],'If I were you の If を省略するとどうなる？','仮定法の if を省略すると倒置が起こる：If I were you → Were I you。\n訳：私があなたなら、そんなことはしないだろう。'],
+['If I had taken the medicine last night, I ___ better now.',['would feel','would have felt','felt','will feel'],'if 節は昨夜（過去）、主節は now（今）。','過去の仮定＋現在の結果は「混合仮定法」：If S had p.p., S would＋原形 (now)。\n訳：昨夜薬を飲んでいれば、今ごろ気分がよくなっているだろうに。'],
+['___ you need any help, please let me know.',['Should','Were','Had','Would'],'If you should need 〜（万一〜なら）の if を省略すると？','If S should 〜 は「万一〜なら」。if を省略すると Should S 〜 の倒置になる。\n訳：万一助けが必要なら、知らせてください。']
+]);
+
+U('h4','高校','不定詞（応用）','完了不定詞 to have p.p.（述語動詞より前のこと）、意味上の主語 for / of の使い分け、too 〜 to の目的語の重複禁止がよく狙われるよ！',[
+['She seems ___ ill yesterday.',['to have been','to be','being','have been'],'seems は現在、ill だったのは yesterday。時がずれているね。','述語動詞より前のことは完了不定詞 to have p.p.。\n訳：彼女は昨日具合が悪かったようだ。'],
+['He was kind enough ___ me the way.',['to show','showing','show','for showing'],'形容詞＋enough の後ろの形は？','形容詞＋enough to do で「〜するほど…」。\n訳：彼は親切にも道を教えてくれた。'],
+['This book is too difficult for me ___.',['to read','reading','to read it','read'],'主語の This book が read の目的語になっているよ。','too 〜 to do で「〜すぎて…できない」。主語が不定詞の目的語にあたるとき、it を重ねてはいけない（to read it は×）。\n訳：この本は難しすぎて私には読めない。'],
+['It was careless ___ you to leave the door open.',['of','for','to','with'],'careless は「人の性質」を表す形容詞。','kind / careless / wise など人の性質を表す形容詞のとき、意味上の主語は of 〜。それ以外は for 〜。\n訳：ドアを開けっぱなしにするなんて、あなたは不注意だった。'],
+['I want you ___ me.',['to help','help','helping','helped'],'want＋人＋〜 の形。','want 人 to do で「人に〜してほしい」。\n訳：あなたに手伝ってほしい。'],
+['He woke up ___ himself famous.',['to find','finding','found','find'],'「目が覚めると有名になっていた」という結果。','to 不定詞の副詞的用法（結果）：wake up to find 〜「目覚めると〜だとわかる」。\n訳：彼は目覚めると有名になっていた。'],
+['He was the last man ___ the room.',['to leave','leaving','left','leaves'],'the last＋名詞＋〜 で「最後に〜した人」。','the first / the last / the only＋名詞＋to do の形をとるよ。\n訳：彼は最後に部屋を出た人だった。'],
+['She is said ___ rich when she was young.',['to have been','to be','being','been'],'is said（現在）と when she was young（過去）。','S is said to have p.p. で「Sは〜だったと言われている」。\n訳：彼女は若いころ金持ちだったと言われている。'],
+['I\'d like ___ to the party, but I was busy.',['to have gone','to go','going','gone'],'行きたかったけど「実現しなかった」。','would like to have p.p. で「（実際はできなかったが）〜したかった」。\n訳：パーティーに行きたかったが、忙しかった。'],
+['You have only ___ the button.',['to press','press','pressing','pressed'],'have only to do の意味は？','have only to do（＝only have to do）で「〜しさえすればよい」。\n訳：ボタンを押しさえすればいい。']
+]);
+
+U('h5','高校','動名詞（応用）','remember / forget / regret / stop は to do と -ing で意味が変わる！ look forward to / be used to / object to の to は前置詞なので -ing が続くよ。',[
+['I remember ___ the door, but it\'s open now.',['locking','to lock','lock','locked'],'「鍵をかけた"記憶"がある」のか「これから忘れずにかける」のか。','remember -ing は「（過去に）〜したことを覚えている」、remember to do は「（これから）忘れずに〜する」。\n訳：ドアに鍵をかけた覚えがあるのに、今は開いている。'],
+['I\'m looking forward to ___ you again.',['seeing','see','be seeing','have seen'],'この to は不定詞？ 前置詞？','look forward to の to は前置詞なので後ろは動名詞。\n訳：またお会いできるのを楽しみにしています。'],
+['Don\'t forget ___ this letter on your way.',['to mail','mailing','mail','mailed'],'これから出すのを「忘れないで」。','forget to do は「（これから）〜するのを忘れる」。forget -ing は「〜したことを忘れる」。\n訳：途中でこの手紙を出すのを忘れないでね。'],
+['He denied ___ the money.',['stealing','to steal','steal','stolen'],'deny の後ろの形は？','deny / avoid / mind / admit / give up などは動名詞をとる動詞。\n訳：彼はお金を盗んだことを否定した。'],
+['I\'m used to ___ up early.',['getting','get','got','have got'],'be used to 〜「〜に慣れている」の to は？','be used to -ing で「〜することに慣れている」。used to do（以前は〜した）と区別しよう。\n訳：私は早起きに慣れている。'],
+['It is no use ___ over spilt milk.',['crying','to cry','cry','cried'],'It is no use 〜 の慣用表現。','It is no use -ing で「〜しても無駄だ」。\n訳：こぼれたミルクを嘆いても無駄だ（覆水盆に返らず）。'],
+['He is proud of his father ___ a doctor.',['being','to be','is','be'],'of の後ろ。his father は意味上の主語だよ。','前置詞 of の後ろなので動名詞。his father は動名詞の意味上の主語。\n訳：彼は父親が医者であることを誇りに思っている。'],
+['I couldn\'t help ___ when I saw his face.',['laughing','to laugh','laugh','laughed'],'cannot help 〜「〜せずにはいられない」。','cannot help -ing（＝cannot but＋原形）で「〜せずにはいられない」。\n訳：彼の顔を見て笑わずにはいられなかった。'],
+['She regrets ___ hard when she was young.',['not having studied','not to study','having not study','to not study'],'後悔しているのは「若いころ勉強しなかったこと」。否定語の位置にも注意！','regret -ing で「〜したことを後悔する」。過去のことなので完了動名詞、否定の not は動名詞の直前に置く。\n訳：彼女は若いころ一生懸命勉強しなかったことを後悔している。'],
+['This shirt needs ___.',['washing','to wash','washed','being wash'],'シャツは「洗われる」側。need の後ろの形は？','need -ing は「〜される必要がある」と受け身の意味になる（＝need to be washed）。\n訳：このシャツは洗う必要がある。']
+]);
+
+U('h6','高校','分詞・分詞構文','感情動詞は「人が感じる＝過去分詞（excited）」「物が感じさせる＝現在分詞（exciting）」。分詞構文は主語との関係が能動なら -ing、受動なら過去分詞！',[
+['The game was very ___.',['exciting','excited','excite','excitement'],'試合は人を「わくわくさせる」側。','物が人に感情を与えるときは現在分詞（exciting）、人が感情を抱くときは過去分詞（excited）。\n訳：その試合はとてもわくわくするものだった。'],
+['I was ___ to hear the news.',['surprised','surprising','surprise','to surprise'],'驚いたのは「私」。','人が感情を抱く側なら過去分詞 surprised。\n訳：その知らせを聞いて驚いた。'],
+['___ from a distance, the rock looks like a face.',['Seen','Seeing','To see','Saw'],'岩は「見られる」側だよ。','分詞構文で主語（the rock）と受け身の関係なら過去分詞から始める。\n訳：遠くから見ると、その岩は顔のように見える。'],
+['___ tired, I went to bed early.',['Feeling','Felt','To feel','Feel'],'「疲れを感じたので」。主語の I が感じている。','能動の関係なので現在分詞の分詞構文（理由）。\n訳：疲れを感じたので、早く寝た。'],
+['I had my bike ___ yesterday.',['repaired','repair','repairing','to repair'],'自転車は「修理される」側。','have＋O＋過去分詞 で「Oを〜してもらう・される」。\n訳：昨日、自転車を修理してもらった。'],
+['She sat ___ by her children.',['surrounded','surrounding','surround','to surround'],'彼女は子どもたちに「囲まれて」いる。','sit / stand＋分詞（C）。囲まれている（受動）ので過去分詞。\n訳：彼女は子どもたちに囲まれて座っていた。'],
+['He kept me ___ for an hour.',['waiting','waited','to wait','wait'],'私が「待っている」状態にさせ続けた。','keep＋O＋現在分詞 で「Oを〜させておく」。O（me）が待つ側なので -ing。\n訳：彼は私を1時間待たせた。'],
+['___ finished my work, I went home.',['Having','Being','Had','Have'],'仕事を終えたのは、帰宅より前のこと。','主節より前のことは完了分詞構文 Having p.p.。\n訳：仕事を終えたので、家に帰った。'],
+['The weather ___ fine, we went on a picnic.',['being','was','been','is'],'主節の主語は we、前半の主語は The weather で別々だね。','分詞の主語が主節と違うときは主語を残す（独立分詞構文）。接続詞がないので was は置けない。\n訳：天気がよかったので、ピクニックに行った。'],
+['He was sitting with his arms ___.',['folded','folding','fold','to fold'],'腕は「組まれた」状態。','with＋O＋分詞 で付帯状況。腕は組まれる側なので過去分詞。\n訳：彼は腕を組んで座っていた。']
+]);
+
+U('h7','高校','関係詞（応用）','後ろが「完全な文」なら関係副詞（where / when / why）か前置詞＋which、「不完全な文」なら関係代名詞。先行詞がなければ what、コンマの後ろには that が使えない！',[
+['This is the town ___ I was born.',['where','which','what','whose'],'空所の後ろ「I was born」は文として完成している？','後ろが完全な文で先行詞が場所なら関係副詞 where。which なら in which が必要。\n訳：ここは私が生まれた町です。'],
+['___ he said surprised everyone.',['What','That','Which','Who'],'先行詞がなく、said の目的語が欠けているね。','What は先行詞を含む関係代名詞（〜すること・もの）。What he said が文の主語。\n訳：彼が言ったことはみんなを驚かせた。'],
+['This is the house ___ I visited last year.',['which','where','in which','what'],'visit は自動詞？ 他動詞？ 後ろに目的語はある？','visit は他動詞なので後ろは目的語が欠けた不完全な文。関係代名詞 which が正解。場所＝where と決めつけないこと！\n訳：これは私が去年訪れた家だ。'],
+['I remember the day ___ we first met.',['when','which','where','what'],'先行詞は the day（時）。後ろは完全な文。','時の先行詞＋完全な文には関係副詞 when。\n訳：私たちが初めて会った日を覚えている。'],
+['That\'s ___ he got angry.',['why','which','what','where'],'That\'s 〜 で「そういうわけで〜」。','That\'s why S＋V で「そういうわけで〜」（理由）。That\'s because 〜 は「それは〜だからだ」。\n訳：そういうわけで彼は怒ったんだ。'],
+['He said he was sick, ___ was a lie.',['which','that','what','it'],'前の文の内容全体を受けているよ。コンマにも注目。','コンマ＋which で前の文全体を先行詞にできる（非制限用法）。that は非制限用法で使えない。\n訳：彼は病気だと言ったが、それはうそだった。'],
+['Give it to ___ wants it.',['whoever','whomever','whatever','however'],'「欲しい人なら誰にでも」。空所は wants の主語だよ。','whoever＝anyone who。wants の主語なので主格の whoever。\n訳：それが欲しい人には誰にでもあげて。'],
+['He is not ___ he used to be.',['what','that','which','who'],'「昔の彼」を表す慣用表現。','what S used to be で「昔のS」、what S is で「今のS」。\n訳：彼は昔の彼ではない。'],
+['I have two sons, both of ___ are doctors.',['whom','them','who','which'],'コンマのあと接続詞がないので、them は使える？','both of whom＝and both of them。接続詞の役割をする関係代名詞が必要で、前置詞の後ろなので whom。\n訳：私には息子が2人いて、2人とも医者だ。'],
+['___ hard you may try, you can\'t finish it in a day.',['However','Whatever','Whenever','No matter'],'後ろに形容詞 hard があるよ。','However＋形容詞・副詞＋S＋V で「どんなに〜しても」（＝No matter how）。No matter だけでは how が足りない。\n訳：どんなに頑張っても、1日では終えられない。']
+]);
+
+U('h8','高校','比較（応用）','the 比較級, the 比較級 / no more than（たった）/ no less than（〜も）/ クジラ構文（no more 〜 than）など、比較の慣用表現は意味までセットで暗記しよう！',[
+['The ___ you practice, the better you\'ll get.',['more','most','much','many'],'The 比較級 〜, the 比較級 … の構文だよ。','The＋比較級 S＋V, the＋比較級 S＋V で「〜すればするほど…」。\n訳：練習すればするほど上達するよ。'],
+['He is no ___ than a child.',['better','good','best','well'],'no 比較級 than で「〜も同然」。','no better than 〜 は「〜も同然・〜にすぎない」。\n訳：彼は子どもも同然だ。'],
+['This is by ___ the best movie I\'ve ever seen.',['far','very','more','so'],'最上級を強める表現は？','by far＋最上級 で「断然・群を抜いて」。\n訳：これは今まで見た中で断然最高の映画だ。'],
+['She is ___ taller of the two.',['the','a','more','most'],'of the two「2人のうちで」。','2者のうち「より〜なほう」は the＋比較級＋of the two。\n訳：2人のうちで彼女のほうが背が高い。'],
+['I have no ___ than 1,000 yen.',['more','much','most','many'],'「たった1,000円しかない」。','no more than〜＝only「たった〜」。no less than〜＝as much as「〜も」と区別。\n訳：私はたった1,000円しか持っていない。'],
+['He is not so much a teacher ___ a scholar.',['as','than','but','that'],'not so much A 〜 B の形。','not so much A as B で「AというよりむしろB」。\n訳：彼は教師というよりむしろ学者だ。'],
+['I can\'t run as fast as I ___ to.',['used','did','was','had'],'「昔ほど速く」。','as 〜 as S used to で「Sが以前〜だったほど」。\n訳：私は昔ほど速く走れない。'],
+['A whale is no more a fish than a horse ___.',['is','isn\'t','does','was'],'「クジラ構文」。than 以下は肯定の形だよ。','A is no more B than C is (D) で「AがBでないのはCがDでないのと同じ」。than 以下は肯定形で書く。\n訳：クジラが魚でないのは、馬が魚でないのと同じだ。'],
+['He is senior ___ me by three years.',['to','than','for','over'],'senior / junior / superior は than を使わない比較。','ラテン系比較級（senior / junior / superior / inferior / prefer）は than ではなく to を使う。\n訳：彼は私より3歳年上だ。'],
+['Nothing is ___ precious than time.',['more','most','much','very'],'Nothing is 比較級 than 〜 で最上級の意味。','Nothing is＋比較級＋than A で「Aより〜なものはない」＝Aが一番〜。\n訳：時間ほど貴重なものはない。']
+]);
+U('h9','高校','使役・知覚動詞・受動態（応用）','make / let / have＋O＋原形、知覚動詞＋O＋原形 / -ing。ただし受動態になると原形が to 不定詞に変わる（be made to do）のが最頻出ポイント！',[
+['I had my hair ___.',['cut','to cut','cutting','cuts'],'髪は「切られる」側。cut の過去分詞は？','have＋O＋過去分詞で「Oを〜してもらう」。cut は原形・過去形・過去分詞が同じ形。\n訳：髪を切ってもらった。'],
+['My mother made me ___ my room.',['clean','to clean','cleaning','cleaned'],'make＋人＋〜 の形。','使役動詞 make＋O＋原形 で「Oに（無理やり）〜させる」。\n訳：母は私に部屋を掃除させた。'],
+['I heard someone ___ my name.',['call','to call','called','calls'],'知覚動詞 hear＋O＋〜。名前を呼んだのは someone。','知覚動詞＋O＋原形（一部始終）／ -ing（途中）。to 不定詞にはならない。\n訳：誰かが私の名前を呼ぶのが聞こえた。'],
+['He was made ___ there alone.',['to go','go','going','gone'],'make O do が受動態になると…？','使役 make・知覚動詞の受動態では、原形が to 不定詞に変わる：be made to do。\n訳：彼は1人でそこへ行かされた。'],
+['Let me ___ myself.',['introduce','to introduce','introducing','introduced'],'let＋O＋〜 の形。','let＋O＋原形 で「Oに〜させてあげる（許可）」。\n訳：自己紹介させてください。'],
+['I couldn\'t make myself ___ in English.',['understood','understand','understanding','to understand'],'自分が（相手に）「理解される」。','make oneself understood で「自分の言うことを分かってもらう」。\n訳：英語で自分の言いたいことを分かってもらえなかった。'],
+['The baby is being ___ care of by her aunt.',['taken','take','took','taking'],'take care of の受動態＋進行形。','進行形の受動態は be being p.p.。take care of は群動詞なのでまとめて受動態にする。\n訳：その赤ちゃんはおばに世話をされている。'],
+['She got her purse ___ on the train.',['stolen','steal','stealing','to steal'],'財布は「盗まれた」側。','get / have＋O＋過去分詞 は「Oを〜される（被害）」の意味にもなる。\n訳：彼女は電車で財布を盗まれた。'],
+['He was seen ___ the building.',['to enter','enter','entered','enters'],'see O do の受動態。','知覚動詞の受動態も be seen to do と to が必要になる。\n訳：彼はその建物に入るところを見られた。'],
+['The plan is said ___ by the city last year.',['to have been approved','to be approved','approving','having approved'],'計画は「承認された」側で、時は last year（過去）。','is said（現在）より前のことで、しかも受動 → 完了不定詞の受動態 to have been p.p.。\n訳：その計画は昨年市によって承認されたと言われている。']
+]);
+
+U('h10','高校','接続詞・前置詞（応用）','so 〜 that（形容詞・副詞）と such 〜 that（名詞）、despite（前置詞）と although（接続詞）、by（期限）と until（継続）は品詞・意味で区別しよう！',[
+['___ he is rich, he is not happy.',['Although','Because','If','Unless'],'「金持ちだ」と「幸せではない」は逆の内容。','Although（Though）S＋V で「〜だけれども」。\n訳：彼は金持ちだが幸せではない。'],
+['I\'ll lend you the book ___ you return it by Friday.',['as long as','unless','though','even if'],'「金曜までに返してくれるなら」という条件。','as long as 〜 で「〜しさえすれば・〜する限り」（条件）。\n訳：金曜までに返してくれるなら、本を貸してあげる。'],
+['Hurry up, ___ you\'ll miss the bus.',['or','and','but','so'],'急がない「と」バスに乗り遅れる。','命令文, or 〜 で「…しなさい、さもないと〜」。\n訳：急いで、さもないとバスに乗り遅れるよ。'],
+['She was ___ tired that she couldn\'t walk.',['so','such','too','very'],'空所の後ろは形容詞 tired だけ。','so＋形容詞・副詞＋that 〜 で「とても…なので〜」。名詞があれば such。\n訳：彼女はとても疲れていたので歩けなかった。'],
+['It was ___ a good movie that I saw it twice.',['such','so','too','very'],'後ろに a good movie（名詞のかたまり）。','such (a)＋形容詞＋名詞＋that 〜。so なら so good a movie の語順になる。\n訳：とても良い映画だったので2回見た。'],
+['___ the rain, the game was held.',['Despite','Although','Because','Though'],'後ろは the rain（名詞）だけ。','Despite（＝In spite of）は前置詞なので後ろは名詞。Although / Though は接続詞なので S＋V が必要。\n訳：雨にもかかわらず試合は行われた。'],
+['I\'ll be back ___ an hour.',['in','after','since','by'],'「今から1時間後に」戻る。','未来について「今から〜後に」は in。\n訳：1時間後に戻ります。'],
+['Whether you like it ___ not, you must do it.',['or','and','nor','but'],'whether A 〜 B の形。','whether A or B / whether 〜 or not で「〜であろうとなかろうと」。\n訳：好きであろうとなかろうと、それをやらなければならない。'],
+['He works hard ___ that he can buy a house.',['so','such','as','for'],'家を買える「ように」一生懸命働く。','so that S can 〜 で「Sが〜できるように」（目的）。\n訳：彼は家を買えるように一生懸命働いている。'],
+['I\'ll finish it ___ Friday.',['by','until','till','since'],'金曜「までに」終える。期限？ 継続？','by は「〜までに（期限）」、until / till は「〜までずっと（継続）」。finish は期限なので by。\n訳：金曜までにそれを終えます。']
+]);
+
+U('h11','高校','否定・倒置・強調構文','否定の副詞（Never / Little / Hardly / Not until / Only then）が文頭に出ると「疑問文の語順」に倒置。It is 〜 that の強調構文と部分否定（not all / not always）もセットで！',[
+['Never ___ such a beautiful sight.',['have I seen','I have seen','I saw','saw I'],'否定語 Never が文頭に出ているよ。','否定の副詞が文頭に来ると、後ろは疑問文と同じ語順（have I seen）に倒置される。\n訳：こんなに美しい光景は見たことがない。'],
+['Hardly ___ home when it began to rain.',['had I left','I had left','did I leave','I left'],'Hardly 〜 when … の構文。時制は？','Hardly (Scarcely) had S p.p. when (before) 〜 で「Sが…するとすぐに〜」。倒置＋過去完了。\n訳：家を出るとすぐに雨が降り出した。'],
+['It was Tom ___ broke the window.',['that','what','which','whom'],'It was 〜 that … の強調構文。','It is (was) 強調したい語句 that 〜 の強調構文。人なら who も可だが、whom は主語の位置には使えない。\n訳：窓を割ったのはトムだった。'],
+['Not all the students ___ the answer.',['know','knows','is knowing','has known'],'主語は the students（複数）。Not all は部分否定。','Not all 〜 は「全員が〜というわけではない」（部分否定）。主語は複数なので know。\n訳：生徒全員が答えを知っているわけではない。'],
+['He is ___ a liar. He always tells the truth.',['anything but','nothing but','all but','but for'],'いつも本当のことを言う人＝うそつきでは「ない」。','anything but 〜「決して〜ではない」。nothing but 〜 は「〜にすぎない」で逆の意味。\n訳：彼は決してうそつきではない。いつも本当のことを言う。'],
+['Little ___ that he was in danger.',['did he know','he knew','he did know','knew he'],'否定語 Little が文頭。一般動詞の倒置の形は？','否定語が文頭→倒置。一般動詞の過去なら did＋S＋原形。Little did he know で「まったく知らなかった」。\n訳：彼は自分が危険な状態にあるとは夢にも思わなかった。'],
+['I ___ want to go, but I can\'t.',['do','am','have','so'],'want を強めて「本当に行きたい」。','動詞の前に do / does / did を置くと強調になる（強調の do）。\n訳：本当に行きたいんだけど、行けないんだ。'],
+['Only then ___ the truth.',['did I realize','I realized','realized I','I did realize'],'Only＋副詞句が文頭に出ているよ。','Only＋副詞（句・節）が文頭に来ても倒置が起こる。\n訳：そのとき初めて私は真実に気づいた。'],
+['No sooner had he arrived ___ he fell asleep.',['than','when','as','before'],'No sooner 〜 の相棒は？','No sooner had S p.p. than 〜 で「Sが…するやいなや〜」。比較の than を使うのがポイント（Hardly は when）。\n訳：彼は着くやいなや眠ってしまった。'],
+['It is not until you lose your health ___ you realize its value.',['that','when','which','what'],'It is not until A that B の強調構文。','It is not until A that B で「Aして初めてBする」。\n訳：健康を失って初めてそのありがたみがわかる。']
+]);
+
+U('h12','高校','名詞・代名詞・冠詞','advice / information / furniture は不可算名詞（a も -s もつかない）。one / another / the other / others の区別、比較対象をそろえる that / those も超頻出！',[
+['Please give me some ___.',['advice','advices','an advice','many advice'],'advice は数えられる名詞？','advice は不可算名詞なので a も複数形の -s もつかない。数えるなら a piece of advice。\n訳：アドバイスをください。'],
+['I have two pens. One is red, and ___ is blue.',['the other','another','other','others'],'ペンは2本。1本目以外の「残りの1本」は？','2つのうち一方は one、残りの1つは the other（特定されるので the）。\n訳：ペンが2本ある。1本は赤で、もう1本は青だ。'],
+['This is my bag, and that is ___.',['hers','her','she','her\'s'],'「彼女のもの」を1語で表すと？','所有代名詞 hers＝her bag。her\'s という形は存在しない。\n訳：これは私のかばんで、あれは彼女のものだ。'],
+['I don\'t like this shirt. Show me ___.',['another','the other','other','others'],'他にも何枚もある中の「別の1枚」。','不特定の「もう1つ別のもの」は another（an＋other）。\n訳：このシャツは気に入らない。別のを見せて。'],
+['Each student ___ his or her own locker.',['has','have','having','are having'],'Each＋単数名詞 は単数扱い。','Each / Every＋単数名詞 は単数扱い。\n訳：生徒はそれぞれ自分のロッカーを持っている。'],
+['She ___ me of my mother.',['reminds','remembers','recalls','memorizes'],'後ろの「人＋of」の形をとる動詞は？','remind 人 of 〜 で「人に〜を思い出させる」。\n訳：彼女を見ると母を思い出す。'],
+['Can I ___ your pen?',['borrow','lend','lent','owe'],'自分が「借りる」のか、相手に「貸す」のか。','borrow は「（無料で）借りる」、lend は「貸す」。\n訳：ペンを借りてもいい？'],
+['The climate of Japan is milder than ___ of Canada.',['that','it','one','this'],'比較しているのは「日本の気候」と「カナダの気候」。','同じ名詞（the climate）のくり返しを避ける that（複数なら those）。\n訳：日本の気候はカナダの気候より温暖だ。'],
+['I found ___ difficult to answer the question.',['it','that','this','one'],'find O C の O が長いので仮に置く語は？','形式目的語の it：find it 形容詞 to do「〜するのは…だとわかる」。\n訳：その質問に答えるのは難しいと思った。'],
+['Some people like summer; ___ prefer winter.',['others','another','the other','other'],'Some people 〜, ___ … で「〜な人もいれば…な人もいる」。','Some 〜, others … で「〜な人もいれば…な人もいる」。the others だと「残り全員」になる。\n訳：夏が好きな人もいれば、冬のほうが好きな人もいる。']
+]);
+
+U('h13','高校','語彙・語法（頻出）','意味だけで覚えず「どんな形をとるか」まで覚えよう（remind 人 to do / persuade 人 to do / suggest that）。lie（横たわる）と lay（横たえる）の活用も定番！',[
+['The scientist\'s theory was so ___ that few people could understand it.',['complicated','obvious','brief','familiar'],'理解できる人がほとんどいない理由になる形容詞は？','so 〜 that 構文。理解できる人がほとんどいない理由なら complicated（複雑な）。obvious（明らかな）・familiar（なじみのある）は逆の意味。\n訳：その科学者の理論はとても複雑で、理解できる人はほとんどいなかった。'],
+['Please ___ me to call him tomorrow.',['remind','remember','recall','memorize'],'後ろは「人＋to do」。この形をとれる動詞は？','remind 人 to do で「人に〜するのを思い出させる」。remember / recall / memorize は「人＋to do」をとらない。\n訳：明日彼に電話するよう念を押してください。'],
+['The tie ___ your shirt very well.',['matches','suits','fits','agrees'],'ネクタイとシャツ＝物と物の組み合わせ。','match は「（物と物が）調和する」、suit は「（服・色が人に）似合う」、fit は「（サイズが）合う」。\n訳：そのネクタイはシャツにとてもよく合っている。'],
+['He ___ me 1,000 yen for the book.',['charged','cost','paid','spent'],'店が客に「料金を請求する」。','charge 人 金額 for 〜 で「〜の代金として人に…を請求する」。\n訳：彼はその本の代金として私に1,000円請求した。'],
+['The accident ___ him his life.',['cost','took','spent','paid'],'事故が彼に「命を犠牲にさせた」。','cost 人 〜 で「人に〜を犠牲にさせる・費やさせる」。\n訳：その事故で彼は命を落とした。'],
+['Could you ___ me the way to the station?',['tell','teach','say','speak'],'道を「教える」には？ teach は学問や技術を教えるとき。','道を教えるのは tell（口頭）か show（案内・地図で）。teach は学問・技術を教えるとき。\n訳：駅への道を教えていただけますか。'],
+['She ___ her parents to let her study abroad.',['persuaded','suggested','insisted','said'],'後ろが「人＋to do」の形をとれる動詞は？','persuade 人 to do で「人を説得して〜させる」。suggest は人＋to do の形をとれないよ。\n訳：彼女は両親を説得して留学させてもらった。'],
+['The number of tourists has ___ dramatically.',['increased','raised','risen up','grown up'],'自動詞「増える」が入る。raise は他動詞だよ。','increase は自動詞で「増える」。raise は他動詞（〜を上げる）、grow up は「成長する」。\n訳：観光客の数が劇的に増えた。'],
+['I ___ on the sofa and fell asleep.',['lay','laid','lain','lied'],'「横になった」の過去形。lie と lay の活用に注意！','lie（横たわる）- lay - lain、lay（横たえる）- laid - laid、lie（うそをつく）- lied - lied。\n訳：私はソファに横になって眠ってしまった。'],
+['Prices are ___ these days.',['high','expensive','dear','costly'],'主語が「物」ではなく price（値段）だよ。','price（値段）が高い・安いは high / low。expensive / cheap は物そのものに使う。\n訳：最近は物価が高い。']
+]);
+
+U('h14','高校','熟語・句動詞','put off（延期）/ call off（中止）/ put up with（我慢）/ come up with（思いつく）など、似た形の熟語は意味の違いをペアで覚えよう！',[
+['We had to ___ the meeting because of the typhoon.',['put off','put on','take off','give in'],'台風のせいで会議をどうした？ 1語なら postpone。','put off＝postpone「延期する」。put on は「身につける」、take off は「脱ぐ・離陸する」、give in は「屈する」。\n訳：台風のため会議を延期しなければならなかった。'],
+['I can\'t ___ with his rude behavior any longer.',['put up','make up','catch up','come up'],'with とセットで「〜を我慢する」。','put up with＝tolerate / stand / bear「我慢する」。make up with「仲直りする」、catch up with「追いつく」、come up with「思いつく」。\n訳：彼の失礼な態度にはもう我慢できない。'],
+['Please ___ the TV. I\'m studying.',['turn off','turn on','turn up','turn in'],'勉強中だからテレビを…？','turn off「（電源を）消す」。turn up は「音量を上げる」、turn in は「提出する」。\n訳：テレビを消して。勉強中なの。'],
+['She ___ her mother. They look alike.',['takes after','looks after','looks for','takes off'],'見た目が似ている＝母親に…？','take after「（親に）似ている」。look after は「世話をする」。\n訳：彼女は母親に似ている。そっくりだ。'],
+['I ___ a good idea.',['came up with','caught up with','put up with','kept up with'],'アイデアを「思いつく」。','come up with「（考えを）思いつく」。\n訳：いい考えを思いついた。'],
+['He finally ___ smoking for his health.',['gave up','gave in','took up','looked up'],'健康のためにタバコを…？','give up「やめる」。take up は「始める」なので「健康のため」と合わない。\n訳：彼は健康のためについにタバコをやめた。'],
+['Please ___ this form.',['fill out','fill up','carry out','find out'],'用紙に「記入する」。','fill out (in)「（書類に）記入する」。carry out は「実行する」、find out は「わかる」。\n訳：この用紙に記入してください。'],
+['The meeting was ___ because of the rain.',['called off','called on','called for','called up'],'雨で会議が「中止」になった。','call off＝cancel「中止する」。call on「訪問する」、call for「要求する」、call up「電話する」。\n訳：雨のため会議は中止になった。'],
+['We ran ___ milk, so I went to the store.',['out of','out','into','over'],'牛乳が「なくなった」。','run out of 〜「〜を使い果たす」。run into は「偶然会う」。\n訳：牛乳が切れたので店に行った。'],
+['You should ___ the word in the dictionary.',['look up','look into','look after','look over'],'辞書で単語を「調べる」。','look up「（辞書などで）調べる」。look into は「調査する」、look over は「目を通す」。\n訳：その単語を辞書で調べるべきだよ。']
+]);
+
+U('h15','高校','共テ頻出語彙・表現','共通テストには文法だけの大問はないけれど、長文・図表・お知らせ文に出る語彙（according to / amount と number / register など）を知っていると読むスピードが一気に上がるよ！',[
+['The museum is ___ to the public free of charge on Sundays.',['open','opened','opening','opens'],'「一般公開されている」状態を表す形容詞は？','be open to the public で「一般に公開されている」。free of charge は「無料で」。お知らせ文の定番表現！\n訳：その博物館は日曜日に無料で一般公開されている。'],
+['Please ___ the attached file for details.',['refer to','look','see at','check to'],'「添付ファイルを参照してください」。','refer to 〜「〜を参照する」。メール・案内文で頻出。look は at が必要、see at や check to は×。\n訳：詳細は添付ファイルをご参照ください。'],
+['The event was ___ due to bad weather.',['canceled','cancel','canceling','cancels'],'イベントは「中止された」側。due to は「〜のために」。','be canceled due to 〜「〜のため中止された」。due to＝because of。\n訳：悪天候のためイベントは中止された。'],
+['This app is ___ for students who want to learn vocabulary.',['designed','design','designing','designs'],'アプリは「作られた・設計された」側。','be designed for 〜「〜向けに作られている」。製品紹介文の頻出表現。\n訳：このアプリは語彙を学びたい学生向けに作られている。'],
+['Participants must ___ by March 31.',['register','registration','registered','registering'],'must の後ろは動詞の原形。','register「登録する（動詞）」、registration「登録（名詞）」。品詞の区別も大切。\n訳：参加者は3月31日までに登録しなければならない。'],
+['According ___ the survey, 60% of students use smartphones for studying.',['to','with','for','by'],'「調査によると」。','according to 〜「〜によると」。グラフ・調査の問題で必ず出る表現。\n訳：調査によると、学生の60%がスマホを勉強に使っている。'],
+['The graph shows that the ___ of plastic waste has doubled.',['amount','number','many','few'],'plastic waste は数えられる？','不可算名詞の「量」は amount、可算名詞の「数」は number。waste は不可算なので amount。\n訳：グラフはプラスチックごみの量が2倍になったことを示している。'],
+['The article mainly ___ the benefits of sleep.',['focuses on','focuses','depends on','results in'],'記事が主に「〜に焦点を当てている」。','focus on 〜「〜に焦点を当てる」。「記事の主旨」を問う設問の選択肢によく出る。depend on は「〜次第」、result in は「〜という結果になる」。\n訳：その記事は主に睡眠の利点を取り上げている。'],
+['Which of the following is a fact, not an ___?',['opinion','idea','advice','example'],'共テでは「事実」と何を区別させる問題がよく出る？','fact（事実）と opinion（意見）の区別は共通テストの頻出設問。「〜と思う」「〜すべき」「best」などの語は意見のサイン！\n訳：次のうち、意見ではなく事実はどれか。'],
+['Many species are in ___ of extinction.',['danger','risk','fear','threat'],'「絶滅の危機にある」の決まった形。','be in danger of 〜「〜の危険がある」。risk なら at risk of。環境問題の長文で頻出。\n訳：多くの種が絶滅の危機にある。']
+]);
+
+/* ================= 定数・メッセージ ================= */
+const OK_TITLES = ['正解！すごいね ✨','大正解！','やったね、正解！','その調子！正解だよ'];
+const NG_TITLES = ['おしい！一緒に確認しよう','ドンマイ！ここで覚えちゃおう','惜しかったね！'];
+const BASIC_N = 7; // 各ユニットの 0〜6 が基礎、7〜9 が応用
+
+/* ================= ユーティリティ ================= */
+const $ = id => document.getElementById(id);
+const pick = arr => arr[Math.floor(Math.random()*arr.length)];
+const shuffle = arr => { const a = arr.slice(); for (let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtSec = ms => (ms/1000).toFixed(1) + '秒';
+
+/* ================= 問題データの展開 ================= */
+const ALL = [], BY_ID = {};
+UNITS.forEach((u, ui) => {
+  u.no = ui + 1;
+  u.items = u.qs.map((q, i) => {
+    const item = { id: `${u.id}-${i}`, unit: u, level: i < BASIC_N ? '基礎' : '応用', q: q[0], answer: q[1][0], choices: q[1], hint: q[2], exp: q[3] };
+    ALL.push(item); BY_ID[item.id] = item; return item;
+  });
+});
+
+/* ================= 保存データ ================= */
+const KEY = 'examEnglish.v2';
+let save = (() => { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch(e){ return null; } })() || { units:{}, weak:[], answered:0 };
+const persist = () => { try { localStorage.setItem(KEY, JSON.stringify(save)); } catch(e){} };
+const isCleared = u => (save.units[u.id]?.best || 0) >= 8;
+
+/* ================= ナレーション ================= */
+const bubble = $('bubble'), bTitle = $('bubbleTitle'), bText = $('bubbleText');
+let typing = null;
+function say(text, { tone = '', title = '' } = {}){
+  if (typing) typing.finish();
+  bubble.className = 'bubble' + (tone ? ' tone-' + tone : '');
+  bTitle.textContent = title;
+  void bubble.offsetWidth; bubble.classList.add('pop');
+  bText.scrollTop = 0;
+  const chars = Array.from(text), start = performance.now(), speed = 17;
+  const caret = document.createElement('span'); caret.className = 'caret';
+  const state = { raf:0, done:false, finish(){ if (state.done) return; state.done = true; cancelAnimationFrame(state.raf); bText.textContent = text; } };
+  const step = now => {
+    if (state.done) return;
+    const n = Math.min(chars.length, Math.floor((now - start) / speed));
+    bText.textContent = chars.slice(0, n).join(''); bText.appendChild(caret);
+    bText.scrollTop = bText.scrollHeight;
+    if (n >= chars.length){ state.finish(); return; }
+    state.raf = requestAnimationFrame(step);
+  };
+  state.raf = requestAnimationFrame(step);
+  typing = state;
+}
+bubble.addEventListener('click', () => typing && typing.finish());
+
+function toast(msg, type){
+  const t = $('toast'); t.textContent = msg; t.className = 'toast ' + type;
+  void t.offsetWidth; t.classList.add('show');
+  clearTimeout(toast.tm); toast.tm = setTimeout(() => t.classList.remove('show'), 1100);
+}
+
+/* ================= 画面切り替え ================= */
+let mode = 'start', grade = '中学';
+function show(view){
+  ['viewStart','viewQuiz','viewResult'].forEach(v => $(v).classList.toggle('hidden', v !== view));
+  const el = $(view); el.style.animation = 'none'; void el.offsetWidth; el.style.animation = '';
+  $('panel').scrollTop = 0;
+}
+
+/* ================= ユニット選択 ================= */
+function renderHome(){
+  $('unitCount').textContent = UNITS.length; $('qCount').textContent = ALL.length;
+  const cleared = UNITS.filter(isCleared).length;
+  $('ovClear').textContent = cleared; $('ovTotal').textContent = UNITS.length;
+  $('ovSolved').textContent = `のべ ${save.answered} 問回答`;
+  requestAnimationFrame(() => $('ovBar').style.width = (cleared / UNITS.length * 100) + '%');
+  $('btnWeakList').textContent = `📕 苦手リスト（${save.weak.length}）`;
+  $('btnWeakList').disabled = save.weak.length === 0;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.grade === grade));
+  const box = $('units'); box.innerHTML = '';
+  UNITS.filter(u => u.grade === grade).forEach(u => {
+    const s = save.units[u.id];
+    const b = document.createElement('button');
+    b.className = 'unit' + (isCleared(u) ? ' cleared' : '');
+    b.innerHTML = `<span class="no">${u.no}</span><span class="tt"><b>${esc(u.title)}</b><small>${s ? `ベスト ${s.best}/10 ・ ${s.plays}回挑戦` : '未挑戦 ・ 10問'}</small></span><span class="st">${isCleared(u) ? '🏅' : s ? '▶' : '✦'}</span>`;
+    b.addEventListener('click', () => startUnit(u));
+    box.appendChild(b);
+  });
+}
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => { grade = t.dataset.grade; renderHome(); }));
+
+function goHome(){
+  mode = 'start'; clearInterval(timerId);
+  $('scorePill').textContent = '⭐ ' + UNITS.filter(isCleared).length + ' / ' + UNITS.length;
+  renderHome(); show('viewStart');
+  const next = UNITS.find(u => !isCleared(u));
+  say(next
+    ? `ようこそ！ユニットを選んで始めよう。\nおすすめは「Unit ${next.no} ${next.title}」。中学の基礎から順に固めていくのが合格への近道だよ。`
+    : '全ユニットクリア、おめでとう！🎉\nランダム20問や苦手リストで仕上げていこう。', { title: 'Welcome ❄' });
+}
+
+/* ================= 出題 ================= */
+let run = null, idx = 0, log = [], qStart = 0, hintUsed = false, answered = false, timerId = 0, current = null;
+
+function startRun(items, info){
+  run = { ...info, items: items.map(it => ({ ...it, opts: shuffle(it.choices) })) };
+  idx = 0; log = []; mode = 'quiz';
+  show('viewQuiz');
+  nextQuestion();
+}
+function startUnit(u){
+  const items = shuffle(u.items.slice(0, BASIC_N)).concat(shuffle(u.items.slice(BASIC_N)));
+  startRun(items, { type:'unit', unit:u, label:`Unit ${u.no}　${u.title}` });
+}
+function startRandom(){ startRun(shuffle(ALL).slice(0, 20), { type:'random', label:'全範囲ランダム20問' }); }
+function startWeak(){
+  const items = shuffle(save.weak.map(id => BY_ID[id]).filter(Boolean)).slice(0, 20);
+  if (items.length) startRun(items, { type:'weak', label:'苦手リスト復習' });
+}
+$('btnRandom').addEventListener('click', startRandom);
+$('btnWeakList').addEventListener('click', startWeak);
+$('btnQuit').addEventListener('click', goHome);
+
+function nextQuestion(){
+  current = run.items[idx]; answered = false; hintUsed = false;
+  const total = run.items.length;
+  $('qCat').textContent = run.type === 'unit' ? `Unit ${current.unit.no}` : `U${current.unit.no} ${current.unit.title}`;
+  const lv = $('qLv'); lv.textContent = current.level; lv.className = 'lv-chip ' + (current.level === '基礎' ? 'basic' : 'adv');
+  $('qNum').textContent = `Q${idx+1} / ${total}`;
+  $('progBar').style.width = (idx / total * 100) + '%';
+  $('scorePill').textContent = '⭐ ' + log.filter(r => r.correct).length;
+  $('qText').innerHTML = esc(current.q).replace('___', '<span class="blank" id="blank">　</span>');
+  const box = $('choices'); box.innerHTML = '';
+  current.opts.forEach((text, i) => {
+    const b = document.createElement('button');
+    b.className = 'choice'; b.innerHTML = `<span class="key">${'ABCD'[i]}</span>${esc(text)}`;
+    b.addEventListener('click', () => answer(i));
+    box.appendChild(b);
+  });
+  $('btnHint').classList.remove('hidden'); $('btnHint').disabled = false; $('btnHint').textContent = '💡 ヒントを見る';
+  $('btnNext').classList.add('hidden');
+  $('btnNext').textContent = idx === total - 1 ? '結果を見る 📊' : '次の問題へ →';
+  $('panel').scrollTop = 0;
+
+  let msg;
+  if (idx === 0) msg = `「${run.label}」スタート！\n${run.type === 'unit' ? '前半7問は基礎、後半3問は応用だよ。' : 'いろいろな単元から出題されるよ。'}わからなければヒントを使おう。`;
+  else if (run.type === 'unit' && idx === BASIC_N) msg = 'ここからは応用問題！\n基礎で確認したルールを組み合わせて考えよう。';
+  else msg = pick([`Q${idx+1}。空所の前後をよく見てね。`, `Q${idx+1}。文の形（主語・動詞・品詞）から絞り込もう。`, `Q${idx+1}。落ち着いて、根拠を持って選ぼう。`]) + (run.type !== 'unit' ? `\n単元：${current.unit.title}` : '');
+  say(msg, { title: '' });
+
+  qStart = performance.now();
+  clearInterval(timerId);
+  timerId = setInterval(() => { $('qTimer').textContent = '⏱ ' + ((performance.now()-qStart)/1000).toFixed(1) + 's'; }, 100);
+}
+
+function answer(i){
+  if (answered) return; answered = true;
+  const time = performance.now() - qStart; clearInterval(timerId);
+  $('qTimer').textContent = '⏱ ' + (time/1000).toFixed(1) + 's';
+  const chosen = current.opts[i], ok = chosen === current.answer;
+  log.push({ item: current, correct: ok, time, hint: hintUsed, chosen });
+
+  // 苦手リストの更新
+  save.answered++;
+  const w = save.weak.indexOf(current.id);
+  if (!ok && w < 0) save.weak.push(current.id);
+  if (ok && w >= 0 && !hintUsed) save.weak.splice(w, 1);
+  persist();
+
+  [...$('choices').children].forEach((b, j) => {
+    b.disabled = true;
+    if (current.opts[j] === current.answer) b.classList.add('correct');
+    else if (j === i) b.classList.add('wrong');
+    else b.classList.add('dim');
+  });
+  const blank = $('blank'); blank.textContent = current.answer; blank.classList.add('filled');
+  $('btnHint').classList.add('hidden');
+  $('btnNext').classList.remove('hidden');
+  $('scorePill').textContent = '⭐ ' + log.filter(r => r.correct).length;
+  if (navigator.vibrate) navigator.vibrate(ok ? 18 : [30, 40, 30]);
+
+  if (ok){
+    toast('✓ 正解！', 'ok');
+    const lead = hintUsed ? 'ヒントをしっかり活かせたね！\n\n' : time < 6000 ? 'スピードも完璧！\n\n' : '';
+    say(lead + current.exp, { tone: 'ok', title: pick(OK_TITLES) });
+  } else {
+    toast('✗ おしい！', 'ng');
+    say(`正解は「${current.answer}」。\n\n` + current.exp + '\n\n（この問題は苦手リストに追加されたよ）', { tone: 'ng', title: pick(NG_TITLES) });
+  }
+  setTimeout(() => $('btnNext').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 150);
+}
+
+$('btnHint').addEventListener('click', () => {
+  if (answered || hintUsed) return;
+  hintUsed = true;
+  $('btnHint').disabled = true; $('btnHint').textContent = '💡 ヒント表示中';
+  say(current.hint, { tone: 'hint', title: 'ヒント 💡' });
+});
+$('btnNext').addEventListener('click', () => { idx++; if (idx >= run.items.length) showResult(); else nextQuestion(); });
+
+/* ================= 苦手分析 ================= */
+function analyze(){
+  const byUnit = new Set(log.map(r => r.item.unit.id)).size > 1;
+  const keyOf = r => byUnit ? r.item.unit.title : r.item.level;
+  const map = {};
+  log.forEach(r => {
+    const k = keyOf(r);
+    const c = map[k] || (map[k] = { key: k, unit: r.item.unit, total: 0, correct: 0, time: 0, hints: 0 });
+    c.total++; c.time += r.time; if (r.correct) c.correct++; if (r.hint) c.hints++;
+  });
+  const groups = Object.values(map).map(c => ({ ...c, acc: c.correct / c.total, avg: c.time / c.total }));
+  if (!byUnit) groups.sort((a, b) => (a.key === '基礎' ? -1 : 1));
+  const total = log.length, correct = log.filter(r => r.correct).length;
+  const avg = log.reduce((s, r) => s + r.time, 0) / total;
+  return {
+    byUnit, groups, total, correct, acc: correct / total, avg,
+    hints: log.filter(r => r.hint).length,
+    weak: groups.filter(g => g.acc < 1).sort((a, b) => a.acc - b.acc || b.avg - a.avg),
+    slow: groups.filter(g => g.acc === 1 && g.avg > avg * 1.3 && g.avg > 8000),
+    strong: groups.filter(g => g.acc === 1 && g.hints === 0),
+    fastWrong: log.filter(r => !r.correct && r.time < 5000).length,
+    slowWrong: log.filter(r => !r.correct && r.time > 20000).length
+  };
+}
+
+function showResult(){
+  mode = 'result'; clearInterval(timerId);
+  $('progBar').style.width = '100%';
+  const A = analyze(), pct = Math.round(A.acc * 100);
+  const rank = pct === 100 ? 'S' : pct >= 80 ? 'A' : pct >= 60 ? 'B' : 'C';
+  const u = run.unit;
+
+  // 記録
+  let newClear = false, prevBest = null;
+  if (run.type === 'unit'){
+    const s = save.units[u.id] || { best: 0, plays: 0 };
+    prevBest = s.plays ? s.best : null;
+    newClear = s.best < 8 && A.correct >= 8;
+    s.best = Math.max(s.best, A.correct); s.plays++;
+    save.units[u.id] = s; persist();
+  }
+
+  // 分析メモ
+  const insights = [];
+  if (A.byUnit){
+    if (A.weak.length){
+      const w = A.weak[0];
+      insights.push(['🎯', `いちばんの伸びしろは「${w.key}」（${w.correct}/${w.total}）。${w.unit.tip}`]);
+      if (A.weak[1]) insights.push(['📌', `次に復習したいのは「${A.weak[1].key}」（${A.weak[1].correct}/${A.weak[1].total}）。`]);
+    } else insights.push(['🏆', '出題されたすべての単元で正解！ 基礎から応用までしっかり身についているよ。']);
+  } else {
+    const b = A.groups.find(g => g.key === '基礎'), a = A.groups.find(g => g.key === '応用');
+    if (b && b.acc < 1) insights.push(['🧱', `基礎問題で ${b.total - b.correct} 問ミス。まずは基礎の完全理解から！ ${u.tip}`]);
+    else if (b) insights.push(['🧱', '基礎問題は全問正解！ ルールはしっかり理解できているよ。']);
+    if (a && a.acc < 1) insights.push(['🚀', `応用問題は ${a.correct}/${a.total}。応用は「基礎のルールの組み合わせ」。間違えた問題の解説をもう一度読んで、なぜその答えになるのかを言葉で説明できるようにしよう。`]);
+    else if (a) insights.push(['🚀', '応用問題も全問正解！ この単元はもう得点源だね。']);
+  }
+  if (A.slow.length) insights.push(['⏱', `「${A.slow.map(g => g.key).join('」「')}」は正解だけど時間がかかったよ（平均 ${fmtSec(A.slow[0].avg)}）。パターンを覚えれば即答できるようになる！`]);
+  if (A.fastWrong >= 2) insights.push(['⚡', `5秒以内に答えて間違えた問題が ${A.fastWrong} 問。選ぶ前に空所の前後をもう一度見直すクセをつけよう。`]);
+  if (A.slowWrong >= 1) insights.push(['🧭', `20秒以上悩んで間違えた問題が ${A.slowWrong} 問。迷ったら「品詞」と「文の形」から消去法で絞り込もう。`]);
+  if (A.hints / A.total >= .4) insights.push(['💡', `ヒントを ${A.hints} 回使ったね。次はヒントを1回減らすのを目標にしよう。`]);
+  else if (A.hints === 0) insights.push(['🌟', 'ヒントなしで最後まで解き切ったね！']);
+  insights.push(['⏳', `平均回答時間は ${fmtSec(A.avg)}。1問15〜20秒以内が目標だよ。`]);
+  insights.push(['📕', `苦手リストには現在 ${save.weak.length} 問。間違えた問題はヒントなしで正解すると卒業できるよ。`]);
+
+  // ナレーション
+  let speech = {
+    S: `${A.total}問全問正解！ 文句なしの満点だよ！`,
+    A: `${A.correct}/${A.total}問正解！ かなり仕上がってきたね！`,
+    B: `${A.correct}/${A.total}問正解！ 基礎はできてる。あと一歩！`,
+    C: `${A.correct}/${A.total}問正解。間違えた問題は、全部これから伸びる部分だよ！`
+  }[rank];
+  if (newClear) speech += `\n\n🏅 Unit ${u.no}「${u.title}」クリア！`;
+  else if (prevBest !== null && A.correct > prevBest) speech += `\n\nベスト記録更新！（${prevBest} → ${A.correct}問）`;
+  if (A.weak.length) speech += `\n\n${A.byUnit ? `弱点は「${A.weak[0].key}」。${A.weak[0].unit.tip}` : (A.weak[0].key === '基礎' ? '基礎のルールをもう一度確認しよう。' : '基礎はOK！ 応用の解説を見直して、もう一度挑戦してみよう。')}`;
+  speech += '\n\n' + pick(['一歩ずつ、合格まで進んでいこう！','間違えるたびに強くなる。その積み重ねが合格につながるよ！','今日の努力は、確実に本番の力になるよ！']);
+  say(speech, { tone: rank === 'C' ? '' : 'ok', title: `ランク ${rank}！おつかれさま 🎉` });
+
+  // 描画
+  const C = 2 * Math.PI * 50;
+  const color = acc => acc >= 1 ? 'linear-gradient(90deg,#34d399,#6ee7b7)' : acc >= .5 ? 'linear-gradient(90deg,#fbbf24,#fde68a)' : 'linear-gradient(90deg,#fb7185,#fda4af)';
+  const wrongs = log.filter(r => !r.correct);
+  const nextUnit = run.type === 'unit' ? UNITS[u.no] : null;
+
+  $('viewResult').innerHTML = `
+    <div class="res-head">
+      <div class="ring">
+        <svg viewBox="0 0 120 120">
+          <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7dd3fc"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs>
+          <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="11"/>
+          <circle id="ringArc" cx="60" cy="60" r="50" fill="none" stroke="url(#rg)" stroke-width="11" stroke-linecap="round"
+            stroke-dasharray="${C}" stroke-dashoffset="${C}" style="transition:stroke-dashoffset 1.2s cubic-bezier(.2,.9,.3,1)"/>
+        </svg>
+        <div class="val"><div>${pct}%<small>${A.correct} / ${A.total}</small></div></div>
+      </div>
+      <div class="rank">RANK<b>${rank}</b>${esc(run.label)}${newClear ? '<br>🏅 クリア！' : ''}</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>${A.correct}/${A.total}</b><span>正解数</span></div>
+      <div class="stat"><b>${(A.avg/1000).toFixed(1)}s</b><span>平均回答時間</span></div>
+      <div class="stat"><b>${A.hints}回</b><span>ヒント使用</span></div>
+    </div>
+    <div class="sec-title">📊 ${A.byUnit ? '単元別' : '基礎・応用別'}の分析</div>
+    ${A.groups.map(g => `
+      <div class="cat-row">
+        <div class="top">${esc(g.key)}
+          ${g.acc < 1 && g === A.weak[0] ? '<span class="tag weak">最優先で復習</span>' : g.acc < 1 ? '<span class="tag weak">要復習</span>' : A.slow.includes(g) ? '<span class="tag slow">スピードUP</span>' : '<span class="tag good">完璧</span>'}
+          <span class="meta">${g.correct}/${g.total} ・ 平均 ${(g.avg/1000).toFixed(1)}s</span>
+        </div>
+        <div class="bar"><i data-w="${Math.max(4, g.acc*100)}" style="background:${color(g.acc)}"></i></div>
+      </div>`).join('')}
+    <div class="sec-title" style="margin-top:18px">🧠 分析メモ</div>
+    <div class="insights">${insights.map(([ic, t]) => `<div class="insight"><span class="ic">${ic}</span><span>${esc(t)}</span></div>`).join('')}</div>
+    ${wrongs.length ? `
+      <div class="sec-title">📖 間違えた問題の復習</div>
+      <div class="review">${wrongs.map(r => `
+        <details><summary>[${r.item.level}] ${esc(r.item.q.replace('___','(　　)'))}</summary>
+          <div class="body"><div class="ans"><span style="background:rgba(251,113,133,.18);color:#fecdd3">あなた：${esc(r.chosen)}</span><span style="background:rgba(52,211,153,.18);color:#a7f3d0">正解：${esc(r.item.answer)}</span></div>${esc(r.item.exp)}</div>
+        </details>`).join('')}</div>` : ''}
+    <div class="res-actions">
+      ${wrongs.length ? '<button class="btn hintbtn big" id="btnRetryWrong">🔁 間違えた問題だけ解き直す</button>' : ''}
+      ${nextUnit ? `<button class="btn primary big" id="btnNextUnit">次へ：Unit ${nextUnit.no} ${esc(nextUnit.title)} →</button>` : ''}
+      <button class="btn ${nextUnit ? 'ghost' : 'primary'} big" id="btnRetry">もう一度 ↻</button>
+      <button class="btn ghost big" id="btnHome">ユニット選択へ</button>
+    </div>`;
+  show('viewResult');
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    $('ringArc').style.strokeDashoffset = C * (1 - A.acc);
+    document.querySelectorAll('#viewResult .bar i').forEach(i => i.style.width = i.dataset.w + '%');
+  }));
+  const retryItems = run.items;
+  $('btnRetry').addEventListener('click', () => run.type === 'unit' ? startUnit(u) : run.type === 'random' ? startRandom() : startWeak());
+  $('btnHome').addEventListener('click', goHome);
+  if ($('btnNextUnit')) $('btnNextUnit').addEventListener('click', () => startUnit(nextUnit));
+  if ($('btnRetryWrong')) $('btnRetryWrong').addEventListener('click', () => startRun(shuffle(wrongs.map(r => BY_ID[r.item.id])), { type:'weak', label:'間違えた問題の解き直し' }));
+}
+
+/* ================= 雪 ================= */
+function initSnow(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const cv = $('snow'), ctx = cv.getContext('2d');
+  let W, H, flakes = [], last = performance.now(), running = true;
+  const resize = () => {
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    W = innerWidth; H = innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr; cv.style.width = W + 'px'; cv.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.round(Math.min(70, W * H / 14000));
+    flakes = Array.from({ length: n }, () => ({ x: Math.random()*W, y: Math.random()*H, r: .8 + Math.random()*2.4, v: 14 + Math.random()*30, p: Math.random()*6.28, a: .35 + Math.random()*.5 }));
+  };
+  const loop = now => {
+    if (!running) return;
+    const dt = Math.min(.05, (now - last) / 1000); last = now;
+    ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#fff';
+    for (const f of flakes){
+      f.y += f.v * dt; f.p += dt * .8; f.x += Math.sin(f.p) * 12 * dt;
+      if (f.y > H + 5){ f.y = -5; f.x = Math.random()*W; }
+      ctx.globalAlpha = f.a; ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 6.283); ctx.fill();
+    }
+    requestAnimationFrame(loop);
+  };
+  addEventListener('resize', resize);
+  document.addEventListener('visibilitychange', () => { running = !document.hidden; if (running){ last = performance.now(); requestAnimationFrame(loop); } });
+  resize(); requestAnimationFrame(loop);
+}
+
+initSnow();
+goHome();
+})();
+</script>
+</body>
+</html>
