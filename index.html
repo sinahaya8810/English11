@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0b1026">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>挑め！大学受験英語 — 中学〜共テ 250問</title>
+<title>挑め！大学受験英語 — 文法・単語・熟語</title>
 <style>
 :root{
   --text:#eef2ff; --sub:#aab4d6;
@@ -198,22 +198,48 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;touch-
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
 }
 
-/* ===== ユニット選択 ===== */
-.hero h1 span{margin-left:.15em}
-.lead b{color:#e0e7ff}
-.overall{padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.08)}
-.ov-top{display:flex;justify-content:space-between;font-size:13px;color:var(--sub);font-weight:700;margin-bottom:8px}
-.ov-top b{color:var(--gold);font-size:16px}
-.overall .bar i{background:linear-gradient(90deg,#7dd3fc,#a78bfa,#f5cf73)}
+/* ===== ホーム ===== */
+.hero{max-width:760px}
+.player{display:flex;align-items:center;gap:14px;padding:14px;border-radius:18px;
+  background:linear-gradient(135deg,rgba(96,165,250,.22),rgba(167,139,250,.18));border:1px solid rgba(196,181,253,.35)}
+.pl-badge{flex-shrink:0;width:66px;height:66px;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#fde68a,#f59e0b);color:#3a2503;box-shadow:0 8px 22px rgba(245,158,11,.4),inset 0 1px 0 rgba(255,255,255,.6)}
+.pl-badge span{font-size:11px;font-weight:900;line-height:1}
+.pl-badge b{font-size:28px;line-height:1.05;font-weight:900}
+.pl-main{flex:1;min-width:0}
+.pl-title{font-weight:900;font-size:17px;margin-bottom:8px}
+.bar{height:10px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;transition:width 1s cubic-bezier(.2,.9,.3,1)}
+.bar.xp i{background:linear-gradient(90deg,#fde68a,#f59e0b);box-shadow:0 0 10px rgba(251,191,36,.7)}
+.pl-xp{font-size:12px;color:var(--sub);font-weight:700;margin-top:6px;font-variant-numeric:tabular-nums}
+.pl-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.pl-stats div{padding:10px 4px;border-radius:14px;background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.08);text-align:center}
+.pl-stats b{display:block;font-size:18px;font-variant-numeric:tabular-nums}
+.pl-stats span{font-size:11px;color:var(--sub);font-weight:700}
 .quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.quick .btn{font-size:14.5px;padding:0 10px}
-.tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;border-radius:16px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.08)}
-.tab{min-height:46px;border-radius:12px;font-weight:800;font-size:14.5px;color:var(--sub);transition:background .25s,color .25s}
-.tab.active{background:linear-gradient(135deg,rgba(96,165,250,.35),rgba(167,139,250,.35));color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.quick .btn{font-size:14px;padding:0 8px;line-height:1.3}
+.x2{display:inline-block;margin-left:4px;padding:2px 7px;border-radius:99px;font-size:11px;background:#f59e0b;color:#3a2503;font-weight:900}
+.weakbox{padding:14px;border-radius:18px;background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.08)}
+.wb-head{font-weight:800;font-size:14.5px;margin-bottom:10px}
+.wb-head small{color:var(--sub);font-weight:700;font-size:11.5px;margin-left:6px}
+.wcat{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.wcat .info{flex:1;min-width:0}
+.wcat .nm{display:flex;justify-content:space-between;gap:6px;font-size:13px;font-weight:700;margin-bottom:5px}
+.wcat .nm span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wcat .nm span:last-child{color:var(--sub);flex-shrink:0;font-variant-numeric:tabular-nums}
+.wcat .btn{min-height:44px;padding:0 12px;font-size:13px;flex-shrink:0}
+.wb-dir{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.wb-dir span{font-size:11.5px;padding:5px 9px;border-radius:99px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:var(--sub);font-weight:700}
+.tabs{display:flex;gap:6px;padding:5px;border-radius:16px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.08);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:1 0 auto;min-height:44px;padding:0 14px;border-radius:12px;font-weight:800;font-size:13.5px;color:var(--sub);white-space:nowrap;transition:background .25s,color .25s}
+.tab.active{background:linear-gradient(135deg,rgba(96,165,250,.38),rgba(167,139,250,.38));color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.setdesc{margin:0;font-size:13px;color:var(--sub);line-height:1.6}
+.note{margin:6px 0 0;font-size:11px;color:#8890b5;line-height:1.6}
 .units{display:grid;grid-template-columns:1fr;gap:10px}
 @media (min-width:560px){.units{grid-template-columns:1fr 1fr}}
-@media (min-width:1000px){.units{grid-template-columns:1fr 1fr 1fr}}
-.unit{position:relative;display:flex;align-items:center;gap:12px;min-height:72px;padding:12px 14px;border-radius:16px;text-align:left;
+.unit{position:relative;display:flex;align-items:center;gap:12px;min-height:74px;padding:12px 14px;border-radius:16px;text-align:left;overflow:hidden;
   background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.035));border:1.5px solid var(--stroke);transition:transform .15s,border-color .25s}
 .unit:active{transform:scale(.98)}
 @media (hover:hover){.unit:hover{border-color:rgba(125,211,252,.55)}}
@@ -221,15 +247,75 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;touch-
   background:rgba(255,255,255,.08);border:1px solid var(--stroke);color:#c7d2fe}
 .unit.cleared .no{background:linear-gradient(135deg,#f5cf73,#f59e0b);color:#3a2503;border-color:transparent}
 .unit .tt{flex:1;min-width:0}
-.unit .tt b{display:block;font-size:15px;line-height:1.35}
+.unit .tt b{display:block;font-size:15px;line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .unit .tt small{font-size:12px;color:var(--sub);font-weight:700}
 .unit .st{font-size:18px}
-.lv-chip{padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800}
+.unit .ubar{position:absolute;left:0;bottom:0;height:3px;background:linear-gradient(90deg,#34d399,#7dd3fc)}
+
+/* ===== クイズ ===== */
+.lv-chip{padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;white-space:nowrap}
 .lv-chip.basic{background:rgba(52,211,153,.15);border:1px solid rgba(52,211,153,.45);color:#a7f3d0}
 .lv-chip.adv{background:rgba(251,113,133,.16);border:1px solid rgba(251,113,133,.5);color:#fecdd3}
-.back{width:36px;height:36px;border-radius:11px;background:rgba(255,255,255,.08);border:1px solid var(--stroke);font-weight:900;color:var(--sub)}
-.cat-chip{max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.empty{padding:16px;border-radius:14px;background:rgba(0,0,0,.2);color:var(--sub);font-size:14px;line-height:1.7;text-align:center}
+.lv-chip.voc{background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.4);color:#bae6fd}
+.mult{padding:5px 9px;border-radius:99px;font-size:11.5px;font-weight:900;background:#f59e0b;color:#3a2503}
+.combo{padding:5px 9px;border-radius:99px;font-size:12px;font-weight:900;color:#fff;background:linear-gradient(135deg,#fb7185,#f97316);
+  box-shadow:0 0 14px rgba(249,115,22,.6);animation:comboPop .35s cubic-bezier(.2,1.6,.4,1)}
+@keyframes comboPop{0%{transform:scale(.6)}100%{transform:scale(1)}}
+.back{width:36px;height:36px;flex-shrink:0;border-radius:11px;background:rgba(255,255,255,.08);border:1px solid var(--stroke);font-weight:900;color:var(--sub)}
+.cat-chip{max-width:40vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qprompt{margin:0 0 6px;font-size:13px;color:var(--sub);font-weight:700}
+.qprompt:empty{display:none}
+.question.vq{font-size:clamp(28px,8vw,42px);text-align:center;padding:10px 0 6px;letter-spacing:.01em}
+.question.vq.ja{font-size:clamp(20px,5.6vw,28px)}
+.question .pos{display:inline-block;vertical-align:middle;margin-left:8px;padding:3px 8px;border-radius:8px;font-size:13px;font-weight:800;background:rgba(255,255,255,.1);color:var(--sub)}
+.choice.ja{font-family:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif;font-size:15.5px}
+.xpfloat{position:fixed;z-index:20;pointer-events:none;font-weight:900;font-size:20px;color:#fde68a;text-shadow:0 2px 12px rgba(245,158,11,.9);
+  animation:xpUp 1.1s cubic-bezier(.2,.8,.3,1) forwards}
+@keyframes xpUp{0%{opacity:0;transform:translate(-50%,6px) scale(.8)}20%{opacity:1;transform:translate(-50%,-6px) scale(1.1)}100%{opacity:0;transform:translate(-50%,-46px) scale(1)}}
+.empty{padding:14px;border-radius:14px;background:rgba(255,255,255,.04);color:var(--sub);font-size:13px;line-height:1.7;text-align:center}
+
+/* ===== リザルトのXP ===== */
+.xpbox{padding:14px;border-radius:16px;margin-bottom:16px;background:linear-gradient(135deg,rgba(251,191,36,.16),rgba(245,158,11,.06));border:1px solid rgba(251,191,36,.4)}
+.xpbox .big{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:8px}
+.xpbox .big b{font-size:28px;color:#fde68a;font-variant-numeric:tabular-nums}
+.xpbox .big span{font-size:13px;font-weight:800;color:#fde68a}
+.xpbox ul{margin:10px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-size:12.5px;color:#fde9b0}
+.xpbox li{display:flex;justify-content:space-between}
+
+/* ===== レベルアップ ===== */
+.lvup{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:rgba(5,8,30,.55);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .3s}
+.lvup.show{opacity:1;pointer-events:auto}
+.lvup-card{position:relative;text-align:center;padding:34px 40px;border-radius:28px;overflow:hidden;
+  background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.05));border:1px solid rgba(253,230,138,.5);
+  box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 60px rgba(245,158,11,.35);transform:scale(.7)}
+.lvup.show .lvup-card{animation:lvPop .6s cubic-bezier(.2,1.5,.4,1) forwards}
+@keyframes lvPop{to{transform:scale(1)}}
+.lvup-rays{position:absolute;left:50%;top:50%;width:520px;height:520px;margin:-260px 0 0 -260px;opacity:.35;
+  background:repeating-conic-gradient(rgba(253,230,138,.5) 0 8deg,transparent 8deg 20deg);animation:spin 8s linear infinite;
+  -webkit-mask:radial-gradient(closest-side,#000,transparent);mask:radial-gradient(closest-side,#000,transparent)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.lvup p{position:relative;margin:0}
+.lvup-label{font-size:16px;font-weight:900;letter-spacing:.3em;color:#fde68a}
+.lvup-num{font-size:64px;font-weight:900;line-height:1.1;background:linear-gradient(135deg,#fff7d1,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lvup-title{font-size:17px;font-weight:800;margin-top:6px !important}
+.lvup-tap{font-size:11px;color:var(--sub);margin-top:16px !important}
+
+.lvpill{display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:var(--glass);border:1px solid var(--stroke);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.lvpill .lv{font-size:13px;font-weight:800;color:#fde68a;white-space:nowrap}
+.lvpill .lv b{font-size:15px}
+.lvpill .minibar{width:64px;height:7px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.lvpill .minibar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#fde68a,#f59e0b);transition:width .8s cubic-bezier(.2,.9,.3,1)}
+.wcat .nm{flex-direction:column;gap:2px}
+.wcat .nm span:first-child{white-space:normal;overflow:visible}
+
+.etybox{margin-top:14px;padding:14px 16px;border-radius:16px;font-size:14.5px;line-height:1.75;white-space:pre-wrap;
+  background:linear-gradient(135deg,rgba(125,211,252,.14),rgba(167,139,250,.12));border:1px solid rgba(125,211,252,.4);
+  animation:viewIn .4s cubic-bezier(.2,.9,.3,1)}
+.etybox b{display:block;font-size:13px;color:#bae6fd;margin:6px 0 2px;letter-spacing:.04em}
+.etybox .word{font-weight:900;font-size:16px;color:#fff}
+.etybox .sub{display:block;margin-top:10px;padding-top:10px;border-top:1px dashed rgba(255,255,255,.18);font-size:13px;color:var(--sub)}
 </style>
 </head>
 <body>
@@ -237,10 +323,24 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;touch-
 <canvas id="snow"></canvas>
 <div class="toast" id="toast"></div>
 
+<!-- レベルアップ演出 -->
+<div class="lvup" id="lvup" aria-live="assertive">
+  <div class="lvup-card">
+    <div class="lvup-rays"></div>
+    <p class="lvup-label">LEVEL UP!</p>
+    <p class="lvup-num">Lv <span id="lvupNum">2</span></p>
+    <p class="lvup-title" id="lvupTitle"></p>
+    <p class="lvup-tap">タップして閉じる</p>
+  </div>
+</div>
+
 <div id="app">
   <header class="topbar">
     <div class="brand"><div class="logo">❄</div>Exam English</div>
-    <div class="pill" id="scorePill">⭐ 0</div>
+    <div class="lvpill" id="lvPill">
+      <span class="lv">Lv <b id="lvNum">1</b></span>
+      <span class="minibar"><i id="lvMini"></i></span>
+    </div>
   </header>
 
   <main class="layout">
@@ -254,40 +354,66 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;touch-
 
     <!-- パネル -->
     <section class="panel glass" id="panel">
-      <!-- ユニット選択 -->
+      <!-- ホーム -->
       <div class="view" id="viewStart">
         <div class="hero">
-          <p class="eyebrow">JUNIOR HIGH → HIGH SCHOOL → 共通テスト</p>
-          <h1>挑め！<span>大学受験英語</span></h1>
-          <p class="lead">中学の基礎から高校・共テレベルまで <b>全<span id="unitCount"></span>ユニット・<span id="qCount"></span>問</b>。各ユニット10問（基礎7問＋応用3問）。8問以上正解でクリア！</p>
-          <div class="overall">
-            <div class="ov-top"><span>クリア <b id="ovClear">0</b> / <span id="ovTotal">0</span></span><span id="ovSolved"></span></div>
-            <div class="bar"><i id="ovBar"></i></div>
+          <!-- プレイヤーカード -->
+          <div class="player">
+            <div class="pl-badge"><span>Lv</span><b id="plLv">1</b></div>
+            <div class="pl-main">
+              <div class="pl-title" id="plTitle">英語ビギナー</div>
+              <div class="bar xp"><i id="plBar"></i></div>
+              <div class="pl-xp" id="plXp">0 / 80 XP</div>
+            </div>
           </div>
+          <div class="pl-stats">
+            <div><b id="stStreak">0</b><span>連続日数</span></div>
+            <div><b id="stAns">0</b><span>回答数</span></div>
+            <div><b id="stAcc">-</b><span>正答率</span></div>
+            <div><b id="stMaster">0</b><span>習得語数</span></div>
+          </div>
+
           <div class="quick">
-            <button class="btn primary" id="btnRandom">🎲 全範囲ランダム20問</button>
-            <button class="btn hintbtn" id="btnWeakList">📕 苦手リスト</button>
+            <button class="btn primary" id="btnRandom">🎲 ミックス20問</button>
+            <button class="btn hintbtn" id="btnWeakList">📕 苦手問題 <span class="x2">XP×2</span></button>
           </div>
-          <div class="tabs" role="tablist">
-            <button class="tab active" data-grade="中学">中学レベル</button>
-            <button class="tab" data-grade="高校">高校・共テレベル</button>
+
+          <!-- 苦手分析 -->
+          <div class="weakbox">
+            <div class="wb-head">🧠 苦手系統の分析 <small>間違いが多い順</small></div>
+            <div id="weakCats"></div>
+            <div class="wb-dir" id="weakDir"></div>
           </div>
+
+          <div class="tabs" role="tablist" id="tabs">
+            <button class="tab active" data-set="gj">文法・中学</button>
+            <button class="tab" data-set="gh">文法・高校</button>
+            <button class="tab" data-set="v1">単語・標準</button>
+            <button class="tab" data-set="v2">単語・発展</button>
+            <button class="tab" data-set="id">熟語</button>
+          </div>
+          <p class="setdesc" id="setDesc"></p>
           <div class="units" id="units"></div>
+          <p class="note">※単語・熟語リストは、大学受験の頻出語から独自に選定したものです（市販の単語帳の収録内容・順序とは異なります）。</p>
         </div>
       </div>
 
       <!-- クイズ -->
       <div class="view hidden" id="viewQuiz">
         <div class="qmeta">
-          <button class="back" id="btnQuit" aria-label="ユニット選択へ戻る">✕</button>
+          <button class="back" id="btnQuit" aria-label="ホームへ戻る">✕</button>
           <span class="cat-chip" id="qCat"></span>
           <span class="lv-chip" id="qLv"></span>
+          <span class="mult hidden" id="qMult">XP×2</span>
+          <span class="combo hidden" id="qCombo"></span>
           <span class="qnum" id="qNum"></span>
           <span class="timer" id="qTimer">⏱ 0.0s</span>
         </div>
         <div class="progress"><i id="progBar"></i></div>
+        <p class="qprompt" id="qPrompt"></p>
         <h2 class="question" id="qText"></h2>
         <div class="choices" id="choices"></div>
+        <div class="etybox hidden" id="etyBox"></div>
         <div class="actions">
           <button class="btn hintbtn" id="btnHint">💡 ヒントを見る</button>
           <button class="btn primary hidden" id="btnNext">次の問題へ →</button>
@@ -628,10 +754,2599 @@ U('h15','高校','共テ頻出語彙・表現','共通テストには文法だ�
 ['Many species are in ___ of extinction.',['danger','risk','fear','threat'],'「絶滅の危機にある」の決まった形。','be in danger of 〜「〜の危険がある」。risk なら at risk of。環境問題の長文で頻出。\n訳：多くの種が絶滅の危機にある。']
 ]);
 
-/* ================= 定数・メッセージ ================= */
+const VOCAB1 = `
+accept|動|受け入れる
+accident|名|事故
+achieve|動|達成する
+activity|名|活動
+actually|副|実際に
+add|動|加える
+address|名|住所・演説
+admire|動|称賛する
+adult|名|大人
+advantage|名|利点
+advice|名|助言
+afford|動|〜する余裕がある
+afraid|形|恐れて
+agree|動|同意する
+aim|名|目的・ねらい
+allow|動|許す・許可する・可能にする
+amount|名|量・総額
+ancient|形|古代の
+anniversary|名|記念日
+announce|動|発表する
+annual|形|毎年の・年1回の
+anxious|形|心配して・切望して
+apologize|動|謝る
+appear|動|現れる・〜に見える
+apply|動|申し込む・適用する
+appointment|名|（面会の）約束・予約
+appreciate|動|感謝する・正しく評価する
+approach|動|近づく
+area|名|地域・分野
+argue|動|議論する・主張する
+arrange|動|手配する・並べる
+arrive|動|到着する
+article|名|記事・品物
+attend|動|出席する
+attention|名|注意
+attitude|名|態度
+audience|名|聴衆・観客
+available|形|利用できる・手に入る
+avoid|動|避ける
+aware|形|気づいて
+balance|名|均衡・残高
+behave|動|振る舞う
+belong|動|所属する
+benefit|名|利益・恩恵
+borrow|動|借りる
+brain|名|脳
+branch|名|枝・支店
+breathe|動|呼吸する
+brief|形|短い・簡潔な
+bright|形|明るい・賢い
+broadcast|動|放送する
+burn|動|燃える・燃やす
+calm|形|穏やかな・冷静な
+capital|名|首都・資本
+career|名|経歴・職業
+careful|形|注意深い
+celebrate|動|祝う
+century|名|世紀
+challenge|名|挑戦・難題
+character|名|性格・登場人物
+charge|名|料金・責任
+cheap|形|安い
+chemical|形|化学の
+choice|名|選択
+citizen|名|市民
+climate|名|気候
+collect|動|集める
+comfortable|形|快適な
+common|形|共通の・普通の
+communicate|動|意思を伝え合う
+community|名|地域社会
+company|名|会社・仲間
+compare|動|比較する
+complain|動|不平を言う
+complete|動|完成させる
+concentrate|動|集中する
+condition|名|状態・条件
+confident|形|自信のある
+connect|動|つなぐ
+consider|動|よく考える・みなす
+contain|動|含む
+continue|動|続ける
+contribute|動|貢献する
+control|動|管理する・制御する
+convenient|形|便利な
+conversation|名|会話
+copy|名|写し・（本の）1部
+correct|形|正しい
+cost|名|費用
+count|動|数える・重要である
+courage|名|勇気
+create|動|創造する
+crowd|名|群衆
+culture|名|文化
+cure|動|治す
+custom|名|習慣・慣習
+damage|名|損害
+danger|名|危険
+deal|動|扱う・対処する
+decide|動|決める
+decrease|動|減少する
+degree|名|程度・度・学位
+delay|名|遅れ
+deliver|動|配達する
+demand|名|需要・要求
+depend|動|頼る・〜次第である
+describe|動|描写する
+design|動|設計する
+destroy|動|破壊する
+develop|動|発達させる・開発する
+difference|名|違い
+difficulty|名|困難
+direction|名|方向・指示
+disappear|動|消える
+discover|動|発見する
+discuss|動|話し合う
+disease|名|病気
+distance|名|距離
+divide|動|分ける
+document|名|書類
+double|動|2倍になる
+doubt|名|疑い
+earn|動|稼ぐ
+effect|名|影響・効果
+effort|名|努力
+elderly|形|年配の
+electricity|名|電気
+emergency|名|緊急事態
+employ|動|雇う
+encourage|動|励ます
+enemy|名|敵
+energy|名|エネルギー・活力
+enormous|形|巨大な・莫大な
+environment|名|環境
+equal|形|等しい
+escape|動|逃げる
+especially|副|特に
+event|名|出来事・行事
+exact|形|正確な
+examine|動|調べる・診察する
+exchange|動|交換する
+exercise|名|運動・練習
+exist|動|存在する
+expect|動|予期する・期待する
+expensive|形|高価な
+experience|名|経験
+experiment|名|実験
+explain|動|説明する
+express|動|表現する
+fact|名|事実
+factory|名|工場
+fail|動|失敗する
+familiar|形|よく知られた・精通して
+famous|形|有名な
+favorite|形|お気に入りの
+fear|名|恐怖
+feature|名|特徴
+fee|名|料金・手数料
+fill|動|満たす
+final|形|最後の
+float|動|浮かぶ
+follow|動|後に続く・従う
+force|動|強制する
+forecast|名|予報
+foreign|形|外国の
+forgive|動|許す
+form|名|形・用紙
+fortunately|副|幸運にも
+freedom|名|自由
+fuel|名|燃料
+gather|動|集める・集まる
+generation|名|世代
+global|形|地球規模の
+goal|名|目標
+government|名|政府
+gradually|副|徐々に
+graduate|動|卒業する
+guess|動|推測する
+habit|名|習慣・癖
+handle|動|扱う
+harm|名|害
+health|名|健康
+heat|名|熱
+heavy|形|重い
+hide|動|隠す・隠れる
+history|名|歴史
+honest|形|正直な
+host|名|主人・主催者
+huge|形|巨大な
+human|形|人間の
+hurt|動|傷つける
+idea|名|考え
+ignore|動|無視する
+illness|名|病気
+image|名|印象・画像
+imagine|動|想像する
+immediately|副|ただちに
+improve|動|改善する・上達する
+include|動|含む
+increase|動|増加する
+independent|形|独立した
+industry|名|産業
+influence|名|影響
+information|名|情報
+injure|動|けがをさせる・傷つける
+insect|名|昆虫
+instead|副|その代わりに
+instrument|名|楽器・器具
+interest|名|興味・利子
+introduce|動|紹介する・導入する
+invent|動|発明する
+invite|動|招待する
+issue|名|問題・発行
+journey|名|旅
+judge|動|判断する
+knowledge|名|知識
+labor|名|労働
+lack|名|不足
+language|名|言語
+law|名|法律
+lead|動|導く
+lend|動|貸す
+level|名|水準
+limit|名|限界・制限
+local|形|地元の
+lonely|形|孤独な
+loss|名|損失・喪失
+manage|動|なんとか〜する・管理する
+material|名|材料
+matter|動|重要である
+measure|動|測る
+medicine|名|薬・医学
+memory|名|記憶・思い出
+mention|動|言及する
+method|名|方法
+mind|動|気にする
+mistake|名|誤り
+modern|形|現代の
+moment|名|瞬間
+movement|名|動き・運動
+narrow|形|狭い
+nation|名|国家・国民
+native|形|生まれた土地の・母語の
+natural|形|自然の・当然の
+nearly|副|ほとんど
+necessary|形|必要な
+negative|形|否定的な
+neighbor|名|隣人
+nervous|形|緊張して
+nod|動|うなずく
+normal|形|普通の
+notice|動|気づく
+object|名|物体・目的
+observe|動|観察する・（規則を）守る
+obtain|動|手に入れる
+occur|動|起こる・心に浮かぶ
+offer|動|申し出る・提供する
+opinion|名|意見
+opportunity|名|機会
+order|名|命令・注文・順序
+ordinary|形|普通の
+organize|動|組織する・まとめる
+origin|名|起源
+pain|名|痛み
+pattern|名|模様・型
+peace|名|平和
+perform|動|演じる・行う
+period|名|期間・時代
+permit|動|許可する
+personal|形|個人的な
+persuade|動|説得する
+photograph|名|写真
+physical|形|身体の・物理的な
+plant|名|植物・工場
+pleasure|名|喜び
+poem|名|詩
+polite|形|礼儀正しい
+pollution|名|汚染
+population|名|人口
+positive|形|肯定的な・前向きな
+possible|形|可能な
+poverty|名|貧困
+power|名|力・電力
+practice|名|練習・実践
+praise|動|ほめる
+prefer|動|〜の方を好む
+prepare|動|準備する
+present|形|出席して・現在の
+prevent|動|妨げる・防ぐ
+price|名|価格
+pride|名|誇り
+private|形|私的な
+produce|動|生産する
+product|名|製品
+progress|名|進歩
+promise|動|約束する
+protect|動|守る
+proud|形|誇りに思う
+prove|動|証明する・〜だとわかる
+provide|動|提供する
+public|形|公共の
+publish|動|出版する
+purpose|名|目的
+quality|名|質
+quantity|名|量
+quarter|名|4分の1
+quiet|形|静かな
+raise|動|上げる・育てる
+rapid|形|急速な
+rate|名|割合・速度
+reach|動|到着する・届く
+realize|動|気づく・実現する
+reason|名|理由
+receive|動|受け取る
+recent|形|最近の
+recognize|動|認識する・認める
+recommend|動|推薦する
+record|名|記録
+recover|動|回復する
+reduce|動|減らす
+refuse|動|拒む
+regard|動|みなす
+region|名|地域・地方
+regular|形|規則的な・定期的な
+relationship|名|関係
+relax|動|くつろぐ
+remain|動|〜のままである・残る
+remind|動|思い出させる
+remove|動|取り除く
+repair|動|修理する
+repeat|動|繰り返す
+replace|動|取って代わる
+reply|動|返事をする
+report|名|報告
+represent|動|代表する・表す
+request|名|依頼
+require|動|必要とする
+research|名|研究
+reserve|動|予約する
+respect|動|尊敬する
+respond|動|反応する・答える
+responsible|形|責任がある
+rest|名|休息・残り
+result|名|結果
+return|動|戻る・返す
+reveal|動|明らかにする
+rise|動|上がる
+risk|名|危険性・リスク
+role|名|役割
+rough|形|粗い・おおよその
+rule|名|規則
+rush|動|急ぐ
+safety|名|安全
+satisfy|動|満足させる
+save|動|救う・節約する
+scene|名|場面・光景
+schedule|名|予定
+science|名|科学
+search|動|探す・捜索する
+seat|名|座席
+secret|名|秘密
+seek|動|探し求める・探す
+seem|動|〜のようだ
+select|動|選ぶ
+sense|名|感覚・意味
+separate|動|分ける
+serious|形|深刻な・まじめな
+serve|動|仕える・（食事を）出す
+set|動|置く・設定する
+shape|名|形
+share|動|共有する
+shortage|名|不足
+sight|名|視力・光景
+sign|名|記号・兆候
+silence|名|沈黙
+similar|形|似ている
+simple|形|単純な
+situation|名|状況
+skill|名|技術
+society|名|社会
+solve|動|解決する
+sort|名|種類
+source|名|源
+space|名|空間・宇宙
+spread|動|広がる・広げる
+staff|名|職員
+state|名|状態・州
+station|名|駅・署
+steal|動|盗む
+step|名|一歩・段階
+store|動|蓄える
+strange|形|奇妙な
+stress|名|圧迫・強調
+structure|名|構造
+subject|名|主題・科目
+succeed|動|成功する・後を継ぐ
+suddenly|副|突然
+suffer|動|苦しむ
+suggest|動|提案する・示唆する
+supply|名|供給
+support|動|支える
+suppose|動|思う・仮定する
+surface|名|表面
+surprise|動|驚かせる
+surround|動|囲む
+survive|動|生き残る
+system|名|体系・制度
+target|名|標的
+task|名|仕事・課題
+taste|名|味・好み
+technology|名|科学技術
+temperature|名|温度
+term|名|期間・用語・観点
+terrible|形|ひどい
+theory|名|理論
+thick|形|厚い
+thin|形|薄い・やせた
+threat|名|脅威
+tool|名|道具
+total|形|全体の
+tough|形|困難な・頑丈な
+trade|名|貿易
+tradition|名|伝統
+traffic|名|交通
+translate|動|翻訳する
+transport|動|輸送する
+treat|動|扱う・治療する
+trouble|名|困難・面倒
+trust|動|信頼する
+type|名|型・種類
+typical|形|典型的な
+unique|形|独特の
+universe|名|宇宙
+unless|接|〜しない限り
+upset|形|動揺して
+useful|形|役に立つ
+usual|形|いつもの
+valuable|形|価値のある
+value|名|価値
+various|形|さまざまな
+victim|名|犠牲者
+view|名|眺め・見解
+village|名|村
+visitor|名|訪問者
+volunteer|名|志願者・ボランティア
+vote|動|投票する
+wage|名|賃金
+warn|動|警告する
+waste|動|浪費する
+wealth|名|富
+weapon|名|武器
+weight|名|重さ
+whole|形|全体の
+wide|形|広い
+wild|形|野生の
+wise|形|賢い
+wonder|動|〜かしらと思う
+worth|形|〜の価値がある
+youth|名|若さ・若者
+ability|名|能力
+abroad|副|外国へ
+absent|形|欠席して
+abuse|名|乱用・虐待
+access|名|接近・利用する権利
+accompany|動|同行する
+account|名|説明・口座
+active|形|活動的な
+admission|名|入場・入学
+advance|動|前進する
+adventure|名|冒険
+advertise|動|宣伝する
+alive|形|生きて
+alone|副|ひとりで
+ancestor|名|祖先
+apart|副|離れて
+argument|名|議論・口論
+arrest|動|逮捕する
+attract|動|引きつける
+average|名|平均
+background|名|背景・経歴
+basis|名|基礎・根拠
+beauty|名|美しさ
+behavior|名|振る舞い・行動
+billion|名|10億
+blood|名|血
+boring|形|退屈な
+bother|動|悩ませる・邪魔する
+bottom|名|底
+bridge|名|橋
+budget|名|予算
+cancel|動|取り消す
+cause|動|引き起こす
+ceremony|名|儀式
+certain|形|確かな・ある
+chance|名|機会・可能性
+cheer|動|元気づける・応援する
+coast|名|海岸
+comment|名|論評・意見
+competition|名|競争
+confuse|動|混乱させる
+contact|名|接触・連絡
+cooperate|動|協力する
+crime|名|犯罪
+crop|名|作物・収穫
+cross|動|横切る
+curious|形|好奇心の強い
+daily|形|毎日の
+debate|名|討論
+deep|形|深い
+department|名|部門・学科
+destination|名|目的地
+detail|名|詳細
+dictionary|名|辞書
+disappoint|動|失望させる
+dish|名|皿・料理
+earthquake|名|地震
+economy|名|経済
+education|名|教育
+election|名|選挙
+emotion|名|感情
+entrance|名|入口・入学
+equipment|名|設備・装備
+error|名|誤り
+evidence|名|証拠
+expert|名|専門家
+extra|形|余分の
+fair|形|公平な
+false|形|誤った
+fashion|名|流行
+fix|動|修理する・固定する
+flood|名|洪水
+flow|動|流れる
+focus|動|集中する
+frequent|形|頻繁な
+fresh|形|新鮮な
+frighten|動|怖がらせる
+furniture|名|家具
+gain|動|得る・手に入れる・増す
+gift|名|贈り物・才能
+grade|名|成績・学年
+greet|動|あいさつする
+growth|名|成長
+guest|名|客
+harvest|名|収穫
+hire|動|雇う
+hold|動|持つ・開催する
+hunger|名|飢え
+identity|名|身元・独自性
+income|名|収入
+indeed|副|本当に
+inform|動|知らせる
+instance|名|例
+intelligent|形|知能の高い
+international|形|国際的な
+invest|動|投資する
+item|名|品目・項目
+join|動|加わる
+laughter|名|笑い
+lecture|名|講義
+license|名|免許
+`;
+const VOCAB2 = `
+abandon|動|捨てる・断念する
+absorb|動|吸収する
+abstract|形|抽象的な
+abundant|形|豊富な
+accomplish|動|成し遂げる
+accurate|形|正確な
+accuse|動|非難する・告発する
+acknowledge|動|認める
+acquire|動|習得する・獲得する
+adapt|動|適応する・適応させる
+adequate|形|十分な・適切な
+adjust|動|調整する
+admit|動|認める
+adopt|動|採用する・養子にする
+advocate|動|主張する・擁護する
+affect|動|影響を与える
+aggressive|形|攻撃的な・積極的な
+agriculture|名|農業
+alter|動|変える
+alternative|名|代わりのもの・選択肢
+ambiguous|形|あいまいな
+ambition|名|野心
+analyze|動|分析する
+anticipate|動|予期する
+apparent|形|明らかな・見かけ上の
+appeal|動|訴える・興味を引く
+appropriate|形|適切な
+approve|動|承認する
+arise|動|生じる
+artificial|形|人工の
+aspect|名|側面
+assess|動|評価する
+assign|動|割り当てる
+assist|動|手伝う
+associate|動|結びつけて考える
+assume|動|当然と思う・引き受ける
+assure|動|保証する
+atmosphere|名|大気・雰囲気
+attach|動|取り付ける
+attain|動|達成する
+attempt|名|試み
+attribute|動|（〜の）せいにする
+authority|名|権威・当局
+automatic|形|自動の
+awkward|形|ぎこちない・気まずい
+barrier|名|障壁
+bear|動|耐える・産む
+biology|名|生物学
+blame|動|非難する・責める
+bond|名|きずな
+boost|動|高める・押し上げる
+burden|名|重荷・負担
+calculate|動|計算する
+candidate|名|候補者
+capable|形|能力がある
+capacity|名|容量・能力
+casual|形|気軽な・偶然の
+cease|動|やめる・終わる
+characteristic|名|特徴
+circumstance|名|状況・事情
+cite|動|引用する
+civilization|名|文明
+claim|動|主張する
+classify|動|分類する
+coincidence|名|偶然の一致
+collapse|動|崩壊する
+colleague|名|同僚
+combine|動|結合する
+commit|動|（罪を）犯す・委ねる
+compensate|動|補償する・埋め合わせる
+compete|動|競争する
+complex|形|複雑な
+component|名|構成要素
+comprehend|動|理解する
+compromise|名|妥協
+conceal|動|隠す
+concept|名|概念
+concern|名|関心・心配
+conclude|動|結論を下す
+conduct|動|行う・指揮する
+confess|動|告白する
+confirm|動|確認する
+conflict|名|対立・紛争
+confront|動|直面する
+consequence|名|結果・重要性
+conserve|動|保存する
+considerable|形|かなりの
+consist|動|成る（of）
+constant|形|絶え間ない
+construct|動|建設する
+consult|動|相談する・参照する
+consume|動|消費する
+contemporary|形|現代の・同時代の
+context|名|文脈・状況
+contract|名|契約
+contrast|名|対照
+convert|動|変える・転換する
+convey|動|伝える・運ぶ
+convince|動|納得させる・確信させる
+cope|動|対処する（with）
+crucial|形|決定的に重要な
+cultivate|動|耕す・養う
+currency|名|通貨
+current|形|現在の
+dawn|名|夜明け
+decade|名|10年間
+decline|動|減少する・断る
+dedicate|動|捧げる
+defeat|動|打ち負かす
+defend|動|防御する
+define|動|定義する
+deliberately|副|わざと・慎重に
+democracy|名|民主主義
+demonstrate|動|証明する・実演する
+deny|動|否定する
+deprive|動|奪う
+derive|動|由来する・引き出す
+deserve|動|〜に値する
+desire|名|欲望・願望
+despair|名|絶望
+detect|動|見つける・検出する
+determine|動|決定する
+device|名|装置
+devote|動|（時間・労力を）注ぐ
+dialect|名|方言
+diet|名|食事・食習慣
+dimension|名|次元・寸法
+diminish|動|小さくなる・衰える
+disaster|名|災害
+discipline|名|規律・訓練
+display|動|展示する
+dispute|名|論争
+distinct|形|明確な・異なった
+distinguish|動|区別する
+distribute|動|分配する
+diverse|形|多様な
+domestic|形|国内の・家庭の
+dominate|動|支配する
+donate|動|寄付する
+dramatic|形|劇的な
+drought|名|干ばつ
+durable|形|耐久性のある
+dynamic|形|活動的な・動的な
+eager|形|熱望して
+efficient|形|効率的な
+elaborate|形|手の込んだ
+eliminate|動|除去する・排除する
+embarrass|動|恥ずかしい思いをさせる
+emerge|動|現れる
+emphasize|動|強調する
+enable|動|可能にする
+encounter|動|出会う
+endanger|動|危険にさらす
+enhance|動|高める
+ensure|動|確実にする
+entire|形|全体の
+essential|形|不可欠な・本質的な
+establish|動|設立する・確立する
+estimate|動|見積もる
+ethnic|形|民族の
+evaluate|動|評価する
+eventually|副|結局・最終的に
+evident|形|明らかな
+evolve|動|進化する
+exaggerate|動|誇張する
+exceed|動|超える
+exception|名|例外
+exclude|動|除外する・排除する
+exhaust|動|疲れさせる・使い果たす
+exhibit|動|展示する
+expand|動|拡大する
+expense|名|費用
+explore|動|探検する・探求する
+export|動|輸出する
+expose|動|さらす
+extend|動|延長する・広げる
+extent|名|程度・範囲
+external|形|外部の
+extinct|形|絶滅した
+extraordinary|形|並外れた
+facility|名|施設・設備
+fade|動|薄れる・衰える
+fatal|形|致命的な
+fault|名|欠点・責任
+feasible|形|実行可能な
+fertile|形|肥沃な
+finance|名|財政
+flexible|形|柔軟な
+flourish|動|繁栄する
+forbid|動|禁じる
+former|形|前の・前者の
+foster|動|育成する・育てる
+foundation|名|基礎・財団
+fragile|形|壊れやすい
+frustrate|動|いらだたせる
+function|名|機能
+fundamental|形|基本的な
+generate|動|生み出す
+generous|形|気前のよい
+genuine|形|本物の
+grant|動|与える・認める
+grasp|動|つかむ・理解する
+gratitude|名|感謝
+guarantee|動|保証する
+harsh|形|厳しい
+hesitate|動|ためらう
+hostile|形|敵意のある
+humble|形|謙虚な
+hypothesis|名|仮説
+identify|動|特定する・同一視する
+illustrate|動|説明する・図解する
+imitate|動|まねる
+immense|形|莫大な
+immigrant|名|（外国からの）移民
+impact|名|影響・衝撃
+implement|動|実行する
+imply|動|ほのめかす
+impose|動|課す・押しつける
+impress|動|感銘を与える
+impulse|名|衝動
+incentive|名|動機・報奨
+incident|名|出来事・事件
+inclined|形|〜したい気がする・傾向がある
+indicate|動|示す
+individual|名|個人
+inevitable|形|避けられない
+infant|名|幼児
+infer|動|推論する
+inferior|形|劣った
+ingredient|名|材料・成分
+inhabit|動|住む
+inherit|動|相続する・受け継ぐ
+initial|形|最初の
+innocent|形|無罪の・無邪気な
+innovation|名|革新
+insight|名|洞察
+insist|動|主張する・要求する
+inspire|動|奮い立たせる・着想を与える
+install|動|設置する
+instinct|名|本能
+institution|名|機関・制度
+insult|動|侮辱する
+intellectual|形|知的な
+intend|動|意図する
+intense|形|激しい
+interact|動|相互に作用する・交流する
+interpret|動|解釈する・通訳する
+interrupt|動|さえぎる・中断する
+interval|名|間隔
+intervene|動|介入する
+investigate|動|調査する
+involve|動|含む・巻き込む
+isolate|動|孤立させる
+justify|動|正当化する
+laboratory|名|研究室
+landscape|名|風景
+launch|動|開始する・発射する
+legal|形|合法の・法律の
+leisure|名|余暇
+liberal|形|自由主義の・寛大な
+literature|名|文学
+logical|形|論理的な
+maintain|動|維持する・主張する
+majority|名|大多数
+manufacture|動|製造する
+margin|名|余白・差
+massive|形|大規模な
+mature|形|成熟した
+maximum|名|最大
+mechanism|名|仕組み
+mental|形|精神の
+merit|名|長所
+migrate|動|移住する
+military|形|軍の
+minimum|名|最小
+minor|形|小さい・重要でない
+miserable|形|みじめな
+modest|形|控えめな
+modify|動|修正する
+monitor|動|監視する
+moral|形|道徳の
+motivate|動|動機づける
+mutual|形|相互の
+myth|名|神話・作り話
+neglect|動|怠る・無視する
+negotiate|動|交渉する
+neutral|形|中立の
+nevertheless|副|それにもかかわらず
+notion|名|考え・概念
+numerous|形|多数の
+nutrition|名|栄養
+objective|形|客観的な
+obligation|名|義務
+obscure|形|不明瞭な・無名の
+obstacle|名|障害
+obvious|形|明らかな・明白な
+occasion|名|機会・場合
+occupy|動|占める
+odd|形|奇妙な・奇数の
+offend|動|怒らせる
+operate|動|操作する・手術する
+oppose|動|反対する
+option|名|選択の自由・オプション
+organism|名|生物・有機体
+outcome|名|結果・成果
+overcome|動|克服する
+overlook|動|見落とす・見渡す
+overwhelm|動|圧倒する
+participate|動|参加する
+particular|形|特定の
+passion|名|情熱
+passive|形|受け身の
+patient|名|患者
+pause|動|休止する
+perceive|動|知覚する・気づく
+permanent|形|永続的な
+perspective|名|観点・見方
+phenomenon|名|現象
+philosophy|名|哲学
+policy|名|政策・方針
+portion|名|部分・分け前
+possess|動|所有する
+potential|名|潜在能力・可能性
+precious|形|貴重な
+precise|形|精密な
+predict|動|予測する
+prejudice|名|偏見
+preserve|動|保存する・保護する
+pretend|動|ふりをする
+previous|形|以前の
+primary|形|第一の・主要な
+primitive|形|原始的な
+principle|名|原理・原則
+priority|名|優先（事項）
+proceed|動|進む・続ける
+profession|名|（専門的な）職業
+profit|名|利益
+profound|形|深い・重大な
+prohibit|動|禁止する
+prominent|形|目立つ・著名な
+promote|動|促進する・昇進させる
+prompt|形|迅速な
+proportion|名|割合
+propose|動|提案する
+prospect|名|見込み・展望
+psychology|名|心理学
+pursue|動|追求する
+qualify|動|資格を与える
+radical|形|根本的な・急進的な
+random|形|無作為の
+rational|形|合理的な
+react|動|反応する
+rear|動|育てる
+reckless|形|無謀な
+refer|動|言及する・参照する
+reflect|動|反映する・熟考する
+reform|名|改革
+regret|動|後悔する
+reinforce|動|強化する
+reject|動|拒絶する・断る
+release|動|解放する・公開する
+relevant|形|関連のある
+reliable|形|信頼できる
+reluctant|形|気が進まない
+rely|動|頼る（on）
+remarkable|形|注目すべき
+remedy|名|治療法・解決策
+reproduce|動|再生する・繁殖する
+reputation|名|評判
+rescue|動|救助する
+resemble|動|似ている
+reside|動|住む
+resign|動|辞職する
+resist|動|抵抗する
+resolve|動|解決する・決心する
+resource|名|資源
+restore|動|回復させる・修復する
+restrict|動|制限する
+retain|動|保持する
+retire|動|引退する
+reverse|動|逆にする
+revise|動|改訂する
+revolution|名|革命
+reward|名|報酬
+ridiculous|形|ばかげた
+rigid|形|厳格な・硬直した
+ritual|名|儀式
+rival|名|競争相手
+rural|形|田舎の
+sacrifice|名|犠牲
+scarce|形|乏しい
+scatter|動|まき散らす
+scheme|名|計画・企て
+scholar|名|学者
+scope|名|範囲
+secure|形|安全な・確実な
+seize|動|つかむ
+sensible|形|分別のある
+sensitive|形|敏感な
+sequence|名|連続・順序
+settle|動|解決する・定住する
+severe|形|厳しい・深刻な
+shift|動|移す・変える
+significant|形|重要な・著しい
+sincere|形|誠実な
+soil|名|土壌
+solid|形|固体の・堅い
+sophisticated|形|洗練された
+specific|形|特定の・具体的な
+spectator|名|観客
+speculate|動|推測する
+stable|形|安定した
+status|名|地位
+steady|形|着実な
+stimulate|動|刺激する
+strategy|名|戦略
+strict|形|厳しい・厳格な
+submit|動|提出する・服従する
+subsequent|形|その後の
+substance|名|物質
+substitute|名|代用品
+subtle|形|微妙な
+sufficient|形|十分な
+summit|名|頂上・首脳会談
+superior|形|優れた
+surgery|名|手術
+suspect|動|疑う
+sustain|動|維持する・支える
+symptom|名|症状
+temporary|形|一時的な
+tend|動|傾向がある
+tension|名|緊張
+territory|名|領土・縄張り
+thorough|形|徹底的な
+tolerate|動|我慢する・耐える・許容する
+trace|動|たどる
+transfer|動|移す・乗り換える
+transform|動|変形させる
+transparent|形|透明な
+tremendous|形|ものすごい
+trigger|動|引き起こす
+triumph|名|勝利
+undergo|動|経験する・受ける
+undertake|動|引き受ける
+uniform|形|一様な
+unify|動|統一する
+urban|形|都市の
+urge|動|促す
+urgent|形|緊急の
+utilize|動|利用する
+vague|形|ぼんやりした
+valid|形|有効な・妥当な
+vanish|動|消える
+vary|動|異なる・変わる
+vast|形|広大な
+vehicle|名|乗り物
+verify|動|確かめる・確認する
+vital|形|極めて重要な・生命の
+vivid|形|鮮やかな
+voluntary|形|自発的な
+vulnerable|形|弱い・傷つきやすい
+welfare|名|福祉
+whereas|接|〜であるのに対して
+widespread|形|広範囲に及ぶ
+withdraw|動|引き出す・撤退する
+witness|名|目撃者
+yield|動|生み出す・屈する
+abolish|動|廃止する
+absurd|形|ばかげた
+acute|形|鋭い・急性の
+addict|動|中毒にさせる
+administration|名|管理・行政
+affection|名|愛情
+alert|形|油断のない
+allocate|動|割り当てる
+anonymous|形|匿名の
+apparatus|名|器具・装置
+arbitrary|形|恣意的な
+assert|動|断言する
+astonish|動|驚嘆させる
+bias|名|偏り・先入観
+breed|動|繁殖させる
+chronic|形|慢性の
+coherent|形|首尾一貫した
+commodity|名|商品・日用品
+compel|動|強いる
+compulsory|形|義務的な・強制的な
+condemn|動|非難する
+consensus|名|合意・総意
+conspicuous|形|目立つ
+contradict|動|矛盾する・反論する
+controversy|名|論争
+correspond|動|一致する・文通する
+counterpart|名|相当するもの・相手方
+criterion|名|基準
+deceive|動|だます
+deficit|名|赤字・不足額
+deliberate|形|意図的な
+dense|形|密集した・濃い
+depict|動|描く
+deteriorate|動|悪化する
+dilemma|名|板挟み
+discard|動|捨てる
+disguise|動|変装させる・偽る
+dismiss|動|退ける・解雇する
+displace|動|取って代わる・移動させる
+disrupt|動|混乱させる
+distort|動|ゆがめる
+diversity|名|多様性
+dwell|動|住む・くよくよ考える
+eccentric|形|風変わりな
+ecology|名|生態学・生態系
+elegant|形|優雅な
+eligible|形|資格のある
+embrace|動|抱きしめる・受け入れる
+empathy|名|共感
+endure|動|耐える
+enforce|動|施行する
+`;
+const IDIOMS = `
+a number of|熟|多くの〜
+according to|熟|〜によれば
+after all|熟|結局
+ahead of|熟|〜の前に・〜より進んで
+all of a sudden|熟|突然
+and so on|熟|〜など
+apart from|熟|〜を除いて・〜に加えて
+as a matter of fact|熟|実は・実際は
+as a result|熟|その結果
+as far as|熟|〜する限り（範囲）
+as long as|熟|〜する限り（条件）
+as soon as|熟|〜するとすぐに
+as well as|熟|〜だけでなく…も
+at all costs|熟|ぜひとも・何としても
+at first|熟|最初は
+at least|熟|少なくとも
+at once|熟|すぐに・同時に
+be about to|熟|まさに〜しようとしている
+be absorbed in|熟|〜に没頭している
+be afraid of|熟|〜を恐れる
+be anxious about|熟|〜を心配している
+be aware of|熟|〜に気づいている
+be capable of|熟|〜する能力がある
+be familiar with|熟|〜をよく知っている
+be fond of|熟|〜が好きだ
+be likely to|熟|〜しそうである
+be responsible for|熟|〜に責任がある
+be short of|熟|〜が不足している
+be similar to|熟|〜に似ている
+be supposed to|熟|〜することになっている
+be tired of|熟|〜にうんざりしている
+be used to|熟|〜に慣れている
+because of|熟|〜が原因で・〜のために
+break down|熟|故障する
+bring about|熟|引き起こす
+bring up|熟|育てる・（話題を）持ち出す
+by accident|熟|偶然に
+by far|熟|断然
+by no means|熟|決して〜ない
+call for|熟|〜を要求する
+call off|熟|中止する
+call on|熟|（人を）訪問する
+carry on|熟|続ける
+carry out|熟|実行する
+catch up with|熟|〜に追いつく
+come across|熟|偶然出会う・見つける
+come up with|熟|思いつく
+come true|熟|実現する
+depend on|熟|〜に頼る・〜次第である
+do without|熟|〜なしで済ます
+due to|熟|〜が原因で
+each other|熟|お互い（2者）
+even if|熟|たとえ〜でも
+figure out|熟|理解する・解き明かす
+fill in|熟|記入する
+find out|熟|わかる・見つけ出す
+for example|熟|例えば
+for the first time|熟|初めて
+from now on|熟|今後は
+get along with|熟|〜とうまくやっていく
+get over|熟|克服する・（病気から）回復する
+get rid of|熟|〜を取り除く
+give in|熟|屈する
+give up|熟|あきらめる・やめる
+go on|熟|続く・続ける
+go through|熟|経験する
+hand in|熟|提出する
+hang up|熟|電話を切る
+have nothing to do with|熟|〜と関係がない
+hear from|熟|〜から便りがある
+hold on|熟|（電話を切らずに）待つ
+in addition|熟|さらに
+in advance|熟|前もって
+in case|熟|〜の場合に備えて
+in charge of|熟|〜を担当して
+in common|熟|共通に
+in contrast|熟|対照的に
+in fact|熟|実際に・実は
+in front of|熟|〜の前で
+in order to|熟|〜するために
+in particular|熟|特に
+in public|熟|人前で
+in spite of|熟|〜にもかかわらず
+in terms of|熟|〜の観点から
+in time|熟|間に合って
+instead of|熟|〜の代わりに
+keep in mind|熟|心に留める
+keep up with|熟|〜に遅れずについていく
+lead to|熟|〜につながる
+look after|熟|〜の世話をする
+look down on|熟|〜を見下す
+look forward to|熟|〜を楽しみにする
+look into|熟|調査する
+look up to|熟|〜を尊敬する
+make a difference|熟|違いを生む・影響を与える
+make sense|熟|意味をなす
+make sure|熟|確かめる
+make up|熟|構成する・作り上げる
+make up for|熟|埋め合わせる
+make use of|熟|利用する
+no longer|熟|もはや〜ない
+not only A but also B|熟|AだけでなくBも
+now that|熟|今や〜なので
+on average|熟|平均して
+on purpose|熟|わざと
+on time|熟|時間通りに
+out of order|熟|故障して
+pay attention to|熟|〜に注意を払う
+pick up|熟|拾う・車で迎えに行く
+point out|熟|指摘する
+prior to|熟|〜より前に
+put off|熟|延期する
+put on|熟|身につける
+put up with|熟|我慢する
+regardless of|熟|〜に関係なく
+result from|熟|〜から生じる
+result in|熟|〜という結果になる
+run out of|熟|〜を使い果たす
+see off|熟|見送る
+set up|熟|設立する・準備する
+show up|熟|現れる・姿を見せる
+so far|熟|今までのところ
+stand for|熟|〜を表す・〜を支持する
+stand out|熟|目立つ
+take after|熟|（親に）似ている
+take advantage of|熟|〜を（うまく）利用する
+take care of|熟|〜の世話をする
+take off|熟|脱ぐ・離陸する
+take over|熟|引き継ぐ
+take part in|熟|〜に参加する
+take place|熟|行われる・起こる
+take up|熟|（趣味などを）始める
+thanks to|熟|〜のおかげで
+turn down|熟|断る・（音量を）下げる
+turn out|熟|〜だとわかる
+turn up|熟|（音量を）上げる
+used to|熟|以前はよく〜した
+with regard to|熟|〜に関して
+work out|熟|うまくいく・運動する
+would rather|熟|むしろ〜したい
+be based on|熟|〜に基づいている
+be known for|熟|〜で知られている
+be proud of|熟|〜を誇りに思う
+be satisfied with|熟|〜に満足している
+contribute to|熟|〜に貢献する
+deal with|熟|〜に対処する
+differ from|熟|〜と異なる
+focus on|熟|〜に焦点を当てる
+in the long run|熟|長い目で見れば
+on the other hand|熟|他方では
+on behalf of|熟|〜を代表して
+for the sake of|熟|〜の（利益の）ために
+in danger of|熟|〜の危険がある
+at the moment|熟|今のところ
+by the way|熟|ところで
+little by little|熟|少しずつ
+more or less|熟|多かれ少なかれ・だいたい
+sooner or later|熟|遅かれ早かれ
+to some extent|熟|ある程度
+as usual|熟|いつものように
+had better|熟|〜したほうがよい
+cannot help -ing|熟|〜せずにはいられない
+it is no use -ing|熟|〜しても無駄だ
+on the contrary|熟|それどころか
+in other words|熟|言い換えれば
+at last|熟|ついに
+over and over|熟|何度も
+right away|熟|すぐに
+all the way|熟|はるばる
+make friends with|熟|〜と友達になる
+be good at|熟|〜が得意だ
+be in a hurry|熟|急いでいる
+be busy -ing|熟|〜するのに忙しい
+look for|熟|〜を探す
+look up|熟|（辞書などで）調べる
+get on|熟|（乗り物に）乗る
+get off|熟|（乗り物から）降りる
+turn off|熟|（電気などを）消す
+turn on|熟|（電気などを）つける
+belong to|熟|〜に所属する
+consist of|熟|〜から成る
+suffer from|熟|〜に苦しむ
+succeed in|熟|〜に成功する
+participate in|熟|〜に参加する（やや硬い）
+refer to|熟|〜に言及する・〜を参照する
+rely on|熟|〜を当てにする
+insist on|熟|〜を主張する
+apologize for|熟|〜のことで謝る
+prevent A from -ing|熟|Aが〜するのを妨げる
+remind A of B|熟|AにBを思い出させる
+rob A of B|熟|AからBを奪う
+regard A as B|熟|AをBとみなす
+provide A with B|熟|AにBを与える
+thank A for B|熟|BのことでAに感謝する
+blame A for B|熟|BのことでAを責める
+distinguish A from B|熟|AとBを区別する
+convert A into B|熟|AをBに変える
+be accustomed to|熟|〜に慣れている（やや硬い）
+be eager to|熟|しきりに〜したがっている
+be willing to|熟|〜するのをいとわない
+be reluctant to|熟|〜したがらない
+be bound to|熟|きっと〜する・〜する義務がある
+be inclined to|熟|〜する傾向がある
+be sure to|熟|必ず〜する・きっと〜する
+be worth -ing|熟|〜する価値がある
+`;
+const ETY_W = `
+accept=ac(〜へ)＋cept(取る) → 自分の方へ取り込む＝受け入れる
+accident=ac(〜へ)＋cid(落ちる) → 突然降りかかるもの＝事故
+achieve=a(〜へ)＋chieve(頭・先端) → 頂点に到達する＝達成する
+activity=act(行う)＋-ivity(名詞) → 行うこと＝活動
+admire=ad(〜へ)＋mir(驚く) → 驚きの目で見る＝称賛する（mirror, miracle と同語源）
+advantage=adv(前に)＋-age(名詞) → 前にいる状態＝有利・利点
+advice=ad(〜へ)＋vis(見る) → 見て意見する＝助言（動詞は advise。数えられない名詞！）
+afford=can afford to do「〜する（金銭的・時間的）余裕がある」の形で覚えよう
+agree=a(〜へ)＋gree(喜ばしい) → 相手と気持ちが合う＝同意する
+allow=allow 人 to do「人が〜するのを許す」の形でセットで覚えよう
+ancient=anc(前の) → ずっと前の＝古代の
+anniversary=anni(年)＋vers(回る) → 毎年めぐってくる日＝記念日
+announce=an(〜へ)＋nounce(告げる) → 皆に告げる＝発表する
+annual=ann(年)＋-ual(形容詞) → 1年ごとの＝毎年の
+apologize=apo(離れて)＋log(言葉) → 弁明の言葉を言う＝謝る（apologize to 人 for 事）
+appear=ap(〜へ)＋pear(見える) → 目の前に見えてくる＝現れる
+apply=ap(〜へ)＋ply(折り重ねる) → くっつける＝当てはめる・申し込む
+appreciate=ap(〜へ)＋preci(値段) → 値打ちを認める＝正しく評価する・感謝する（price と同語源）
+approach=ap(〜へ)＋proach(近い) → 近づく（他動詞なので to は不要）
+arrange=ar(〜へ)＋range(列) → 列に並べる＝並べる・手配する
+arrive=ar(〜へ)＋rive(岸) → 岸に着く＝到着する
+attend=at(〜へ)＋tend(伸ばす) → 心・足を向ける＝出席する・注意を向ける
+attention=attend(心を向ける)の名詞形 → 注意（pay attention to）
+attitude=apt(適した)の変化形 → 構え・姿勢＝態度
+audience=aud(聞く)＋-ence → 聞く人たち＝聴衆（audio と同語源）
+available=a(〜へ)＋vail(役立つ)＋able → 役立てられる＝利用できる
+avoid=a(外へ)＋void(空の) → 自分のまわりを空にする＝避ける（avoid -ing）
+aware=a(強調)＋ware(注意) → 用心している＝気づいて（beware と同語源）
+benefit=bene(良い)＋fit(行う) → 良い行い＝利益・恩恵
+breathe=breath（名詞＝息）に e がつくと動詞。発音もブレス→ブリーズに変わる
+broadcast=broad(広く)＋cast(投げる) → 広く投げる＝放送する
+capital=cap(頭) → 国の頭＝首都、お金の頭＝資本
+career=car(車・車道) → 人生で走る道＝経歴（発音はカリア）
+celebrate=celebr(大勢が集まる) → 大勢で祝う
+century=cent(100) → 100年＝世紀（cent, percent と同語源）
+citizen=city(都市)＋-zen(人) → 都市の住民＝市民
+collect=col(共に)＋lect(集める・選ぶ) → 一か所に集める
+comfortable=com(強調)＋fort(強い)＋able → 力づけられる＝快適な
+communicate=commun(共有する) → 考えを共有する＝意思を伝え合う
+community=commun(共有の)＋-ity → 共有する集団＝地域社会
+company=com(共に)＋pan(パン) → 一緒にパンを食べる仲間＝仲間・会社
+compare=com(共に)＋par(等しい) → 並べて同等か見る＝比較する
+complete=com(完全に)＋plete(満たす) → すっかり満たす＝完成させる
+concentrate=con(共に)＋centr(中心) → 中心に集める＝集中する（concentrate on）
+condition=con(共に)＋dit(言う) → 取り決め＝条件・状態
+confident=con(強調)＋fid(信じる) → 自分を強く信じる＝自信のある
+connect=con(共に)＋nect(結ぶ) → 結びつける
+consider=con(共に)＋sider(星) → 星をじっくり観察する＝よく考える
+contain=con(共に)＋tain(保つ) → 中に保つ＝含む
+continue=con(共に)＋tin(保つ) → 保ち続ける
+contribute=con(共に)＋tribute(与える) → 皆に与える＝貢献する（contribute to）
+convenient=con(共に)＋ven(来る) → 都合よくやって来る＝便利な（人を主語にしない！）
+conversation=con(共に)＋vers(向きを変える) → 互いに向き合う＝会話
+courage=cour(心) → 強い心＝勇気（encourage＝勇気を与える）
+create=cre(生む・育つ) → 生み出す＝創造する
+culture=cult(耕す) → 心を耕したもの＝文化（agriculture＝農業）
+decide=de(離れて)＋cide(切る) → 迷いを断ち切る＝決める
+decrease=de(下へ)＋crease(成長する) → 減少する（⇔ increase）
+delay=de(離れて)＋lay(置いておく) → 後回しにする＝遅れ
+deliver=de(離れて)＋liver(自由にする) → 手放して届ける＝配達する
+depend=de(下に)＋pend(ぶら下がる) → ぶら下がる＝頼る（depend on）
+describe=de(下に)＋scribe(書く) → 書き記す＝描写する
+destroy=de(反対)＋stroy(建てる) → 建てたものを壊す＝破壊する
+develop=de(反対)＋velop(包む) → 包みを開く＝発達させる・開発する（envelope＝封筒）
+difference=di(離れて)＋fer(運ぶ) → 別々に運ばれる＝違い
+direction=di(離れて)＋rect(まっすぐ) → まっすぐ導く＝方向・指示
+disappear=dis(否定)＋appear(現れる) → 消える
+discover=dis(取り除く)＋cover(覆い) → 覆いを取る＝発見する
+discuss=dis(離れて)＋cuss(打つ) → 意見をぶつけ合う＝話し合う（他動詞なので about は不要！）
+disease=dis(否定)＋ease(気楽) → 楽でない状態＝病気
+distance=di(離れて)＋stance(立つ) → 離れて立つ＝距離
+divide=di(離れて)＋vide(分ける) → 分ける（individual＝分けられない→個人）
+document=doc(教える) → 教えるための記録＝書類（doctor と同語源）
+double=dou(2) → 2倍（duo, dual と同語源）
+doubt=dou(2) → 2つの間で迷う＝疑い（b は発音しない）
+effect=ef(外へ)＋fect(作る) → 外に作り出されたもの＝効果・影響（動詞 affect と区別）
+effort=ef(外へ)＋fort(力) → 力を外に出す＝努力
+electricity=electr(琥珀) → 琥珀をこすると静電気が起きる→電気
+emergency=e(外へ)＋merge(沈む) → 水面から急に現れる事態＝緊急事態
+employ=em(中へ)＋ploy(折る) → 中に巻き込む＝雇う（employee＝従業員）
+encourage=en(〜にする)＋courage(勇気) → 勇気を与える＝励ます
+enemy=en(否定)＋emy(友) → 友でない者＝敵
+enormous=e(外へ)＋norm(基準) → 基準外れの＝巨大な
+environment=en(中に)＋viron(囲む) → 取り囲むもの＝環境
+equal=equ(等しい) → 等しい（equator＝赤道）
+escape=es(外へ)＋cape(マント) → マントを脱ぎ捨てて逃げる
+event=e(外へ)＋vent(来る) → 外に出てくるもの＝出来事
+exact=ex(外へ)＋act(行う) → きっちりやり遂げた＝正確な
+examine=exam(量る) → 量って調べる＝調べる・診察する
+exchange=ex(外へ)＋change(変える) → 交換する
+exercise=ex(外へ)＋erc(閉じ込める) → 解き放って動く＝運動・練習
+exist=ex(外へ)＋sist(立つ) → 外に立っている＝存在する
+expect=ex(外を)＋spect(見る) → 外を見て待つ＝予期する・期待する
+expensive=ex(外へ)＋pens(支払う) → 出費が多い＝高価な（expense＝費用）
+experience=ex(外へ)＋peri(試す) → 試して得たもの＝経験
+experiment=ex＋peri(試す)＋-ment → 試してみること＝実験
+explain=ex(外へ)＋plain(平らな) → 平らに広げて示す＝説明する
+express=ex(外へ)＋press(押す) → 思いを外に押し出す＝表現する
+factory=fact(作る)＋-ory(場所) → 作る場所＝工場
+familiar=family(家族)の形容詞 → 家族のように親しい＝よく知られた
+favorite=favor(好意)＋-ite → 好意を寄せられた＝お気に入りの
+feature=fea(作る) → 作られた形＝特徴（fact と同語源）
+final=fin(終わり) → 最後の（finish と同語源）
+forecast=fore(前に)＋cast(投げる) → 先に投げておく＝予報
+foreign=fore(外の) → 外の＝外国の（g は発音しない）
+forgive=for(完全に)＋give(与える) → すっかり与える＝許す
+fortunately=fortune(運)＋-ate＋-ly → 幸運にも
+freedom=free(自由な)＋-dom(状態) → 自由
+generation=gener(生む)＋-ation → 同じ頃に生まれた人々＝世代（gene＝遺伝子）
+global=globe(球・地球)＋-al → 地球規模の
+government=govern(治める)＋-ment → 治めるもの＝政府
+gradually=grad(段階・歩み)＋-ual＋-ly → 一段ずつ＝徐々に
+graduate=grad(段階) → 段階を修了する＝卒業する（graduate from）
+history=histor(物語) → 過去の物語＝歴史（story と同語源）
+honest=honor(名誉)と同語源 → 名誉を重んじる＝正直な（h は発音しない）
+human=hum(土) → 土から生まれた者＝人間（humble と同語源）
+ignore=i(否定)＋gnore(知る) → 知らないふりをする＝無視する
+image=imag(似姿) → 姿・印象（imagine と同語源。発音はイミッジ）
+imagine=image(姿)＋-ine → 心に姿を描く＝想像する
+immediately=im(否定)＋mediate(間にある) → 間をおかずに＝ただちに
+improve=im(中に)＋prove(利益) → 利益を生むようにする＝改善する
+include=in(中に)＋clude(閉じる) → 中に閉じ込める＝含む（⇔ exclude）
+increase=in(上に)＋crease(成長する) → 増加する
+independent=in(否定)＋depend(頼る) → 頼らない＝独立した（independent of）
+influence=in(中に)＋flu(流れる) → 中に流れ込むもの＝影響
+information=in(中に)＋form(形) → 心に形作るもの＝情報（数えられない名詞！）
+injure=in(否定)＋jur(正しい) → 不当に扱う＝けがをさせる（be injured＝けがをする）
+insect=in(中に)＋sect(切る) → 体に切れ目がある生き物＝昆虫
+instrument=in(上に)＋stru(積む) → 組み立てた道具＝器具・楽器
+interest=inter(間に)＋est(ある) → 間にあって心を引く＝興味・利子
+introduce=intro(中へ)＋duce(導く) → 中へ導き入れる＝紹介する・導入する
+invent=in(上に)＋vent(来る) → 思いつきがやって来る＝発明する
+journey=journ(1日) → 1日の旅程＝旅（journal＝日誌）
+judge=jud(法)＋ge(言う) → 法を語る＝判断する
+labor=lab(働く) → 労働（laboratory＝働く場所＝研究室）
+language=lingu(舌) → 舌で話すもの＝言語
+lonely=lone(ひとりの)＋-ly → 孤独な（-ly だけど形容詞！ friendly も同じ） ／ alone（ひとりで＝状態）と区別。lonely は「寂しい」気持ち
+manage=man(手) → 手で扱う＝管理する・manage to do「なんとか〜する」
+material=mater(母・もと) → もとになるもの＝材料
+measure=meas(測る) → 測る
+medicine=medic(治す) → 治すもの＝薬・医学
+memory=mem(覚えている) → 記憶（memo, remember と同語源）
+mention=ment(心) → 心に浮かべさせる＝言及する（他動詞なので about は不要）
+method=meta(後を)＋hod(道) → 道筋に従うやり方＝方法
+modern=ラテン語 modo（ちょうど今）→ 今の＝現代の
+movement=move(動く)＋-ment → 動き・運動
+nation=nat(生まれる) → 同じ地に生まれた人々＝国家・国民
+native=nat(生まれる) → 生まれた土地の・母語の
+natural=nature(自然・生まれつき)＋-al → 自然の・当然の
+necessary=ne(否定)＋cess(退く) → 退けられない＝必要な
+negative=neg(否定する) → 否定的な
+neighbor=neigh(近い)＋bor(住人) → 近くに住む人＝隣人
+normal=norm(基準) → 基準どおりの＝普通の
+notice=not(知る) → 知るようになる＝気づく（note と同語源）
+object=ob(前に)＋ject(投げる) → 目の前に投げ出されたもの＝物体・目的
+observe=ob(前に)＋serve(見守る) → 見守る＝観察する・（規則を）守る
+obtain=ob(強調)＋tain(保つ) → しっかり手に保つ＝手に入れる
+occur=oc(〜へ)＋cur(走る) → 走ってくる＝起こる・（考えが）心に浮かぶ
+offer=of(〜へ)＋fer(運ぶ) → 相手へ運ぶ＝申し出る・提供する
+opinion=opin(考える) → 考え＝意見
+opportunity=op(〜へ)＋port(港) → 港へ向かう追い風＝好機
+order=ord(並び) → 順序→命令・注文（並べさせる）
+ordinary=ord(順序)＋-inary → 順序どおりの＝普通の（⇔ extraordinary）
+organize=organ(器官・道具)＋-ize → 組織立てる＝組織する・まとめる
+origin=ori(昇る) → 太陽が昇る所＝起源（orient＝東）
+perform=per(完全に)＋form(形づくる) → やり遂げる＝行う・演じる
+period=peri(周り)＋od(道) → ひと回り＝期間・時代
+permit=per(通して)＋mit(送る) → 通してやる＝許可する
+personal=person(人)＋-al → 個人的な
+persuade=per(完全に)＋suade(勧める) → 勧めて納得させる＝説得する（persuade 人 to do）
+photograph=photo(光)＋graph(描く) → 光で描いたもの＝写真
+physical=physic(自然・物質) → 物質の・身体の
+pollution=pol(汚す)＋-ution → 汚染
+population=popul(人々) → 人の数＝人口（popular と同語源。large / small で表す）
+positive=pos(置く) → はっきり置かれた＝肯定的な・前向きな
+possible=poss(できる)＋-ible → 可能な
+poverty=poor(貧しい)と同語源 → 貧困
+practice=pract(行う) → 実際に行うこと＝練習・実践（practical）
+praise=prais(価値) → 価値を認める＝ほめる（price と同語源）
+prefer=pre(前に)＋fer(運ぶ) → 先に持ってくる＝〜の方を好む（prefer A to B）
+prepare=pre(前に)＋pare(用意する) → 前もって用意する
+present=pre(前に)＋sent(ある) → 目の前にある＝出席して・現在の
+prevent=pre(前に)＋vent(来る) → 先回りして来る＝妨げる（prevent A from -ing）
+private=priv(切り離された) → 私的な（⇔ public）
+produce=pro(前へ)＋duce(導く) → 前に導き出す＝生産する
+progress=pro(前へ)＋gress(進む) → 前進＝進歩
+promise=pro(前へ)＋mise(送る) → 前もって送り出す言葉＝約束
+protect=pro(前で)＋tect(覆う) → 前を覆う＝守る
+prove=prov(試す) → 試して確かめる＝証明する・〜だとわかる
+provide=pro(前もって)＋vide(見る) → 先を見て用意する＝提供する（provide A with B）
+public=publ(人々) → 人々の＝公共の
+publish=publ(人々)＋-ish → 人々に広める＝出版する
+purpose=pur(前に)＋pose(置く) → 前に置いた目標＝目的（on purpose＝わざと）
+quality=qual(どんな種類の) → 質（quantity＝量 とペアで）
+quantity=quant(どれだけ) → 量
+quarter=quart(4) → 4分の1（15分・25セントも quarter）
+rapid=rap(つかみ取る) → 素早い＝急速な
+realize=real(現実の)＋-ize(〜にする) → 頭の中で現実になる＝気づく・実現する
+receive=re(後ろへ)＋ceive(取る) → 受け取る（reception）
+recent=ラテン語 recens（新しい・新鮮な）→ 最近の
+recognize=re(再び)＋cogn(知る) → 見て再び知る＝認識する
+recommend=re(強調)＋commend(推す) → 推薦する（c は1つ、m は2つ）
+record=re(再び)＋cord(心) → 心に呼び戻すもの＝記録
+recover=re(再び)＋cover(取る) → 取り戻す＝回復する（recover from）
+reduce=re(後ろへ)＋duce(導く) → 引き戻す＝減らす
+refuse=re(後ろへ)＋fuse(注ぐ) → 注ぎ返す＝拒む（refuse to do）
+region=reg(支配する) → 支配の及ぶ範囲＝地域
+regular=reg(規則・まっすぐ) → 規則的な
+remain=re(後ろに)＋main(とどまる) → 後に残る＝〜のままである
+remind=re(再び)＋mind(心) → 再び心に浮かばせる＝思い出させる（remind A of B）
+remove=re(離れて)＋move(動かす) → 動かしてどける＝取り除く
+repair=re(再び)＋pair(整える) → 元どおり整える＝修理する
+repeat=re(再び)＋peat(求める) → 繰り返す
+replace=re(再び)＋place(置く) → 置き直す＝取って代わる
+reply=re(後ろへ)＋ply(折る) → 折り返す＝返事をする（reply to）
+report=re(後ろへ)＋port(運ぶ) → 持ち帰って伝える＝報告
+represent=re(強調)＋present(示す) → 代わりに示す＝代表する・表す
+request=re(再び)＋quest(求める) → 依頼
+require=re(再び)＋quire(求める) → 必要とする
+research=re(繰り返し)＋search(探す) → 研究
+reserve=re(後ろに)＋serve(取っておく) → 取っておく＝予約する
+respect=re(振り返って)＋spect(見る) → 振り返って見る＝尊敬する
+respond=re(返して)＋spond(約束する) → 応じる＝反応する・答える
+responsible=respond(応える)＋-ible → 応える義務がある＝責任がある（be responsible for）
+result=re(跳ね返る)＋sult(跳ぶ) → 跳ね返ってきたもの＝結果
+return=re(元へ)＋turn(回る) → 戻る・返す
+reveal=re(反対)＋veal(ベール) → ベールを取る＝明らかにする
+safety=safe(安全な)＋-ty → 安全
+satisfy=satis(十分)＋fy(する) → 十分にする＝満足させる（be satisfied with）
+science=sci(知る) → 知識＝科学
+search=circ(円)と同語源 → ぐるぐる回って探す（search A for B＝Bを求めてAを探す）
+select=se(離れて)＋lect(選ぶ) → 選び分ける＝選ぶ
+separate=se(離れて)＋par(準備する) → 分ける
+shortage=short(足りない)＋-age(名詞) → 不足
+silence=silent(静かな)の名詞形 → 沈黙
+similar=simil(同じ) → 似ている（be similar to。simulate と同語源）
+situation=situ(場所) → 置かれた場所・状態＝状況（site と同語源）
+society=soci(仲間) → 仲間の集まり＝社会（social）
+solve=solv(解く・ゆるめる) → 解決する（solution＝解決）
+source=sour(湧き上がる) → 湧き出る所＝源
+structure=struct(積む・建てる) → 組み立てたもの＝構造
+subject=sub(下に)＋ject(投げる) → 下に置かれたもの＝主題・科目
+succeed=suc(下に)＋ceed(行く) → 後に続いて行く＝後を継ぐ・成功する（succeed in / to）
+suffer=suf(下で)＋fer(運ぶ) → 下で重荷を運ぶ＝苦しむ（suffer from）
+suggest=sug(下から)＋gest(運ぶ) → 下からそっと持ち出す＝提案する・示唆する
+supply=sup(下から)＋ply(満たす) → 下から満たす＝供給
+support=sup(下から)＋port(運ぶ) → 下から運び支える＝支える
+suppose=sup(下に)＋pose(置く) → 下に置いて仮定する＝思う・仮定する
+surface=sur(上に)＋face(顔・面) → 上の面＝表面
+surprise=sur(上から)＋prise(つかむ) → 上から不意につかむ＝驚かせる
+surround=sur(上に)＋round(あふれる) → 周りから囲む
+survive=sur(超えて)＋vive(生きる) → 生き延びる＝生き残る
+system=sy(共に)＋ste(立てる) → 組み立てられたもの＝体系・制度
+technology=techno(技術)＋logy(学問) → 科学技術
+temperature=temper(調整する)＋-ature → 熱の具合＝温度
+theory=theor(眺める) → じっくり眺めて得た考え＝理論（theater と同語源）
+total=tot(すべて) → 全体の
+tradition=tra(越えて)＋dit(渡す) → 世代を越えて手渡されたもの＝伝統
+traffic=イタリア語 traffico（商売の行き来）→ 交通（heavy traffic＝交通量が多い）
+translate=trans(越えて)＋late(運ぶ) → 言葉を越えて運ぶ＝翻訳する
+transport=trans(越えて)＋port(運ぶ) → 向こうへ運ぶ＝輸送する
+typical=type(型)＋-ical → 型どおりの＝典型的な
+unique=uni(1つ) → ただ1つの＝独特の（unit, uniform と同語源）
+universe=uni(1つ)＋verse(回る) → 1つにまとまって回るもの＝宇宙
+useful=use(役立つこと)＋-ful(満ちた) → 役に立つ
+valuable=value(価値)＋-able → 価値のある
+various=vari(さまざまな) → さまざまな（variety, vary と同語源）
+village=vill(田舎の屋敷) → 村
+visitor=vis(見る)＋it(行く)＋-or(人) → 見に行く人＝訪問者
+volunteer=vol(意志) → 自分の意志で行う人＝志願者
+wealth=weal(幸福) → 豊かな状態＝富（wealthy＝裕福な）
+youth=young(若い)の名詞形 → 若さ・若者
+absent=ab(離れて)＋sent(いる) → その場にいない＝欠席して（⇔ present）
+abuse=ab(離れて)＋use(使う) → 正しい使い方から外れる＝乱用・虐待
+access=ac(〜へ)＋cess(行く) → 近づくこと＝接近・利用（access to）
+accompany=ac(〜へ)＋company(仲間) → 仲間として付き添う＝同行する
+account=ac(〜へ)＋count(数える) → 数えて説明する＝説明・口座（account for＝説明する）
+admission=ad(〜へ)＋miss(送る) → 中へ送り入れる＝入場・入学（admit の名詞）
+advance=adv(前に) → 前進する（advantage と同語源。in advance＝前もって）
+adventure=ad(〜へ)＋vent(来る) → これから起こる出来事＝冒険
+advertise=ad(〜へ)＋vert(向ける) → 注意を向けさせる＝宣伝する
+ancestor=ante(前に)＋cess(行く) → 先に行った人＝祖先
+argument=argue(主張する)＋-ment → 議論・口論
+attract=at(〜へ)＋tract(引く) → 引きつける（tractor＝引くもの）
+billion=bi(2)＋million → もとは100万の2乗を表した語。現在は10億
+competition=com(共に)＋pet(求める) → 同じものを一緒に求める＝競争
+confuse=con(共に)＋fuse(注ぐ) → 混ぜて注ぐ＝混乱させる
+contact=con(共に)＋tact(触れる) → 触れ合う＝接触・連絡
+cooperate=co(共に)＋operate(働く) → 協力する
+crime=crim(罪) → 犯罪（criminal＝犯人）
+curious=cur(注意・世話) → 気にかける＝好奇心の強い（cure と同語源）
+department=de(離れて)＋part(分ける) → 分けられた部分＝部門
+destination=destine(運命づける) → 行くことが定められた場所＝目的地
+dictionary=dict(言う)＋-ion＋-ary(集めたもの) → 言葉を集めたもの＝辞書
+disappoint=dis(否定)＋appoint(任命する) → 期待の地位から外す＝失望させる
+economy=eco(家)＋nomy(管理) → 家計の管理＝経済（ecology と同じ eco）
+education=e(外へ)＋duc(導く) → 能力を引き出す＝教育
+election=e(外へ)＋lect(選ぶ) → 選び出す＝選挙
+emotion=e(外へ)＋mot(動く) → 外に動き出る心＝感情
+entrance=enter(入る)＋-ance → 入口・入学
+equipment=equip(備える)＋-ment → 設備・装備（数えられない名詞！）
+evidence=e(外へ)＋vid(見る) → はっきり見えるもの＝証拠
+expert=ex(外へ)＋peri(試す) → 試し尽くした人＝専門家（experience と同語源）
+extra=extra(外の) → 余分の
+frequent=frequ(ぎっしり) → しばしば起こる＝頻繁な
+furniture=家具は数えられない名詞！ a piece of furniture で数える
+identity=ident(同じ) → 同一であること＝身元・独自性（identify）
+income=in(中に)＋come(来る) → 入ってくるお金＝収入（high / low で表す）
+inform=in(中に)＋form(形) → 心に形を与える＝知らせる（inform A of B）
+instance=in(上に)＋stance(立つ) → 目の前に立てる例＝例（for instance＝例えば）
+intelligent=intel(間から)＋lig(選ぶ) → 見分けられる＝知能の高い
+international=inter(間の)＋national(国の) → 国際的な
+invest=in(中に)＋vest(衣服) → 衣を着せる→資金を投入する＝投資する
+lecture=lect(読む) → 読み聞かせ＝講義
+license=lic(許される) → 許可＝免許
+abandon=古フランス語 à bandon（相手の支配に委ねて）→ 見捨てる・断念する
+absorb=ab(離れて)＋sorb(吸う) → 吸い取る＝吸収する（be absorbed in＝没頭する）
+abstract=abs(離れて)＋tract(引く) → 具体から引き離した＝抽象的な（⇔ concrete）
+abundant=ab(あふれて)＋und(波) → 波があふれる＝豊富な
+accomplish=ac(〜へ)＋compl(満たす) → 完全に満たす＝成し遂げる
+accurate=ac(〜へ)＋cur(注意) → 注意を払った＝正確な
+accuse=ac(〜へ)＋cuse(訴え) → 訴えを向ける＝非難する（accuse A of B）
+acknowledge=ac＋knowledge(知識) → 知っていると認める＝認める
+acquire=ac(〜へ)＋quire(求める) → 求めて手に入れる＝習得する
+adapt=ad(〜へ)＋apt(適した) → 適するようにする＝適応する（adopt と区別！）
+adequate=ad(〜へ)＋equ(等しい) → 必要量と等しい＝十分な
+adjust=ad(〜へ)＋just(正しい) → 正しく合わせる＝調整する
+admit=ad(〜へ)＋mit(送る) → 中へ通す＝認める・入れる（admit -ing）
+adopt=ad(〜へ)＋opt(選ぶ) → 選び取る＝採用する（adapt と区別！）
+advocate=ad(〜へ)＋voc(声) → 声を上げて支持する＝主張する・擁護する
+affect=af(〜へ)＋fect(作用する) → 働きかける＝影響を与える（名詞は effect）
+aggressive=ag(〜へ)＋gress(進む) → 向かって進む＝攻撃的な・積極的な
+agriculture=agri(畑)＋culture(耕す) → 畑を耕す＝農業
+alter=alter(他の) → 他のものにする＝変える（alternative と同語源）
+alternative=alter(他の) → もう1つの選択肢＝代わりのもの
+ambiguous=ambi(両方)＋ig(動く) → 両方に揺れる＝あいまいな
+ambition=ambi(周りを)＋it(行く) → 票を求めて歩き回る＝野心
+analyze=ana(完全に)＋lyze(ほどく) → ほどいて調べる＝分析する
+anticipate=anti(前に)＋cip(取る) → 先取りする＝予期する
+apparent=ap(〜へ)＋par(見える) → 目に見える＝明らかな（appear と同語源）
+appeal=ap(〜へ)＋peal(呼びかける) → 訴える・興味を引く
+appropriate=ap(〜へ)＋propri(自分の) → ふさわしいものにする＝適切な（property と同語源）
+approve=ap(〜へ)＋prove(良しとする) → 良しと認める＝承認する（approve of）
+arise=a(上へ)＋rise(上がる) → 生じる（arise from）
+artificial=art(技)＋fic(作る) → 人の技で作った＝人工の
+aspect=a(〜へ)＋spect(見る) → 見える面＝側面
+assess=as(そばに)＋sess(座る) → 横に座って査定する＝評価する
+assign=as(〜へ)＋sign(印) → 印をつけて割り当てる
+assist=as(そばに)＋sist(立つ) → そばに立つ＝手伝う
+associate=as(〜へ)＋soci(仲間) → 仲間にする＝結びつけて考える（associate A with B）
+assume=as(〜へ)＋sume(取る) → 取り込む＝当然と思う・引き受ける
+assure=as(〜へ)＋sure(確かな) → 確かにする＝保証する
+atmosphere=atmo(蒸気)＋sphere(球) → 地球を包む空気＝大気・雰囲気
+attach=at(〜へ)＋tach(くい) → くいで留める＝取り付ける（⇔ detach）
+attain=at(〜へ)＋tain(触れる) → 手が届く＝達成する
+attempt=at(〜へ)＋tempt(試す) → 試み
+attribute=at(〜へ)＋tribute(与える) → 原因を〜に与える＝〜のせいにする（attribute A to B）
+authority=author(創始者) → 創る力・命じる力＝権威・当局
+automatic=auto(自分で)＋mat(動く) → 自分で動く＝自動の
+awkward=awk(逆向きの)＋ward(方向) → ぎこちない・気まずい
+barrier=bar(棒) → 横木＝障壁
+biology=bio(生命)＋logy(学問) → 生物学
+blame=blaspheme(冒とくする)と同語源 → 責める（blame A for B）
+burden=bear(運ぶ)と同語源 → 運ぶ荷＝重荷・負担
+calculate=calc(小石) → 小石で数える＝計算する
+candidate=cand(白い) → 古代ローマで白い服を着た立候補者＝候補者
+capable=cap(つかむ)＋able → つかめる＝能力がある（be capable of -ing）
+capacity=cap(つかむ・入れる) → 入れられる量＝容量・能力
+casual=cas(落ちる・偶然) → 偶然の・気軽な
+cease=cess(やめる) → やめる・終わる（ceaseless＝絶え間ない）
+characteristic=character(特徴)＋-istic → 特徴
+circumstance=circum(周り)＋stance(立つ) → 周りに立つもの＝状況
+cite=cit(呼び出す) → 呼び出して示す＝引用する
+civilization=civil(市民の)＋-ize＋-ation → 市民化＝文明
+claim=clam(叫ぶ) → 強く叫ぶ＝主張する（日本語の「クレーム」とは違う！）
+classify=class(分類)＋-ify(〜にする) → 分類する
+coincidence=co(共に)＋in(上に)＋cid(落ちる) → 同時に降りかかる＝偶然の一致
+collapse=col(共に)＋lapse(滑る) → 一緒に滑り落ちる＝崩壊する
+colleague=col(共に)＋league(選ばれる) → 一緒に選ばれた仲間＝同僚
+combine=com(共に)＋bi(2つ) → 2つを合わせる＝結合する
+commit=com(完全に)＋mit(送る) → 委ねる・（罪を）犯す
+compensate=com(共に)＋pens(量る) → 釣り合わせる＝補償する・埋め合わせる
+compete=com(共に)＋pete(求める) → 同じものを求め合う＝競争する
+complex=com(共に)＋plex(折り重ねる) → 複雑な
+component=com(共に)＋pon(置く) → 一緒に置かれたもの＝構成要素
+comprehend=com(完全に)＋prehend(つかむ) → すっかりつかむ＝理解する
+compromise=com(共に)＋promise(約束) → 互いに約束する＝妥協
+conceal=con(完全に)＋ceal(隠す) → 隠す
+concept=con(共に)＋cept(取る) → まとめてつかんだもの＝概念
+concern=con(共に)＋cern(ふるい分ける) → 関わる＝関心・心配
+conclude=con(完全に)＋clude(閉じる) → 閉じる＝結論を下す
+conduct=con(共に)＋duct(導く) → 導く＝行う・指揮する（conductor＝指揮者）
+confess=con(完全に)＋fess(話す) → すべて話す＝告白する
+confirm=con(強調)＋firm(固い) → 固める＝確認する
+conflict=con(共に)＋flict(打つ) → 打ち合う＝対立・紛争
+confront=con(共に)＋front(額・正面) → 額を突き合わせる＝直面する
+consequence=con(共に)＋sequ(続く) → 後に続くもの＝結果
+conserve=con(完全に)＋serve(保つ) → 保存する
+considerable=consider(考える)＋-able → 考慮に値する＝かなりの（considerate＝思いやりのある と区別）
+consist=con(共に)＋sist(立つ) → 一緒に立つ＝成る（consist of）
+constant=con(完全に)＋stant(立つ) → ずっと立っている＝絶え間ない
+construct=con(共に)＋struct(積む) → 積み上げる＝建設する
+consult=con(共に)＋sult(座る) → 一緒に座って相談する
+consume=con(完全に)＋sume(取る) → 取り尽くす＝消費する
+contemporary=con(共に)＋tempor(時) → 同じ時代の＝現代の
+context=con(共に)＋text(織る) → 一緒に織り込まれたもの＝文脈
+contract=con(共に)＋tract(引く) → 引き合う＝契約
+contrast=contra(反対に)＋st(立つ) → 対立して立つ＝対照
+convert=con(完全に)＋vert(向ける) → 向きを変える＝転換する
+convey=con(共に)＋vey(道) → 道を共に行く＝運ぶ・伝える
+convince=con(完全に)＋vince(打ち負かす) → 説き伏せる＝納得させる（convince A of B）
+cope=cop(打つ) → 立ち向かう＝対処する（cope with）
+crucial=cruc(十字) → 十字路の＝分かれ目となる＝決定的に重要な
+cultivate=cult(耕す) → 耕す・養う（culture と同語源）
+currency=cur(走る) → 世の中を流れ回るもの＝通貨
+current=cur(走る) → 今流れている＝現在の
+decade=deca(10) → 10年間
+decline=de(下に)＋cline(傾く) → 下に傾く＝減少する・断る
+dedicate=de(離れて)＋dic(宣言する) → 捧げると宣言する＝捧げる
+defeat=de(否定)＋feat(作る) → 台無しにする＝打ち負かす
+defend=de(離れて)＋fend(打つ) → 打ち払う＝防御する
+define=de(完全に)＋fine(境界・終わり) → 境界をはっきりさせる＝定義する
+deliberately=de(完全に)＋liber(量る) → よく量って＝慎重に・わざと
+democracy=demo(民衆)＋cracy(統治) → 民主主義
+demonstrate=de(完全に)＋monstr(示す) → はっきり示す＝証明する・実演する
+deny=de(完全に)＋ny(否と言う) → 否定する（deny -ing）
+deprive=de(完全に)＋prive(奪う) → 奪う（deprive A of B）
+derive=de(離れて)＋rive(川) → 川から水を引く＝引き出す・由来する（derive from）
+deserve=de(完全に)＋serve(仕える) → よく仕えて報いを受ける＝〜に値する
+despair=de(否定)＋spair(希望) → 希望がない＝絶望
+detect=de(取り除く)＋tect(覆い) → 覆いを取る＝見つける（detective＝探偵）
+determine=de(完全に)＋termin(境界) → 境界を決める＝決定する
+device=devise(工夫する)の名詞形 → 工夫されたもの＝装置
+devote=de(完全に)＋vote(誓う) → 誓って捧げる＝注ぐ（devote A to B）
+dialect=dia(通して)＋lect(話す) → 地域で話される言葉＝方言
+dimension=di(完全に)＋mens(測る) → 測られた大きさ＝寸法・次元
+diminish=di(完全に)＋min(小さい) → 小さくなる（minimum, minor と同語源）
+disaster=dis(悪い)＋aster(星) → 悪い星回り＝災害
+discipline=disc(学ぶ) → 学びの訓練＝規律（disciple＝弟子）
+display=dis(反対)＋play(折る) → 折りたたみを広げる＝展示する
+dispute=dis(離れて)＋pute(考える) → 異なる考えをぶつける＝論争
+distinct=di(離れて)＋stinct(刺す) → 印をつけて区別された＝明確な・異なった
+distinguish=di(離れて)＋stingu(刺す) → 印をつけて分ける＝区別する（distinguish A from B）
+distribute=dis(ばらばらに)＋tribute(与える) → 分配する
+diverse=di(離れて)＋verse(向く) → 別々の方向を向く＝多様な
+domestic=dom(家) → 家の・国内の
+dominate=domin(主人) → 主人となる＝支配する
+donate=don(与える) → 寄付する（donor＝提供者）
+drought=dry(乾いた)と同系 → 干ばつ（発音はドラウト）
+durable=dur(続く)＋-able → 長持ちする＝耐久性のある（during と同語源）
+dynamic=dyna(力) → 力のある＝活動的な（dynamite と同語源）
+eager=be eager to do「しきりに〜したがっている」の形で覚えよう
+efficient=ef(外へ)＋fic(作る) → 効果を作り出す＝効率的な
+elaborate=e(外へ)＋labor(労働) → 労力をかけて作り出した＝手の込んだ
+eliminate=e(外へ)＋limin(敷居) → 敷居の外へ出す＝除去する
+embarrass=em(中に)＋barr(棒・妨げ) → 妨げの中に入れる＝恥ずかしい思いをさせる
+emerge=e(外へ)＋merge(沈む) → 水中から現れる＝現れる
+emphasize=em(中に)＋phas(見せる) → 際立たせる＝強調する
+enable=en(〜にする)＋able(できる) → できるようにする＝可能にする（enable A to do）
+encounter=en(中に)＋counter(反対) → 向かい合う＝出会う
+endanger=en(〜にする)＋danger(危険) → 危険にさらす（endangered species＝絶滅危惧種）
+enhance=en(〜にする)＋hance(高い) → 高める
+ensure=en(〜にする)＋sure(確かな) → 確実にする
+entire=en(否定)＋tire(触れる) → 手つかずの＝全体の
+essential=essence(本質)＋-ial → 本質的な・不可欠な
+establish=stabl(安定した) → しっかり立てる＝設立する・確立する（stable と同語源）
+estimate=estim(評価する) → 見積もる（esteem と同語源）
+ethnic=ethn(民族) → 民族の
+evaluate=e(外へ)＋valu(価値) → 価値を引き出す＝評価する
+eventually=event(結末)＋-ual＋-ly → 結末として＝結局・最終的に
+evident=e(外へ)＋vid(見る) → はっきり見える＝明らかな
+evolve=e(外へ)＋volve(巻く) → 巻物を広げる＝進化する（evolution）
+exaggerate=ex(強調)＋agger(積み上げる) → 積み上げすぎる＝誇張する
+exceed=ex(外へ)＋ceed(行く) → 越えて行く＝超える（excess＝超過）
+exception=ex(外へ)＋cept(取る) → 取り出されたもの＝例外
+exclude=ex(外へ)＋clude(閉じる) → 締め出す＝除外する（⇔ include）
+exhaust=ex(外へ)＋haust(くみ出す) → くみ尽くす＝使い果たす・疲れさせる
+exhibit=ex(外へ)＋hibit(持つ) → 外に掲げる＝展示する（exhibition）
+expand=ex(外へ)＋pand(広げる) → 拡大する
+expense=ex(外へ)＋pense(支払う) → 出ていくお金＝費用（expensive）
+explore=ex(外へ)＋plore(叫ぶ) → 獲物を叫んで追い出す＝探検する
+export=ex(外へ)＋port(運ぶ) → 輸出する（⇔ import）
+expose=ex(外へ)＋pose(置く) → 外に置く＝さらす（be exposed to）
+extend=ex(外へ)＋tend(伸ばす) → 延長する・広げる
+extent=extend の名詞形 → 程度・範囲（to some extent＝ある程度）
+external=exter(外の) → 外部の（⇔ internal）
+extinct=ex(外へ)＋tinct(消す) → 火が消えた＝絶滅した（extinguish＝消す）
+extraordinary=extra(外の)＋ordinary(普通の) → 普通の枠を超えた＝並外れた
+facility=facil(容易な) → 容易にするもの＝施設・設備
+fatal=fate(運命)＋-al → 運命を決める＝致命的な
+feasible=feas(行う) → 行える＝実行可能な
+fertile=fer(産む) → 実りを生む＝肥沃な
+finance=fin(終わり・決着) → 支払いで決着をつける→お金＝財政
+flexible=flex(曲げる)＋-ible → 曲げられる＝柔軟な
+flourish=flor(花) → 花開く＝繁栄する（flower と同語源）
+forbid=for(禁止)＋bid(命じる) → 禁じる（forbid A to do / from -ing）
+former=fore(前の)＋-er → 前の・前者の（⇔ latter）
+foster=food(食べ物)と同系 → 食べさせて養う＝育成する
+foundation=found(基礎を置く)＋-ation → 基礎・財団
+fragile=frag(壊れる)＋-ile → 壊れやすい（fragment＝かけら）
+frustrate=frustr(無駄に) → 無駄に終わらせる＝いらだたせる
+function=funct(行う) → 働き＝機能
+fundamental=fund(底) → 底の＝基本的な
+generate=gener(生む) → 生み出す
+generous=gener(生まれのよい) → 気高い＝気前のよい
+genuine=gen(生まれ) → 生まれつきの＝本物の
+grant=credit(信用)と同語源 → 信じて与える＝与える・認める（take A for granted）
+grasp=grab と同系。手でぎゅっと「つかむ」→ 頭でつかむ＝理解する
+gratitude=grat(喜び・感謝) → 感謝（grateful）
+guarantee=guard(守る)と同語源 → 保証する
+harsh=もとは「ざらざらした」→ 厳しい
+hesitate=hes(くっつく) → その場に貼りつく＝ためらう（hesitate to do）
+hostile=host(敵・よそ者) → 敵意のある
+humble=hum(地面) → 地面に近い＝謙虚な
+hypothesis=hypo(下に)＋thesis(置く) → 下に置く仮の考え＝仮説
+identify=ident(同じ)＋-ify → 同じだと確認する＝特定する
+illustrate=il(中に)＋lustr(光) → 光を当てる＝説明する・図解する
+imitate=imit(写す) → まねる（image と同語源）
+immense=im(否定)＋mense(測る) → 測れないほど＝莫大な
+immigrant=im(中に)＋migr(移る) → 移り住んでくる人＝移民（emigrant＝出ていく移民）
+impact=im(中に)＋pact(打ち込む) → 打ちつける力＝影響・衝撃（have an impact on）
+implement=im(中に)＋ple(満たす) → 満たして実行する
+imply=im(中に)＋ply(折る) → 折り込む＝ほのめかす
+impose=im(上に)＋pose(置く) → 押しつける＝課す（impose A on B）
+impress=im(中に)＋press(押す) → 心に押しつける＝感銘を与える
+impulse=im(中に)＋pulse(押す) → 押し動かす力＝衝動
+incentive=in(中に)＋cent(歌う) → 歌って気分を盛り上げる＝動機・報奨
+incident=in(上に)＋cid(落ちる) → 降りかかること＝出来事・事件
+inclined=in(〜へ)＋cline(傾く) → 気持ちが傾いて＝〜したい気がする（be inclined to do）
+indicate=in(〜へ)＋dic(示す) → 指し示す＝示す
+individual=in(否定)＋divid(分ける) → これ以上分けられない＝個人
+inevitable=in(否定)＋evit(避ける)＋able → 避けられない
+infant=in(否定)＋fant(話す) → まだ話せない子＝幼児
+infer=in(中に)＋fer(運ぶ) → 結論を持ち込む＝推論する
+inferior=infer(下の) → 劣った（⇔ superior。than ではなく to を使う）
+ingredient=in(中に)＋gredi(入る) → 中に入るもの＝材料・成分
+inhabit=in(中に)＋habit(住む) → 住む（inhabitant＝住民）
+inherit=in(中に)＋her(相続人) → 相続する（heir＝相続人）
+initial=init(始まり) → 最初の
+innocent=in(否定)＋noc(害する) → 害のない＝無罪の・無邪気な
+innovation=in(中に)＋nov(新しい) → 新しくすること＝革新（novel＝目新しい）
+insight=in(中を)＋sight(見ること) → 内側を見抜く力＝洞察
+insist=in(上に)＋sist(立つ) → 立ち張る＝主張する（insist on）
+inspire=in(中に)＋spire(息) → 息を吹き込む＝奮い立たせる
+install=in(中に)＋stall(場所) → 据え付ける＝設置する
+instinct=in(中で)＋stinct(刺す) → 内側から突き動かすもの＝本能
+institution=in(上に)＋stitute(立てる) → 打ち立てたもの＝機関・制度
+insult=in(上に)＋sult(跳ぶ) → 飛びかかる＝侮辱する
+intellectual=intel(間から)＋lect(選ぶ) → 見分ける力の＝知的な
+intend=in(〜へ)＋tend(伸ばす) → 心を向ける＝意図する（intend to do）
+intense=intend と同語源 → 張りつめた＝激しい
+interact=inter(相互に)＋act(作用する) → 相互に作用する・交流する
+interpret=inter(間に)＋pret(値をつける) → 間に入って意味をつける＝解釈する・通訳する
+interrupt=inter(間に)＋rupt(破る) → 割って入る＝さえぎる
+interval=inter(間)＋val(城壁) → 城壁の間＝間隔
+intervene=inter(間に)＋vene(来る) → 間に入ってくる＝介入する
+investigate=in(中に)＋vestig(足跡) → 足跡をたどる＝調査する
+involve=in(中に)＋volve(巻く) → 巻き込む（be involved in）
+isolate=isol(島) → 島のように離す＝孤立させる
+justify=just(正しい)＋-ify → 正当化する
+laboratory=labor(働く)＋-ory(場所) → 研究室（略して lab）
+landscape=land(土地)＋scape(眺め) → 風景
+launch=lance(槍)と同語源 → 槍を投げる＝発射する・開始する
+legal=leg(法) → 合法の・法律の（illegal＝違法の）
+leisure=leis(許される) → 自由が許された時間＝余暇
+liberal=liber(自由な) → 自由主義の・寛大な（liberty）
+literature=liter(文字) → 文字で書かれたもの＝文学（letter と同語源）
+logical=log(言葉・理論)＋-ical → 論理的な
+maintain=main(手)＋tain(保つ) → 手で保つ＝維持する・主張する
+majority=major(大きい方の)＋-ity → 大多数（⇔ minority）
+manufacture=manu(手)＋fact(作る) → 手で作る→製造する
+margin=marg(縁) → 余白・差
+massive=mass(かたまり)＋-ive → 大規模な
+mature=matur(熟した) → 成熟した（⇔ immature）
+maximum=max(最大) → 最大（⇔ minimum）
+mechanism=mechan(機械) → 仕組み
+mental=ment(心) → 精神の（⇔ physical）
+merit=mer(報いを受ける) → 報いに値する点＝長所
+migrate=migr(移る) → 移住する（immigrant と同語源）
+military=milit(兵士) → 軍の
+minimum=min(小さい) → 最小
+minor=min(小さい) → 小さい方の（⇔ major）
+miserable=miser(哀れな) → みじめな（misery）
+modest=mod(尺度) → 節度を守る＝控えめな
+modify=mod(型)＋-ify → 型を変える＝修正する
+monitor=mon(警告する) → 見張る人＝監視する
+moral=mor(慣習) → 道徳の
+motivate=mot(動く)＋-ive＋-ate → 動かす＝動機づける
+mutual=mut(交換する) → 相互の
+myth=myth(言葉・物語) → 神話・作り話
+neglect=neg(否定)＋lect(拾う) → 拾い上げない＝怠る・無視する
+negotiate=neg(否定)＋oti(暇) → 暇なく働く→商売する＝交渉する
+neutral=neuter(どちらでもない) → 中立の
+nevertheless=never＋the＋less → それでも少しも減らない＝それにもかかわらず
+notion=not(知る) → 知っていること＝考え・概念
+numerous=numer(数) → 多数の
+nutrition=nutri(養う) → 栄養
+objective=object(対象)＋-ive → 対象そのものの＝客観的な（⇔ subjective）
+obligation=ob(〜へ)＋lig(縛る) → 縛りつけるもの＝義務
+obscure=ob(上を)＋scure(覆う) → 覆われた＝不明瞭な・無名の
+obstacle=ob(前に)＋sta(立つ) → 前に立ちはだかる＝障害
+obvious=ob(前に)＋via(道) → 道の真ん前にある＝明らかな
+occasion=oc(〜へ)＋cas(落ちる) → 降ってくる時＝機会・場合
+occupy=oc(〜へ)＋cupy(つかむ) → つかんで占める
+offend=of(〜へ)＋fend(打つ) → 打ちかかる＝怒らせる
+operate=oper(働く) → 動かす＝操作する・手術する
+oppose=op(反対に)＋pose(置く) → 反対側に置く＝反対する（be opposed to）
+option=opt(選ぶ) → 選ぶこと＝選択の自由・オプション
+organism=organ(器官)＋-ism → 器官を持つもの＝生物・有機体
+outcome=out(外に)＋come(来る) → 外に出てきたもの＝結果・成果
+overcome=over(越えて)＋come(来る) → 乗り越える＝克服する
+overlook=over(越えて)＋look(見る) → 上を越えて見る＝見落とす・見渡す
+overwhelm=over(上から)＋whelm(覆う) → 上から覆いかぶさる＝圧倒する
+participate=part(部分)＋cip(取る) → 一部を取る＝参加する（participate in）
+particular=part(部分)＋-icle(小さい) → 小さな一部分の＝特定の（in particular＝特に）
+passion=pass(苦しむ・感じる) → 激しい感情＝情熱
+passive=pass(受ける) → 受け身の（⇔ active）
+patient=pati(耐える) → 耐える人＝患者（形容詞なら「忍耐強い」）
+perceive=per(完全に)＋ceive(取る) → 感じ取る＝知覚する
+permanent=per(通して)＋man(とどまる) → ずっととどまる＝永続的な
+perspective=per(通して)＋spect(見る) → 見通し＝観点・見方
+phenomenon=phen(現れる) → 現れたもの＝現象（複数形 phenomena）
+philosophy=philo(愛する)＋sophy(知恵) → 知を愛すること＝哲学
+policy=pol(都市・国家) → 国の方針＝政策（politics と同語源）
+portion=port(部分) → 部分・分け前（proportion）
+possess=pos(力)＋sess(座る) → 主人として座る＝所有する
+potential=pot(力がある) → 潜在能力・可能性
+precious=preci(値段) → 値打ちのある＝貴重な
+precise=pre(前で)＋cise(切る) → 端をきっちり切った＝精密な
+predict=pre(前に)＋dict(言う) → 前もって言う＝予測する
+prejudice=pre(前に)＋judice(判断) → 前もって判断する＝偏見
+preserve=pre(前もって)＋serve(保つ) → 保存する・保護する
+pretend=pre(前に)＋tend(伸ばす) → 前に差し出して見せる＝ふりをする（pretend to do）
+previous=pre(前に)＋vi(道) → 前の道の＝以前の
+primary=prim(第一の) → 第一の・主要な
+primitive=prim(最初の) → 原始的な
+principle=prin(最初の)＋cip(取る) → 最初に取るもの＝原理・原則（principal＝校長・主要な と区別）
+priority=prior(前の) → 先にあること＝優先
+proceed=pro(前へ)＋ceed(行く) → 進む・続ける
+profession=pro(前で)＋fess(話す) → 公言する職＝専門職
+profit=pro(前へ)＋fit(作る) → 前進させるもの＝利益
+profound=pro(前へ)＋found(底) → 底まで届く＝深い
+prohibit=pro(前に)＋hibit(持つ) → 前に立ちふさがる＝禁止する（prohibit A from -ing）
+prominent=pro(前へ)＋min(突き出る) → 突き出た＝目立つ・著名な
+promote=pro(前へ)＋mote(動かす) → 前へ動かす＝促進する・昇進させる
+prompt=pro(前へ)＋mpt(取る) → すぐに取り出せる＝迅速な
+proportion=pro(〜に応じて)＋portion(部分) → 割合
+propose=pro(前に)＋pose(置く) → 前に置く＝提案する
+prospect=pro(前を)＋spect(見る) → 前を見ること＝見込み・展望
+psychology=psycho(心)＋logy(学問) → 心理学（p は発音しない）
+pursue=pur(前へ)＋sue(追う) → 追い求める＝追求する
+qualify=qual(性質)＋-ify → 資格を与える（qualification＝資格）
+radical=radi(根) → 根本的な・急進的な
+random=古フランス語「勢いよく走る」→ 行き当たりばったりの＝無作為の
+rational=ratio(理性・計算) → 合理的な
+react=re(返して)＋act(作用する) → 反応する（react to）
+reckless=reck(気にかける)＋less(〜ない) → 後先を気にしない＝無謀な
+refer=re(元へ)＋fer(運ぶ) → 話を持っていく＝言及する・参照する（refer to）
+reflect=re(後ろへ)＋flect(曲げる) → 跳ね返す＝反映する・熟考する
+reform=re(再び)＋form(形づくる) → 作り直す＝改革（家の「リフォーム」は renovation）
+regret=re(強調)＋gret(泣く) → 嘆く＝後悔する（regret -ing / to do）
+reinforce=re(再び)＋in＋force(力) → 再び力を入れる＝強化する
+reject=re(後ろへ)＋ject(投げる) → 投げ返す＝拒絶する
+release=re(再び)＋lease(ゆるめる) → 解き放つ＝解放する・公開する
+relevant=re(再び)＋lev(持ち上げる) → 持ち上げて関係づける＝関連のある（⇔ irrelevant）
+reliable=rely(頼る)＋-able → 頼れる＝信頼できる
+reluctant=re(反対に)＋luct(もがく) → 抵抗してもがく＝気が進まない（be reluctant to do）
+rely=re(強調)＋ly(縛る) → 結びつく＝頼る（rely on）
+remarkable=remark(気づく)＋-able → 注目すべき
+remedy=re(完全に)＋medy(治す) → 治療法・解決策（medicine と同語源）
+reproduce=re(再び)＋produce(生み出す) → 再生する・繁殖する
+reputation=re(繰り返し)＋pute(考える) → 繰り返し考えられること＝評判
+rescue=re(強調)＋scue(振り払う) → 危険から振り払う＝救助する
+resemble=re(強調)＋semble(似ている) → 似ている（他動詞なので to は不要！ 進行形にもしない）
+reside=re(後ろに)＋side(座る) → 座り続ける＝住む（resident＝住民）
+resign=re(返して)＋sign(署名する) → 署名して返す＝辞職する
+resist=re(反対に)＋sist(立つ) → 立ち向かう＝抵抗する
+resolve=re(強調)＋solve(解く) → 解決する・決心する
+resource=re(再び)＋source(湧き出る) → 湧き出るもの＝資源
+restore=re(再び)＋store(立てる) → 元に戻す＝回復させる・修復する
+restrict=re(後ろに)＋strict(縛る) → 縛りつける＝制限する
+retain=re(後ろに)＋tain(保つ) → 保持する
+retire=re(後ろへ)＋tire(引く) → 退く＝引退する
+reverse=re(後ろへ)＋verse(向ける) → 逆向きにする
+revise=re(再び)＋vise(見る) → 見直す＝改訂する
+revolution=re(再び)＋volve(回る) → ぐるりと回転する＝革命
+reward=re(強調)＋ward(見守る) → 見守った結果の報い＝報酬
+ridiculous=rid(笑う) → 笑ってしまうような＝ばかげた
+rigid=rig(硬い) → 硬い・厳格な
+ritual=rite(儀式)＋-ual → 儀式
+rival=riv(川) → 同じ川の水を争う人々＝競争相手
+rural=rur(田舎) → 田舎の（⇔ urban）
+sacrifice=sacri(神聖な)＋fice(する) → 神に捧げる＝犠牲
+scarce=scarc(つまみ取る) → わずかしかない＝乏しい（scarcely＝ほとんど〜ない）
+scatter=shatter(粉々にする)と同系 → まき散らす
+scheme=schem(形・計画) → 計画・企て
+scholar=schol(学校) → 学者（school と同語源）
+scope=scope(見る) → 見える範囲＝範囲（telescope）
+secure=se(離れて)＋cure(心配) → 心配から離れた＝安全な・確実な
+seize=古フランス語「所有する」→ つかむ・奪い取る
+sensible=sense(分別)＋-ible → 分別のある（sensitive＝敏感な と区別！）
+sensitive=sense(感覚)＋-itive → 感じやすい＝敏感な（sensible と区別！）
+sequence=sequ(続く) → 連続・順序
+settle=seat(座る)と同系 → 落ち着かせる＝解決する・定住する
+severe=sever(厳しい) → 厳しい・深刻な
+shift=もとは「整える・移す」→ 移す・変える
+significant=sign(印)＋fic(作る) → 印をつけるほど＝重要な・著しい
+sincere=ラテン語 sincerus（混じりけのない）→ 誠実な
+soil=sol(地面)と同語源 → 土壌
+solid=sol(全体の・固い) → 固体の・堅い
+sophisticated=soph(知恵) → 知恵をつけた＝洗練された
+specific=speci(種類)＋fic(作る) → 種類を特定する＝特定の・具体的な
+spectator=spect(見る)＋-or(人) → 見る人＝観客
+speculate=spec(見る) → 見張り台から眺める＝推測する
+stable=sta(立つ)＋-ble → しっかり立っている＝安定した
+status=stat(立つ) → 立ち位置＝地位
+steady=stead(場所)＋-y → 場所から動かない＝着実な
+stimulate=stimul(突き棒) → 突いて動かす＝刺激する
+strategy=strat(軍)＋egy(導く) → 軍を導く技＝戦略
+strict=strict(縛る) → 縛りのきつい＝厳しい
+submit=sub(下に)＋mit(送る) → 下に差し出す＝提出する・服従する
+subsequent=sub(後に)＋sequ(続く) → 後に続く＝その後の
+substance=sub(下に)＋stance(立つ) → 下に立って支える実体＝物質
+substitute=sub(代わりに)＋stitute(置く) → 代わりに置くもの＝代用品
+subtle=sub(下に)＋tle(織る) → 繊細に織られた＝微妙な（b は発音しない）
+sufficient=suf(下から)＋fic(作る) → 下から満たす＝十分な
+summit=sum(最高の) → 頂上・首脳会談
+superior=super(上の) → 優れた（than ではなく to を使う）
+surgery=ギリシャ語 cheir(手)＋ergon(仕事) → 手で行う治療＝手術
+suspect=su(下から)＋spect(見る) → 下から疑いの目で見る＝疑う（doubt との違いに注意）
+sustain=sus(下から)＋tain(保つ) → 下から支える＝維持する
+symptom=sym(共に)＋ptom(落ちる) → 病気と一緒に現れるもの＝症状
+temporary=tempor(時) → 一時的な（⇔ permanent）
+tend=tend(伸ばす・向かう) → 〜へ向かう＝傾向がある（tend to do）
+tension=tens(張る) → 張りつめた状態＝緊張
+territory=terr(土地) → 領土・縄張り（terrace と同語源）
+thorough=through(通して)と同語源 → 端から端まで＝徹底的な
+tolerate=toler(耐える) → 我慢する・許容する
+trace=tract(引く) → 引いた跡をたどる
+transfer=trans(越えて)＋fer(運ぶ) → 移す・乗り換える
+transform=trans(越えて)＋form(形) → 形を変える＝変形させる
+transparent=trans(通して)＋par(見える) → 透けて見える＝透明な
+tremendous=trem(震える) → 震えるほど＝ものすごい
+trigger=もとは「引き金」→ 引き金を引く＝引き起こす
+triumph=古代ローマの凱旋行進が語源 → 大勝利
+undergo=under(下を)＋go(行く) → 下をくぐり抜ける＝経験する・受ける
+undertake=under＋take(取る) → 引き受ける
+uniform=uni(1つ)＋form(形) → 1つの形＝一様な・制服
+unify=uni(1つ)＋-fy → 1つにする＝統一する
+urban=urb(都市) → 都市の（suburb＝郊外）
+urge=urg(押す) → 押し進める＝促す
+urgent=urg(押す)＋-ent → 押し迫る＝緊急の
+utilize=util(役に立つ)＋-ize → 利用する
+vague=vag(さまよう) → 焦点がさまよう＝ぼんやりした
+valid=val(強い・価値) → 有効な・妥当な
+vanish=van(空の) → 空になる＝消える（vain と同語源）
+vary=vari(さまざまな) → 異なる・変わる
+vast=vast(広い・荒涼とした) → 広大な
+vehicle=veh(運ぶ) → 運ぶもの＝乗り物
+verify=ver(真実)＋-ify → 真実と確かめる
+vital=vit(生命) → 生命の・極めて重要な（vitamin）
+vivid=viv(生きた) → 生き生きした＝鮮やかな
+voluntary=vol(意志) → 自発的な（volunteer と同語源）
+vulnerable=vulner(傷) → 傷つきやすい（be vulnerable to）
+welfare=well(よく)＋fare(暮らす) → よい暮らし＝福祉
+whereas=where＋as → 〜である一方で＝〜であるのに対して
+widespread=wide(広く)＋spread(広がった) → 広範囲に及ぶ
+withdraw=with(後ろへ)＋draw(引く) → 引き出す・撤退する
+witness=wit(知る)＋-ness → 知っていること→見た人＝目撃者
+yield=「生み出す」と「屈する」の2つの意味をセットで。yield to pressure（圧力に屈する）
+abolish=ab(離れて)＋ol(育つ) → 育たないようにする＝廃止する
+absurd=ab(離れて)＋surd(耳が聞こえない) → 調子外れの＝ばかげた
+acute=acu(鋭い) → 鋭い・急性の（⇔ chronic）
+addict=ad(〜へ)＋dict(言う) → 身を委ねると宣言する＝中毒にさせる（be addicted to）
+administration=ad(〜へ)＋minister(仕える) → 仕えて取り仕切る＝管理・行政
+affection=af(〜へ)＋fect(作用する) → 心に働きかけるもの＝愛情
+alert=イタリア語 all'erta（見張り台の上で）→ 油断のない
+allocate=al(〜へ)＋loc(場所) → 場所を割り当てる
+anonymous=an(否定)＋onym(名前) → 名前のない＝匿名の
+apparatus=ap(〜へ)＋parat(準備する) → 準備された道具＝器具・装置
+arbitrary=arbiter(判定者) → 判定者の気まま次第の＝恣意的な
+assert=as(〜へ)＋sert(結びつける) → 自分に結びつけて言い切る＝断言する
+astonish=as(外へ)＋ton(雷) → 雷に打たれたように驚かす
+bias=もとは「斜め」→ 偏り・先入観
+breed=brood(ひなを育てる)と同系 → 繁殖させる
+chronic=chron(時) → 長く続く＝慢性の（⇔ acute）
+coherent=co(共に)＋her(くっつく) → まとまっている＝首尾一貫した
+commodity=com(共に)＋mod(尺度) → 都合のよいもの＝商品・日用品
+compel=com(強く)＋pel(駆り立てる) → 強いる（compel A to do）
+compulsory=compel(強いる)の形容詞 → 義務的な・強制的な
+condemn=con(強調)＋demn(損害) → 罰を与える＝非難する
+consensus=con(共に)＋sens(感じる) → 皆が同じに感じる＝合意・総意
+conspicuous=con(強調)＋spic(見る) → よく見える＝目立つ
+contradict=contra(反対に)＋dict(言う) → 反対のことを言う＝矛盾する・反論する
+controversy=contro(反対に)＋vers(向く) → 反対を向き合う＝論争
+correspond=cor(共に)＋respond(応える) → 互いに応じる＝一致する・文通する
+counterpart=counter(反対側の)＋part(部分) → 向こう側の相当するもの＝相手方
+criterion=crit(判断する) → 判断のよりどころ＝基準（複数形 criteria）
+deceive=de(離れて)＋ceive(取る) → 横取りする＝だます
+deficit=de(離れて)＋fic(作る) → 作り足りない＝赤字・不足額
+deliberate=de(完全に)＋liber(量る) → よく量った＝意図的な・慎重な
+dense=dens(厚い・濃い) → 密集した・濃い
+depict=de(下に)＋pict(描く) → 描く（picture と同語源）
+deteriorate=deterior(より悪い) → 悪化する
+dilemma=di(2つ)＋lemma(前提) → 2つの前提に挟まれる＝板挟み
+discard=dis(離れて)＋card(カード) → 手札を捨てる＝捨てる
+disguise=dis(離れて)＋guise(装い) → いつもの装いを外す＝変装させる・偽る
+dismiss=dis(離れて)＋miss(送る) → 送り出す＝退ける・解雇する
+displace=dis(離れて)＋place(置く) → 場所から移す＝移動させる・取って代わる
+disrupt=dis(ばらばらに)＋rupt(破る) → 混乱させる
+distort=dis(強調)＋tort(ねじる) → ゆがめる
+diversity=diverse(多様な)＋-ity → 多様性
+dwell=もとは「ぐずぐずとどまる」→ 住む・くよくよ考える（dwell on）
+eccentric=ec(外へ)＋centr(中心) → 中心から外れた＝風変わりな
+ecology=eco(家・環境)＋logy(学問) → 生態学・生態系
+elegant=e(外へ)＋leg(選ぶ) → 選び抜かれた＝優雅な
+eligible=e(外へ)＋lig(選ぶ) → 選ばれうる＝資格のある（be eligible for）
+embrace=em(中に)＋brace(腕) → 腕の中に入れる＝抱きしめる・受け入れる
+empathy=em(中に)＋pathy(感情) → 相手の中に入って感じる＝共感
+endure=en(強調)＋dure(続く) → 持ちこたえる＝耐える
+enforce=en(〜にする)＋force(力) → 力で実行させる＝施行する
+actually=actual(実際の)＋-ly。「実は…」と意外な事実を言うときによく使う
+add=add A to B「AをBに加える」。名詞 addition（追加・足し算）とセットで
+address=「住所」と「演説・取り組む（address a problem）」の2つの意味をセットで
+adult=adolescent(青年)と同語源で「成長し終えた人」。⇔ child
+afraid=be afraid of 〜（〜を恐れる）／ I'm afraid 〜（残念ながら〜）
+aim=aim at 〜（〜をねらう）。目標に照準を「エイム」するイメージ
+amount=amount of＋数えられない名詞（数えられる名詞は number of）
+anxious=be anxious about（心配）／ be anxious for・to do（切望）の2つの意味
+appointment=appoint(任命する・約束する)＋-ment。医者・人との「予約・約束」（ホテルなどは reservation）
+area=「地域」のほか「分野（area of study）」の意味も
+argue=argue that 〜（〜だと主張する）／ argue with 人（口論する）
+article=新聞の「記事」、文法の「冠詞」、「品物」の3つの意味
+balance=「均衡」と銀行の「残高」。バランスシートで覚えよう
+behave=be＋have（身を保つ）から「振る舞う」。behave yourself＝行儀よくしなさい
+belong=belong to 〜（〜に所属する）。進行形にしない動詞
+borrow=借りる（無料）。⇔ lend（貸す）、rent（有料で借りる・貸す）
+brain=「脳」から「頭脳・秀才」の意味も（brainstorm）
+branch=木の「枝」→ 会社から分かれた「支店」
+brief=briefing（要旨説明）と同じ。in brief＝要するに
+bright=「明るい」→ 頭の中が明るい＝「賢い」
+burn=burn-burned(burnt)。sunburn＝日焼け
+calm=発音はカーム（l は発音しない）。calm down＝落ち着く
+careful=care(注意)＋-ful(満ちた)。⇔ careless（不注意な）
+challenge=日本語の「チャレンジ」より「難題・課題」の意味が強い
+character=「性格・特徴」と物語の「登場人物」。文字（漢字）の意味も
+charge=「料金」「責任（in charge of）」「充電」。電池をチャージ＝充電
+cheap=「安い」（安っぽいの意味も）。値段そのものが安いは low price
+chemical=chemistry(化学)の形容詞。chemicals＝化学物質
+choice=choose(選ぶ)の名詞形。make a choice＝選ぶ
+climate=長期的な「気候」。その日の天気は weather
+common=「共通の（in common）」と「よくある・普通の」
+complain=complain about / of 〜（〜について不平を言う）。名詞 complaint
+control=「支配・管理」。out of control＝制御できない
+copy=「写し」のほか、本・新聞の「1部・1冊」の意味もある
+correct=⇔ incorrect。動詞では「訂正する」
+cost=cost-cost-cost（不規則）。cost 人 金額（人に〜かかる）
+count=「数える」→ 数に入る＝「重要である（Every vote counts.）」
+crowd=crowded（混雑した）とセットで
+cure=治す（cure A of B＝AのBを治す）。名詞「治療法」
+custom=社会の「慣習」。個人の癖は habit。customs＝税関
+damage=数えられない名詞。damages は「損害賠償金」
+danger=dangerous（危険な）とセットで。in danger of 〜（〜の危険がある）
+deal=deal with 〜（〜に対処する）／ a great deal of（大量の）
+degree=温度の「度」、程度（to some degree）、大学の「学位」
+demand=需要（⇔ supply 供給）。動詞は「要求する」
+design=日本語のデザインより広く「設計する・計画する」
+difficulty=have difficulty (in) -ing「〜するのに苦労する」
+earn=働いて稼ぐ。earn a living＝生計を立てる
+elderly=old の丁寧な言い方。the elderly＝高齢者
+energy=発音はエナジー。energetic＝活動的な
+especially=special(特別な)と同語源。「とりわけ」
+fact=in fact（実際に）。fact（事実）と opinion（意見）の区別は共テ頻出
+fail=fail to do（〜しない・できない）。名詞 failure（失敗）
+famous=fame(名声)＋-ous(満ちた)。be famous for 〜
+fear=for fear of 〜（〜を恐れて）。fearful＝恐れて
+fee=入場料・授業料・専門家への報酬など「手数料・料金」
+fill=fill A with B（AをBで満たす）。full と同語源
+float=floating（浮かんでいる）。⇔ sink（沈む）
+follow=as follows（次の通り）。following＝次の
+force=force 人 to do（人に無理やり〜させる）。名詞「力・軍隊」
+form=「形」「（申込）用紙」。動詞は「形作る」（information, uniform に入っている）
+fuel=fossil fuel＝化石燃料
+gather=gather information（情報を集める）。人が「集まる」にも使う
+goal=サッカーのゴール＝「目標」
+guess=推測する。I guess 〜＝〜だと思う（くだけた言い方）
+habit=個人の習慣・癖（社会の慣習は custom）。be in the habit of -ing
+handle=hand(手)＋-le → 手で扱う。名詞は「取っ手」
+harm=harmful（有害な）⇔ harmless（無害な）
+health=heal(治る)と同語源。healthy（健康な）
+heat=hot の名詞形。heat wave＝熱波
+heavy=heavy rain（大雨）、heavy traffic（交通量が多い）
+hide=hide-hid-hidden。hide-and-seek＝かくれんぼ
+host=⇔ guest。host country＝開催国
+huge=very big のイメージ。発音はヒュージ
+hurt=hurt-hurt-hurt（不規則）。心を傷つける場合にも使う
+idea=have no idea＝まったくわからない
+illness=ill(病気の)＋-ness。disease は「（具体的な）病気」
+industry=industrial（産業の）／ industrious（勤勉な）の区別が頻出
+instead=instead of 〜（〜の代わりに）。文末の instead は「その代わりに」
+invite=invite 人 to 〜（人を〜に招待する）。名詞 invitation
+issue=「問題・論点」「発行（号）」。動詞は「発行する」
+knowledge=know の名詞形（k は発音しない）。数えられない名詞
+lack=lack of 〜（〜の不足）。動詞は他動詞（lack は of 不要）
+law=lawyer（弁護士）。by law＝法律で
+lead=lead-led-led。lead to 〜（〜につながる）
+lend=lend-lent-lent。lend 人 物（人に物を貸す）⇔ borrow
+level=「水準」。the level of 〜（〜の水準）
+limit=limitation（制限）。speed limit＝制限速度
+local=「田舎の」ではなく「その地域の・地元の」
+loss=lose(失う)の名詞形。at a loss＝途方に暮れて
+matter=「問題」「物質」、動詞で「重要である（It doesn't matter.）」
+mind=Do you mind -ing?「〜してもかまいませんか」（答えに注意）
+mistake=mis(誤って)＋take(取る) → 取り違え。by mistake＝誤って
+moment=at the moment（今のところ）。for a moment（ちょっとの間）
+narrow=narrow escape＝間一髪の脱出。⇔ wide / broad
+nearly=near(近い)＋-ly → 「ほぼ・あやうく」（= almost）
+nervous=nerve(神経)＋-ous → 神経が張りつめた＝緊張して
+nod=うなずく（同意のしぐさ）
+pain=painful（痛い・つらい）。take pains＝苦労する
+pattern=「模様」と「型・パターン（behavior pattern）」
+peace=piece（かけら）と同じ発音。peaceful
+plant=「植物」と「工場（power plant＝発電所）」
+pleasure=please(喜ばせる)の名詞形。It's my pleasure.＝どういたしまして
+poem=poet（詩人）、poetry（詩・総称）
+polite=⇔ impolite / rude。politeness（礼儀正しさ）
+power=「力」「電力」「権力」。powerful
+price=物の「価格」。値段の高低は high / low
+pride=proud（誇りに思う）の名詞形。take pride in 〜
+product=produce(生産する)の名詞形。production（生産）
+proud=be proud of 〜（〜を誇りに思う）
+quiet=quite（かなり）とつづりを区別！
+raise=raise-raised-raised（他動詞：上げる・育てる）。rise（上がる）と区別
+rate=割合・速度。birth rate＝出生率、at any rate＝とにかく
+reach=reach 場所（他動詞なので to 不要）。reach out＝手を伸ばす
+reason=reasonable（筋の通った・手ごろな）
+regard=regard A as B（AをBとみなす）。with regard to＝〜に関して
+relationship=relate(関係づける)＋-tion＋-ship
+relax=relaxed（くつろいだ）／ relaxing（くつろがせる）
+rest=「休息」と「残り（the rest of 〜）」の2つの意味
+rise=rise-rose-risen（自動詞：上がる）。raise（上げる）と区別
+risk=at the risk of 〜（〜の危険を冒して）
+role=play a role in 〜（〜で役割を果たす）
+rough=rough estimate（おおよその見積もり）。発音はラフ
+rule=as a rule（概して）。ruler（支配者・定規）
+rush=rush hour（混雑時）。in a rush＝急いで
+save=「救う」「節約する」「貯める」。saving（節約・貯金）
+scene=seen と同じ発音。scenery（景色・総称）
+schedule=on schedule（予定通りに）、behind schedule（予定より遅れて）
+seat=Please be seated.＝お座りください
+seek=seek-sought-sought。seek for 〜（〜を探し求める）
+secret=secretary（秘書＝秘密を任される人）と同語源
+seem=It seems that 〜 ＝ S seem to do（〜のようだ）
+sense=make sense（意味をなす）、a sense of humor（ユーモアのセンス）
+serious=seriously（真剣に・深刻に）
+serve=「仕える」「（食事を）出す」。service（サービス・奉仕）
+set=set-set-set（不規則）。set up（設立する）
+shape=in good shape（体調がよい）
+share=「共有する」「分け合う」。名詞は「分け前・市場占有率」
+sight=see の名詞形。at first sight（一目で）、catch sight of（見つける）
+sign=「記号・兆候・看板」。署名は signature（sign は動詞で「署名する」）
+simple=simplify（単純化する）、simply（単に）
+skill=skilled / skillful（熟練した）
+sort=sort of（いくぶん）、all sorts of（あらゆる種類の）
+space=「空間」「宇宙」「余白」。spacious（広々とした）
+spread=spread-spread-spread（不規則）
+staff=職員全体を表す集合名詞（a staff member＝職員1人）
+state=「状態」「（米国の）州」「国家」。動詞は「述べる」
+station=駅のほか police station（警察署）、fire station（消防署）
+steal=steal-stole-stolen。steal B from A（AからBを盗む）
+step=step by step（一歩ずつ）
+store=名詞「店」、動詞「蓄える」（storage＝保管）
+strange=stranger（見知らぬ人）とセットで
+stress=「心理的圧迫」と「強調・アクセント」
+suddenly=sudden(突然の)＋-ly。all of a sudden＝突然
+target=target audience（対象となる客層）
+task=やるべき仕事・課題。multitask（同時進行）
+taste=「味」と「好み（have good taste）」
+term=「期間・学期」「用語」「観点（in terms of）」「間柄（on good terms）」
+terrible=terror(恐怖)と同語源 → ひどい
+thick=thick-thin のペアで（厚い・薄い）
+thin=「薄い」「やせた」。thin air＝薄い空気
+threat=threaten（脅かす）とセットで
+tool=道具（手段の意味も）
+tough=「困難な」「頑丈な」「（肉が）固い」。発音はタフ
+trade=trade A for B（AとBを交換する）
+treat=「扱う」「治療する」「おごる」。treatment（治療）
+trouble=be in trouble（困っている）。troublesome（面倒な）
+trust=trust in 〜（〜を信頼する）。trustworthy（信頼できる）
+type=be one's type（好みのタイプ）。typical（典型的な）
+unless=if not に近い「〜しない限り」。後ろの文は肯定形で書く
+upset=up＋set（ひっくり返す）→ 気持ちがひっくり返る＝動揺して
+usual=as usual（いつものように）。unusual（珍しい）
+value=valuable（価値のある）。invaluable は「非常に貴重な」（無価値ではない！）
+victim=fall victim to 〜（〜の犠牲になる）
+view=「眺め」と「見解（point of view）」
+vote=vote for 〜（〜に賛成票を投じる）⇔ vote against
+wage=時間給・日給など労働の対価。salary は月給・年俸
+warn=warn 人 of 〜（人に〜を警告する）。発音はウォーン
+waste=waste A on B（AをBに浪費する）。waste of time
+weapon=発音はウェポン。weapons of mass destruction
+weight=weigh（重さを量る）の名詞形。lose weight＝やせる
+whole=hole（穴）と同じ発音。as a whole（全体として）
+wide=widely（広く）、width（幅）
+wild=wildlife（野生生物）
+wise=wisdom（知恵）とセットで
+wonder=I wonder if 〜（〜かしら）、no wonder（〜も不思議ではない）
+worth=be worth -ing（〜する価値がある）
+ability=able(できる)の名詞形。the ability to do
+abroad=a(〜に)＋broad(広い) → 広い世界へ＝外国へ（副詞なので to は不要）
+active=act(行動する)＋-ive。⇔ passive
+alive=live(生きる)と同語源。名詞の前には置かない（living を使う）
+alone=all＋one → たった1人で
+apart=a(〜に)＋part(部分) → 部分に分かれて＝離れて（apart from＝〜を除いて）
+arrest=ar(〜へ)＋rest(止める) → 動きを止める＝逮捕する
+average=on average（平均して）、above / below average
+background=back(後ろの)＋ground(地面) → 背景・経歴
+basis=base(土台)と同語源。on a daily basis（毎日）
+beauty=beautiful の名詞形
+behavior=behave(振る舞う)の名詞形
+blood=bleed（出血する）とセットで
+boring=bore(退屈させる)＋-ing。人が退屈しているのは bored
+bother=Don't bother.（気にしないで）
+bottom=from the bottom of my heart（心の底から）
+bridge=build a bridge（橋を架ける）
+budget=予算。low-budget（低予算の）
+cancel=「格子で消す」が語源 → 取り消す（= call off）
+cause=cause A to do（Aに〜させる原因となる）。名詞「原因」
+ceremony=opening ceremony（開会式）、graduation ceremony（卒業式）
+certain=「確かな」と「ある〜（a certain person）」
+chance=「機会」と「可能性（There is a chance that 〜）」
+cheer=cheer up（元気づける）。cheerful（陽気な）
+coast=coast（海岸線・沿岸）。beach は砂浜
+comment=comment on 〜（〜について論評する）
+crop=農作物（作物の収穫）。crop failure（不作）
+cross=crossing（交差点・横断）
+daily=day(日)＋-ly。-ly だけど形容詞としても使う
+debate=de(下に)＋bate(打つ) → 打ち負かし合う＝討論
+deep=depth（深さ）とセットで
+detail=in detail（詳しく）
+dish=「皿」と「料理（a Japanese dish）」
+earthquake=earth(大地)＋quake(揺れる)
+error=err(さまよう) → 正しい道からそれる＝誤り
+fair=「公平な」「（天気が）晴れた」「見本市」
+false=⇔ true。true or false（正誤問題）
+fashion=in fashion（流行して）。「やり方」の意味も
+fix=「修理する」「固定する」「（日時を）決める」
+flood=flowと同語源。a flood of 〜（殺到する〜）
+flow=flow-flowed-flowed（fly-flew-flown と区別）
+focus=焦点。focus on 〜（〜に集中する）
+fresh=fresh air（新鮮な空気）、freshman（新入生）
+frighten=fright(恐怖)＋-en(〜にする) → 怖がらせる
+gain=gain weight（太る）⇔ lose weight
+gift=「贈り物」と「才能（gifted＝才能のある）」
+grade=「成績」「学年」「等級」。gradual と同語源
+greet=greeting（あいさつ）
+growth=grow の名詞形。economic growth（経済成長）
+guest=⇔ host。guest room（客間）
+harvest=収穫（期）。harvest festival（収穫祭）
+hire=雇う（= employ）。お金を払って借りる意味も（英）
+hold=hold-held-held。「持つ」「開催する」「保つ」
+hunger=hungry の名詞形。飢え
+indeed=in deed（行為において）→ 本当に
+item=品目・項目・（ニュースの）1件
+join=join 〜（他動詞なので with は不要）
+laughter=laugh の名詞形（笑い声）
+bear=bear-bore-borne。「耐える（can't bear）」と「産む（born はここから）」。名詞の「クマ」とは別語
+bond=bind(縛る)と同語源 → 結びつけるもの＝きずな（「債券」の意味も）
+boost=押し上げる。boost the economy（経済を活性化する）
+dawn=day(日)と同語源。from dawn till dusk（夜明けから夕暮れまで）
+desire=de(離れて)＋sire(星) → 星を待ち望む＝欲望・願望（諸説あり）
+diet=「やせるための食事制限」だけでなく「日常の食事・食習慣」全般
+dramatic=drama(劇)＋-tic → 劇のような＝劇的な（dramatically＝劇的に）
+fade=fade away（次第に消えていく）。色・記憶・音が「薄れる」
+fault=「欠点」と「責任（It's my fault.＝私のせいだ）」
+odd=「奇妙な」と「奇数の（odd number）」。even number＝偶数
+pause=一時停止（動画のポーズボタン）
+rear=「育てる（= raise, bring up）」。名詞では「後部（rear seat）」
+`;
+const ETY_I = `
+put off=off「離れる」→ 予定から離して置く＝延期する（= postpone）
+call off=off「離れる」→ 予定から呼び外す＝中止する（= cancel）
+take off=off「離れる」→ 体から離す＝脱ぐ／地面から離れる＝離陸する
+turn off=off「離れる」→ 電気の流れから離す＝消す（⇔ turn on）
+get off=off「離れる」→ 乗り物から離れる＝降りる（⇔ get on）
+see off=off「離れる」→ 離れていくのを見る＝見送る
+put up with=up「すっかり」＋with「〜と共に」→ 嫌なことと共に居続ける＝我慢する
+come up with=考えが up（浮かび上がって）やって来る＝思いつく
+look up to=上を見上げる＝尊敬する（⇔ look down on）
+look down on=上から見下ろす＝見下す（⇔ look up to）
+take after=after「後を追う」→ 親の後を追う＝似ている
+look after=after「後を追う」→ 後ろから見守る＝世話をする（= take care of）
+give up=up「すっかり」→ すっかり手放す＝あきらめる・やめる
+give in=in「中へ」→ 相手の側に入る＝屈する
+carry out=out「最後まで」→ 最後まで運ぶ＝実行する
+run out of=out「尽きる」→ 走り尽きる＝使い果たす
+turn out=out「外に出て」→ 結果が外に現れる＝〜だとわかる
+figure out=out「最後まで」→ 考え抜く＝理解する・解き明かす
+find out=out「外に出す」→ 隠れた事実を見つけ出す
+point out=out「外へ」→ 指で外に示す＝指摘する
+stand out=out「外へ」→ 群れの外に立つ＝目立つ
+work out=out「最後まで」→ やり抜く＝うまくいく
+break down=down「下へ・弱まる」→ 壊れて倒れる＝故障する
+turn down=down「下へ」→ 申し出を下げる＝断る・音量を下げる
+get over=over「越えて」→ 乗り越える＝克服する・回復する
+go through=through「通り抜けて」→ 困難をくぐる＝経験する
+get rid of=rid（取り除いた）状態を get する＝取り除く
+take part in=part（一部）を take（取る）＝参加する（= participate in）
+take place=場所を取る＝行われる・起こる
+take over=over「向こう側へ」→ 引き取って受け継ぐ＝引き継ぐ
+take up=up「持ち上げる」→ 手に取る＝（趣味などを）始める
+make up for=for「〜に見合う分」を作る＝埋め合わせる
+keep up with=up「遅れず」＋with「一緒に」→ 遅れずについていく
+catch up with=後ろから追いついて with（並ぶ）＝追いつく
+get along with=along「沿って」→ 一緒に進む＝うまくやっていく
+bring about=about「周りに」→ 周りにもたらす＝引き起こす（= cause）
+bring up=up「上へ」→ 育て上げる・話題を持ち上げる
+come across=across「横切って」→ 道でばったり出会う
+result in=in「中へ」→ 結果が〜に入る（原因 result in 結果）
+result from=from「起点」→ 〜から生じる（結果 result from 原因）
+depend on=on「接触・依存」→ 〜に寄りかかる＝頼る・次第である
+rely on=on「依存」→ 〜に頼る（= depend on, count on）
+look into=into「中へ」→ 中をのぞき込む＝調査する（= investigate）
+hand in=手で中に入れる＝提出する（= submit, turn in）
+fill in=空欄の中を埋める＝記入する
+pick up=上へ拾い上げる・車に乗せる
+set up=上に組み立てる＝設立する・準備する
+show up=姿が上に現れる＝現れる（= turn up, appear）
+hang up=受話器を壁の掛け具に掛けた昔の電話から＝電話を切る
+hold on=on「継続」→ 持ち続ける＝（電話を切らずに）待つ
+carry on=on「継続」→ 運び続ける＝続ける
+go on=on「継続」→ 進み続ける＝続く・続ける（go on -ing）
+in spite of=spite（悪意）の中でも＝〜にもかかわらず（= despite）
+used to=過去の習慣・状態（be used to -ing＝〜に慣れている と区別！）
+be used to=to は前置詞なので後ろは名詞か -ing（used to do と区別！）
+had better=「〜しないとまずいことになる」という強い忠告。目上の人には使わない
+would rather=rather（むしろ）。would rather A than B（BするよりむしろA）
+no longer=もはや長くは〜ない＝もう〜ない（= not 〜 any longer）
+in terms of=term（観点・条件）の範囲で＝〜の観点から
+prevent A from -ing=from「分離」→ Aを〜から引き離す＝妨げる（keep / stop A from -ing も同じ形）
+rob A of B=of「分離」→ AからBを奪う（deprive A of B も同じ形。steal B from A と区別）
+remind A of B=of「関連」→ AにBを思い出させる
+regard A as B=as「〜として」→ AをBとして見る（think of A as B / look on A as B も同じ）
+provide A with B=with「所有」→ AにBを持たせる＝与える（= provide B for A）
+cannot help -ing=help の古い意味「避ける」→ 〜するのを避けられない＝せずにはいられない
+be supposed to=suppose（思われている）→ 〜することになっている
+according to=accord（一致する）→ 〜と一致して＝〜によれば
+as well as=A as well as B「BだけでなくAも」（重点はA）
+instead of=stead（場所）→ 〜の場所に＝〜の代わりに
+in addition=addition（追加）の中で＝さらに（in addition to＝〜に加えて）
+in advance=advance（前進）の状態で＝前もって
+on purpose=purpose（目的）に基づいて＝わざと（⇔ by accident）
+by accident=accident（偶然の出来事）によって＝偶然に（= by chance）
+on time=時間ちょうどに（in time＝間に合って と区別）
+in time=時間の範囲内に＝間に合って（on time＝時間通り と区別）
+take advantage of=advantage（有利）を取る＝利用する・つけこむ
+make use of=use（使用）を作る＝利用する
+pay attention to=attention（注意）を支払う＝注意を払う
+look forward to=to は前置詞！ 後ろは名詞か -ing
+be good at=at「一点」→ その分野で＝〜が得意だ
+be proud of=of「関連」→ 〜を誇りに思う（= take pride in）
+be fond of=fond（好んで）＝〜が好きだ
+be aware of=aware（気づいて）＋of＝〜に気づいている
+be capable of=capable（能力がある）＋of -ing
+be familiar with=familiar（よく知られた）＋with＝〜をよく知っている（物 be familiar to 人）
+be similar to=similar（似ている）＋to
+be based on=base（土台）の上に＝〜に基づいている
+be known for=for「理由」→ 〜で知られている（be known to 人＝人に知られている）
+little by little=少しずつ（= gradually）
+sooner or later=早かれ遅かれ＝いずれは
+more or less=多かれ少なかれ＝だいたい
+in the long run=長い走りの中で＝長い目で見れば
+on the other hand=もう一方の手では＝他方では（on the one hand とセットで）
+in other words=別の言葉で言うと＝言い換えれば
+on the contrary=contrary（反対）の上に＝それどころか
+at least=least（最小）でも＝少なくとも（⇔ at most）
+for the sake of=sake（利益）のために
+on behalf of=behalf（側・利益）に立って＝〜を代表して
+due to=due（当然の・起因する）→ 〜が原因で
+thanks to=〜への感謝で＝〜のおかげで（悪い結果に皮肉で使うことも）
+because of=because（理由）＋of＋名詞（because は後ろに文）
+consist of=con(共に)＋sist(立つ) → 〜で成り立つ＝〜から成る（進行形にしない）
+belong to=〜に属する（進行形にしない）
+suffer from=from「原因」→ 〜に苦しむ
+succeed in=in「分野」→ 〜に成功する（succeed to＝〜を継ぐ）
+participate in=part(部分)＋cip(取る) → 〜に参加する（= take part in）
+refer to=re(元へ)＋fer(運ぶ) → 話を持っていく＝言及する・参照する
+insist on=in(上に)＋sist(立つ) → 〜の上に立ち張る＝主張する
+apologize for=apologize to 人 for 事 の形で
+contribute to=to「到達点」→ 〜に貢献する・〜の一因となる
+focus on=on「接触」→ 〜に焦点を当てる
+deal with=with「関わる」→ 〜に対処する
+differ from=from「分離」→ 〜と異なる（= be different from）
+distinguish A from B=from「分離」→ AとBを区別する（= tell A from B）
+blame A for B=for「理由」→ BのことでAを責める
+thank A for B=for「理由」→ BのことでAに感謝する
+convert A into B=into「変化」→ AをBに変える（= turn A into B）
+be about to=about「間近に」→ まさに〜しようとしている
+be likely to=likely（ありそうな）→ 〜しそうである
+be willing to=will（意志）→ 〜するのをいとわない（⇔ be reluctant to）
+be reluctant to=reluctant（気が進まない）→ 〜したがらない（⇔ be willing to）
+it is no use -ing=use（役に立つこと）がない＝〜しても無駄だ
+be worth -ing=worth（価値がある）＋ -ing
+not only A but also B=AだけでなくBも（重点はB。B as well as A と同じ意味）
+now that=now（今や）＋that 節＝今や〜なので
+even if=仮定「たとえ〜でも」（even though は事実「〜なのに」）
+in case=case（場合）に備えて＝〜の場合に備えて
+as long as=条件「〜する限り」（as far as は範囲「〜する限り」）
+as far as=範囲「〜する限り」（as long as は条件）
+a number of=a number of＋複数名詞＋複数動詞（the number of は「〜の数」で単数扱い）
+after all=いろいろあった「全部の後で」＝結局
+ahead of=ahead（前方に）→ 〜の前に・〜より進んで（ahead of schedule＝予定より早く）
+all of a sudden=sudden（突然の）を強めた言い方＝突然（= suddenly）
+and so on=〜など（= and so forth, etc.）
+apart from=apart（離れて）＋from → 〜から離れて＝〜を除いて・〜に加えて
+as a matter of fact=「事実の問題として」＝実は
+as a result=結果として（as a result of 〜＝〜の結果）
+as soon as=〜するとすぐに（= the moment, no sooner 〜 than）
+at all costs=どんな費用を払っても＝何としても
+at first=最初は（後で変化することを暗示）。first of all は「まず第一に」
+at once=すぐに（= immediately）／ 同時に（all at once＝突然）
+be absorbed in=absorb（吸収する）→ 〜に吸い込まれる＝没頭している
+be afraid of=〜を恐れる（be afraid to do＝怖くて〜できない）
+be anxious about=心配（about）。be anxious for / to do は「切望する」
+be responsible for=for「対象」→ 〜に責任がある
+be short of=short（足りない）＋of → 〜が不足している（run short of＝不足する）
+be tired of=of「原因」→ 〜にうんざり（be tired from は「〜で疲れている」）
+by far=最上級・比較級を強める＝断然
+by no means=どんな手段によっても〜ない＝決して〜ない
+call for=for「求めて」→ 〜を要求する・必要とする
+call on=on「接触」→ 人を訪問する（場所なら call at）
+come true=夢や願いが実現する
+do without=〜なしで済ます（= dispense with）
+each other=2者の「お互い」。代名詞なので talk to each other のように前置詞が必要
+for example=例えば（= for instance）
+for the first time=初めて（at first は「最初は」と区別）
+from now on=今から先は＝今後は
+have nothing to do with=〜と何の関係もない（have something to do with＝何か関係がある）
+hear from=from「送り手」→ 〜から便りがある（hear of は「〜のうわさを聞く」）
+in charge of=charge（責任）の中に＝〜を担当して
+in common=共通に（have A in common＝Aを共有している）
+in contrast=contrast（対照）の中で＝対照的に
+in fact=実際に・実は（= as a matter of fact）
+in front of=front（正面）の中で＝〜の前で
+in order to=目的を明確にする「〜するために」（否定は in order not to）
+in particular=特に（= particularly, especially）
+in public=人前で（⇔ in private）
+keep in mind=心の中に保つ＝心に留める（keep A in mind）
+lead to=to「到達点」→ 〜につながる・〜を引き起こす
+make a difference=違いを作る＝影響を与える・重要である
+make sense=意味をなす・理解できる（make sense of＝〜を理解する）
+make sure=確実にする＝確かめる（make sure that 〜）
+make up=作り上げる＝構成する（be made up of＝〜から成る）
+on average=平均すると
+out of order=order（正常な状態）から外れて＝故障して
+prior to=prior（前の）＋to → 〜より前に（= before）
+put on=on「接触」→ 身につける（動作）。wear は「身につけている（状態）」
+regardless of=regard（考慮）がない → 〜に関係なく
+so far=これまでのところ（現在完了と一緒によく使う）
+stand for=〜の代わりに立つ＝〜を表す（UN stands for 〜）
+take care of=care（世話）を取る＝世話をする（= look after）
+turn up=up「上へ」→ 音量を上げる／姿を見せる（= show up）
+with regard to=〜に関して（= regarding, concerning）
+be satisfied with=with「対象」→ 〜に満足している
+in danger of=〜の危険の中に＝〜の危険がある（in danger＝危険な状態で）
+at the moment=今のところ・ちょうど今
+by the way=話題を変えるときの「ところで」
+to some extent=ある程度まで（extent＝程度）
+as usual=いつものように
+at last=長い時間の後で「ついに・とうとう」（= finally）
+over and over=何度も繰り返して（= again and again）
+right away=すぐに（= at once, immediately）
+all the way=道中ずっと＝はるばる
+make friends with=friends と複数形にするのがポイント
+be in a hurry=急いでいる（in a hurry to do＝〜しようと急いで）
+be busy -ing=busy の後ろは -ing（to do にしない！）
+look for=for「求めて」→ 〜を探す（= search for）
+look up=up「すっかり」→ 辞書などで調べる（look up A in a dictionary）
+get on=on「接触」→ バス・電車などに乗る（車・タクシーは get in）
+turn on=on「接触・作動」→ 電気などをつける（⇔ turn off）
+be accustomed to=to は前置詞なので後ろは -ing（= be used to）
+be eager to=eager（熱心な）→ しきりに〜したがっている（be eager for＋名詞）
+be bound to=bound（縛られた）→ きっと〜する・〜する義務がある
+be inclined to=incline（傾く）→ 気持ちが〜に傾いている＝〜する傾向がある
+be sure to=必ず〜する（Be sure to 〜.＝必ず〜してね）
+`;
+
+/* ================= 定数 ================= */
 const OK_TITLES = ['正解！すごいね ✨','大正解！','やったね、正解！','その調子！正解だよ'];
 const NG_TITLES = ['おしい！一緒に確認しよう','ドンマイ！ここで覚えちゃおう','惜しかったね！'];
-const BASIC_N = 7; // 各ユニットの 0〜6 が基礎、7〜9 が応用
+const BASIC_N = 7;           // 文法ユニットの 0〜6 が基礎、7〜9 が応用
+const STAGE_SIZE = 40;       // 単語ステージの語数
+const POS_NAME = { '動':'動詞', '名':'名詞', '形':'形容詞', '副':'副詞', '接':'接続詞', '前':'前置詞', '熟':'熟語' };
+const SETS = {
+  gj:{ label:'文法・中学', desc:'中学英文法の総点検。各ユニット10問（基礎7＋応用3）、8問正解でクリア。' },
+  gh:{ label:'文法・高校', desc:'高校英文法〜共テ頻出表現。各ユニット10問（基礎7＋応用3）、8問正解でクリア。' },
+  v1:{ label:'単語・標準', desc:'高校基礎〜標準レベル（共テで必須の約1400語レベル相当）。1回10問、英→日／日→英がランダム。2回連続正解で「習得」。', base:6 },
+  v2:{ label:'単語・発展', desc:'国公立・難関私大レベル（約1900語レベル相当）。抽象語・論説文頻出語を中心に。2回連続正解で「習得」。', base:8 },
+  id:{ label:'熟語', desc:'句動詞・前置詞句・構文的な熟語。長文でも会話でも頻出のものを厳選。', base:7 }
+};
+const TITLES = [[1,'英語ビギナー'],[5,'単語コレクター'],[10,'文法ハンター'],[15,'長文チャレンジャー'],[20,'共テファイター'],[30,'難関アタッカー'],[40,'英語マスター'],[50,'英語の覇者']];
+const needXp = lv => 60 + lv * 20;
+const titleOf = lv => TITLES.filter(t => lv >= t[0]).pop()[1];
 
 /* ================= ユーティリティ ================= */
 const $ = id => document.getElementById(id);
@@ -639,22 +3354,126 @@ const pick = arr => arr[Math.floor(Math.random()*arr.length)];
 const shuffle = arr => { const a = arr.slice(); for (let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmtSec = ms => (ms/1000).toFixed(1) + '秒';
+const today = () => { const d = new Date(); return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`; };
+const pct = (c, n) => n ? Math.round(c / n * 100) : 0;
 
 /* ================= 問題データの展開 ================= */
-const ALL = [], BY_ID = {};
+const ITEMS = {};            // id → item
+const GROUPS = { gj:[], gh:[], v1:[], v2:[], id:[] };   // タブごとのユニット／ステージ
+
+// 文法
 UNITS.forEach((u, ui) => {
-  u.no = ui + 1;
-  u.items = u.qs.map((q, i) => {
-    const item = { id: `${u.id}-${i}`, unit: u, level: i < BASIC_N ? '基礎' : '応用', q: q[0], answer: q[1][0], choices: q[1], hint: q[2], exp: q[3] };
-    ALL.push(item); BY_ID[item.id] = item; return item;
+  const set = u.grade === '中学' ? 'gj' : 'gh';
+  const g = { id:u.id, set, kind:'grammar', no:ui+1, title:u.title, tip:u.tip, items:[] };
+  u.qs.forEach((q, i) => {
+    const it = { id:`${u.id}-${i}`, kind:'grammar', group:g, set, level: i < BASIC_N ? '基礎' : '応用',
+      q:q[0], answer:q[1][0], choices:q[1], hint:q[2], exp:q[3], cat:`文法：${u.title}` };
+    ITEMS[it.id] = it; g.items.push(it);
   });
+  GROUPS[set].push(g);
 });
 
-/* ================= 保存データ ================= */
-const KEY = 'examEnglish.v2';
-let save = (() => { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch(e){ return null; } })() || { units:{}, weak:[], answered:0 };
+// 単語・熟語
+const RAW = { v1:VOCAB1, v2:VOCAB2, id:IDIOMS };
+Object.entries(RAW).forEach(([set, text]) => {
+  const list = text.trim().split('\n').map((line, i) => {
+    const [w, pos, m] = line.split('|');
+    const it = { id:`${set}-${i}`, kind:'vocab', set, w, pos, m,
+      segs: m.replace(/（[^）]*）/g, '').split('・').map(s => s.trim()).filter(Boolean),
+      cat: set === 'id' ? '熟語' : `${SETS[set].label}：${POS_NAME[pos] || pos}` };
+    ITEMS[it.id] = it; return it;
+  });
+  const n = Math.max(1, Math.round(list.length / STAGE_SIZE)), per = Math.ceil(list.length / n);
+  for (let s = 0; s < n; s++){
+    const items = list.slice(s*per, (s+1)*per);
+    const g = { id:`${set}s${s+1}`, set, kind:'vocab', no:s+1, title:`Stage ${s+1}`,
+      range:`${items[0].w} 〜 ${items[items.length-1].w}`, items };
+    items.forEach(it => it.group = g);
+    GROUPS[set].push(g);
+  }
+  RAW[set] = list;
+});
+const VOCAB_ALL = [...RAW.v1, ...RAW.v2, ...RAW.id];
+const parseKV = t => Object.fromEntries(t.trim().split('\n').map(l => { const i = l.indexOf('='); return [l.slice(0, i), l.slice(i + 1)]; }));
+const ETY = parseKV(ETY_W), ETY_ID = parseKV(ETY_I);
+function noteOf(it){
+  const n = it.set === 'id' ? ETY_ID[it.w] : ETY[it.w];
+  if (!n) return '';
+  const label = it.set !== 'id' && /[a-z]+\([^)]*\)/i.test(n) ? '🧬 語源' : '💡 覚え方';
+  return `${label}\n${n.split(' ／ ').join('\n')}`;
+}
+const GRAMMAR_ALL = [...GROUPS.gj, ...GROUPS.gh].flatMap(g => g.items);
+
+// 意味が重なる語どうしは同じ問題の選択肢に並べない
+const overlap = (a, b) => a.segs.some(x => b.segs.some(y => x === y || (x.length >= 2 && y.length >= 2 && (x.includes(y) || y.includes(x)))));
+function buildVocabQuestion(it){
+  const dir = Math.random() < .5 ? 'ej' : 'je';
+  const pool = RAW[it.set];
+  const same = shuffle(pool.filter(o => o !== it && o.pos === it.pos && !overlap(o, it)));
+  const others = shuffle(pool.filter(o => o !== it && o.pos !== it.pos && !overlap(o, it)));
+  const ds = [];
+  for (const o of [...same, ...others]){
+    if (ds.length === 3) break;
+    if (ds.some(d => overlap(d, o) || d.w === o.w)) continue;
+    ds.push(o);
+  }
+  const opts = shuffle([it, ...ds]).map(o => ({ text: dir === 'ej' ? o.m : o.w, src:o }));
+  return { dir, opts, answer: dir === 'ej' ? it.m : it.w };
+}
+
+/* ================= セーブデータ ================= */
+const KEY = 'examEnglish.v3';
+function loadSave(){
+  let s = null;
+  try { s = JSON.parse(localStorage.getItem(KEY)); } catch(e){}
+  if (!s){
+    s = { xp:0, lv:1, units:{}, weak:{}, vm:{}, cat:{}, dir:{}, total:0, correct:0, streak:0, lastDay:'' };
+    try { // 旧バージョンからの引き継ぎ
+      const old = JSON.parse(localStorage.getItem('examEnglish.v2'));
+      if (old){ s.units = old.units || {}; (old.weak || []).forEach(id => { if (ITEMS[id]) s.weak[id] = { w:1, s:0 }; }); s.total = old.answered || 0; }
+    } catch(e){}
+  }
+  return s;
+}
+let save = loadSave();
 const persist = () => { try { localStorage.setItem(KEY, JSON.stringify(save)); } catch(e){} };
-const isCleared = u => (save.units[u.id]?.best || 0) >= 8;
+const isMastered = it => (save.vm[it.id] || 0) >= 2;
+const masteredIn = g => g.items.filter(isMastered).length;
+function groupCleared(g){
+  return g.kind === 'grammar' ? (save.units[g.id]?.best || 0) >= 8 : masteredIn(g) === g.items.length;
+}
+
+/* ================= XP・レベル ================= */
+function addXp(n){
+  save.xp += n;
+  let up = 0;
+  while (save.xp >= needXp(save.lv)){ save.xp -= needXp(save.lv); save.lv++; up++; }
+  renderLv();
+  return up;
+}
+function renderLv(){
+  $('lvNum').textContent = save.lv;
+  $('lvMini').style.width = (save.xp / needXp(save.lv) * 100) + '%';
+}
+let lvupQueue = 0;
+function showLevelUp(){
+  $('lvupNum').textContent = save.lv;
+  $('lvupTitle').textContent = '称号：' + titleOf(save.lv);
+  $('lvup').classList.add('show');
+  if (navigator.vibrate) navigator.vibrate([20, 40, 60]);
+  clearTimeout(showLevelUp.tm); showLevelUp.tm = setTimeout(hideLevelUp, 2600);
+}
+function hideLevelUp(){ $('lvup').classList.remove('show'); }
+$('lvup').addEventListener('click', hideLevelUp);
+function touchDay(){
+  const t = today();
+  if (save.lastDay === t) return false;
+  const y = new Date(); y.setDate(y.getDate() - 1);
+  const yd = `${y.getFullYear()}-${y.getMonth()+1}-${y.getDate()}`;
+  save.streak = save.lastDay === yd ? save.streak + 1 : 1;
+  save.lastDay = t;
+  return true;
+}
 
 /* ================= ナレーション ================= */
 const bubble = $('bubble'), bTitle = $('bubbleTitle'), bText = $('bubbleText');
@@ -665,7 +3484,7 @@ function say(text, { tone = '', title = '' } = {}){
   bTitle.textContent = title;
   void bubble.offsetWidth; bubble.classList.add('pop');
   bText.scrollTop = 0;
-  const chars = Array.from(text), start = performance.now(), speed = 17;
+  const chars = Array.from(text), start = performance.now(), speed = 15;
   const caret = document.createElement('span'); caret.className = 'caret';
   const state = { raf:0, done:false, finish(){ if (state.done) return; state.done = true; cancelAnimationFrame(state.raf); bText.textContent = text; } };
   const step = now => {
@@ -680,88 +3499,170 @@ function say(text, { tone = '', title = '' } = {}){
   typing = state;
 }
 bubble.addEventListener('click', () => typing && typing.finish());
-
 function toast(msg, type){
   const t = $('toast'); t.textContent = msg; t.className = 'toast ' + type;
   void t.offsetWidth; t.classList.add('show');
   clearTimeout(toast.tm); toast.tm = setTimeout(() => t.classList.remove('show'), 1100);
 }
+function xpFloat(el, n){
+  const r = el.getBoundingClientRect(), f = document.createElement('div');
+  f.className = 'xpfloat'; f.textContent = `+${n} XP`;
+  f.style.left = (r.left + r.width/2) + 'px'; f.style.top = (r.top - 4) + 'px';
+  document.body.appendChild(f); setTimeout(() => f.remove(), 1200);
+}
 
-/* ================= 画面切り替え ================= */
-let mode = 'start', grade = '中学';
+/* ================= ホーム ================= */
+let mode = 'start', curSet = 'gj';
 function show(view){
   ['viewStart','viewQuiz','viewResult'].forEach(v => $(v).classList.toggle('hidden', v !== view));
   const el = $(view); el.style.animation = 'none'; void el.offsetWidth; el.style.animation = '';
   $('panel').scrollTop = 0;
 }
-
-/* ================= ユニット選択 ================= */
+function weakCategories(){
+  return Object.entries(save.cat).map(([k, v]) => ({ key:k, ...v, acc:v.c / v.n }))
+    .filter(c => c.n >= 4 && c.acc < 1).sort((a, b) => a.acc - b.acc || b.n - a.n).slice(0, 5);
+}
 function renderHome(){
-  $('unitCount').textContent = UNITS.length; $('qCount').textContent = ALL.length;
-  const cleared = UNITS.filter(isCleared).length;
-  $('ovClear').textContent = cleared; $('ovTotal').textContent = UNITS.length;
-  $('ovSolved').textContent = `のべ ${save.answered} 問回答`;
-  requestAnimationFrame(() => $('ovBar').style.width = (cleared / UNITS.length * 100) + '%');
-  $('btnWeakList').textContent = `📕 苦手リスト（${save.weak.length}）`;
-  $('btnWeakList').disabled = save.weak.length === 0;
-  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.grade === grade));
+  renderLv();
+  $('plLv').textContent = save.lv; $('plTitle').textContent = titleOf(save.lv);
+  $('plXp').textContent = `${save.xp} / ${needXp(save.lv)} XP（次のレベルまで ${needXp(save.lv) - save.xp}）`;
+  requestAnimationFrame(() => $('plBar').style.width = (save.xp / needXp(save.lv) * 100) + '%');
+  $('stStreak').textContent = save.streak + '日';
+  $('stAns').textContent = save.total;
+  $('stAcc').textContent = save.total ? pct(save.correct, save.total) + '%' : '-';
+  $('stMaster').textContent = VOCAB_ALL.filter(isMastered).length;
+  const wn = Object.keys(save.weak).length;
+  $('btnWeakList').innerHTML = `📕 苦手${wn}問 <span class="x2">XP×2</span>`;
+  $('btnWeakList').disabled = wn === 0;
+
+  // 苦手系統
+  const wc = weakCategories();
+  $('weakCats').innerHTML = wc.length ? wc.map((c, i) => `
+    <div class="wcat">
+      <div class="info"><div class="nm"><span>${i+1}. ${esc(c.key)}</span><span>${pct(c.c, c.n)}%（${c.n - c.c}/${c.n}ミス）</span></div>
+        <div class="bar"><i style="width:${Math.max(4, c.acc*100)}%;background:${c.acc < .5 ? 'linear-gradient(90deg,#fb7185,#fda4af)' : 'linear-gradient(90deg,#fbbf24,#fde68a)'}"></i></div></div>
+      <button class="btn hintbtn" data-cat="${esc(c.key)}">特訓 <span class="x2">×2</span></button>
+    </div>`).join('')
+    : '<div class="empty">まだデータが少ないよ。いろいろな問題を解くと、間違いが多い系統（文法単元・品詞・出題形式）をここで自動分析するよ。</div>';
+  $('weakCats').querySelectorAll('[data-cat]').forEach(b => b.addEventListener('click', () => startCategory(b.dataset.cat)));
+  const d = save.dir, chips = [];
+  if (d.ej?.n >= 4) chips.push(`英→日 ${pct(d.ej.c, d.ej.n)}%`);
+  if (d.je?.n >= 4) chips.push(`日→英 ${pct(d.je.c, d.je.n)}%`);
+  if (d['基礎']?.n >= 4) chips.push(`文法・基礎 ${pct(d['基礎'].c, d['基礎'].n)}%`);
+  if (d['応用']?.n >= 4) chips.push(`文法・応用 ${pct(d['応用'].c, d['応用'].n)}%`);
+  $('weakDir').innerHTML = chips.map(c => `<span>${c}</span>`).join('');
+
+  // タブ・ユニット一覧
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.set === curSet));
+  const groups = GROUPS[curSet];
+  const nItems = groups.reduce((s, g) => s + g.items.length, 0);
+  $('setDesc').textContent = `${SETS[curSet].desc}（全${groups.length}${groups[0].kind === 'grammar' ? 'ユニット' : 'ステージ'}・${nItems}${groups[0].kind === 'grammar' ? '問' : '語'}）`;
   const box = $('units'); box.innerHTML = '';
-  UNITS.filter(u => u.grade === grade).forEach(u => {
-    const s = save.units[u.id];
+  groups.forEach(g => {
     const b = document.createElement('button');
-    b.className = 'unit' + (isCleared(u) ? ' cleared' : '');
-    b.innerHTML = `<span class="no">${u.no}</span><span class="tt"><b>${esc(u.title)}</b><small>${s ? `ベスト ${s.best}/10 ・ ${s.plays}回挑戦` : '未挑戦 ・ 10問'}</small></span><span class="st">${isCleared(u) ? '🏅' : s ? '▶' : '✦'}</span>`;
-    b.addEventListener('click', () => startUnit(u));
+    const cleared = groupCleared(g);
+    b.className = 'unit' + (cleared ? ' cleared' : '');
+    let sub, prog = 0;
+    if (g.kind === 'grammar'){
+      const s = save.units[g.id];
+      sub = s ? `ベスト ${s.best}/10 ・ ${s.plays}回挑戦` : '未挑戦 ・ 10問';
+    } else {
+      const m = masteredIn(g); prog = m / g.items.length;
+      sub = `${esc(g.range)} ・ 習得 ${m}/${g.items.length}`;
+    }
+    b.innerHTML = `<span class="no">${g.no}</span><span class="tt"><b>${esc(g.title)}</b><small>${sub}</small></span><span class="st">${cleared ? '🏅' : '▶'}</span>${prog ? `<span class="ubar" style="width:${prog*100}%"></span>` : ''}`;
+    b.addEventListener('click', () => startGroup(g));
     box.appendChild(b);
   });
 }
-document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => { grade = t.dataset.grade; renderHome(); }));
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  curSet = t.dataset.set; renderHome();
+  t.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+}));
 
 function goHome(){
   mode = 'start'; clearInterval(timerId);
-  $('scorePill').textContent = '⭐ ' + UNITS.filter(isCleared).length + ' / ' + UNITS.length;
   renderHome(); show('viewStart');
-  const next = UNITS.find(u => !isCleared(u));
-  say(next
-    ? `ようこそ！ユニットを選んで始めよう。\nおすすめは「Unit ${next.no} ${next.title}」。中学の基礎から順に固めていくのが合格への近道だよ。`
-    : '全ユニットクリア、おめでとう！🎉\nランダム20問や苦手リストで仕上げていこう。', { title: 'Welcome ❄' });
+  const wc = weakCategories();
+  const lines = [`Lv ${save.lv}「${titleOf(save.lv)}」。次のレベルまであと ${needXp(save.lv) - save.xp} XP！`];
+  if (save.streak >= 2 && save.lastDay === today()) lines.push(`🔥 ${save.streak}日連続で学習中！この調子！`);
+  else if (save.lastDay !== today()) lines.push('今日最初の1問で「デイリーボーナス +20XP」がもらえるよ。');
+  if (wc.length) lines.push(`いちばんの苦手系統は「${wc[0].key}」（正答率${pct(wc[0].c, wc[0].n)}%）。特訓すると経験値2倍だよ！`);
+  else lines.push('文法・単語・熟語、好きなところから始めよう。');
+  say(lines.join('\n'), { title: 'Welcome ❄' });
 }
 
 /* ================= 出題 ================= */
-let run = null, idx = 0, log = [], qStart = 0, hintUsed = false, answered = false, timerId = 0, current = null;
+let run = null, idx = 0, log = [], qStart = 0, hintUsed = false, answered = false, timerId = 0, current = null, combo = 0;
 
+function prepare(it){
+  if (it.kind === 'grammar') return { it, dir:'g', opts: shuffle(it.choices).map(t => ({ text:t })), answer: it.answer };
+  return { it, ...buildVocabQuestion(it) };
+}
 function startRun(items, info){
-  run = { ...info, items: items.map(it => ({ ...it, opts: shuffle(it.choices) })) };
-  idx = 0; log = []; mode = 'quiz';
+  if (!items.length) return;
+  run = { mult:1, ...info, qs: items.map(prepare), xp:{ base:0, speed:0, combo:0, bonus:0, daily:0 }, xpTotal:0, lvStart:save.lv, ups:0 };
+  idx = 0; log = []; combo = 0; mode = 'quiz';
   show('viewQuiz');
   nextQuestion();
 }
-function startUnit(u){
-  const items = shuffle(u.items.slice(0, BASIC_N)).concat(shuffle(u.items.slice(BASIC_N)));
-  startRun(items, { type:'unit', unit:u, label:`Unit ${u.no}　${u.title}` });
+function startGroup(g){
+  if (g.kind === 'grammar'){
+    const items = shuffle(g.items.slice(0, BASIC_N)).concat(shuffle(g.items.slice(BASIC_N)));
+    return startRun(items, { type:'unit', group:g, label:`Unit ${g.no}　${g.title}` });
+  }
+  // 単語ステージ：未習得の語を優先して10問
+  const sorted = shuffle(g.items).sort((a, b) => (save.vm[a.id] || 0) - (save.vm[b.id] || 0));
+  startRun(sorted.slice(0, 10), { type:'stage', group:g, label:`${SETS[g.set].label} ${g.title}`, stageWasCleared: groupCleared(g) });
 }
-function startRandom(){ startRun(shuffle(ALL).slice(0, 20), { type:'random', label:'全範囲ランダム20問' }); }
+function startRandom(){
+  startRun(shuffle([...shuffle(GRAMMAR_ALL).slice(0, 8), ...shuffle(VOCAB_ALL).slice(0, 12)]), { type:'random', label:'全範囲ミックス20問' });
+}
 function startWeak(){
-  const items = shuffle(save.weak.map(id => BY_ID[id]).filter(Boolean)).slice(0, 20);
-  if (items.length) startRun(items, { type:'weak', label:'苦手リスト復習' });
+  const ids = Object.entries(save.weak).sort((a, b) => b[1].w - a[1].w || Math.random() - .5).map(e => e[0]);
+  startRun(shuffle(ids.slice(0, 15).map(id => ITEMS[id]).filter(Boolean)), { type:'weak', label:'苦手問題集', mult:2 });
+}
+function startCategory(cat){
+  const all = Object.values(ITEMS).filter(it => it.cat === cat);
+  const weakFirst = shuffle(all).sort((a, b) => (save.weak[b.id]?.w || 0) - (save.weak[a.id]?.w || 0) || (save.vm[a.id] || 0) - (save.vm[b.id] || 0));
+  startRun(shuffle(weakFirst.slice(0, 10)), { type:'cat', label:`系統特訓：${cat}`, mult:2 });
 }
 $('btnRandom').addEventListener('click', startRandom);
 $('btnWeakList').addEventListener('click', startWeak);
 $('btnQuit').addEventListener('click', goHome);
 
 function nextQuestion(){
-  current = run.items[idx]; answered = false; hintUsed = false;
-  const total = run.items.length;
-  $('qCat').textContent = run.type === 'unit' ? `Unit ${current.unit.no}` : `U${current.unit.no} ${current.unit.title}`;
-  const lv = $('qLv'); lv.textContent = current.level; lv.className = 'lv-chip ' + (current.level === '基礎' ? 'basic' : 'adv');
-  $('qNum').textContent = `Q${idx+1} / ${total}`;
+  current = run.qs[idx]; answered = false; hintUsed = false;
+  const it = current.it, total = run.qs.length;
+  $('qCat').textContent = it.kind === 'grammar' ? `Unit ${it.group.no}` : `${SETS[it.set].label} ${it.group.no}`;
+  const lv = $('qLv');
+  if (it.kind === 'grammar'){ lv.textContent = it.level; lv.className = 'lv-chip ' + (it.level === '基礎' ? 'basic' : 'adv'); }
+  else { lv.textContent = current.dir === 'ej' ? '英→日' : '日→英'; lv.className = 'lv-chip voc'; }
+  $('qMult').classList.toggle('hidden', run.mult < 2);
+  renderCombo();
+  $('qNum').textContent = `${idx+1}/${total}`;
   $('progBar').style.width = (idx / total * 100) + '%';
-  $('scorePill').textContent = '⭐ ' + log.filter(r => r.correct).length;
-  $('qText').innerHTML = esc(current.q).replace('___', '<span class="blank" id="blank">　</span>');
+
+  const qt = $('qText');
+  if (it.kind === 'grammar'){
+    qt.className = 'question';
+    $('qPrompt').textContent = '';
+    qt.innerHTML = esc(it.q).replace('___', '<span class="blank" id="blank">　</span>');
+  } else if (current.dir === 'ej'){
+    qt.className = 'question vq';
+    $('qPrompt').textContent = it.set === 'id' ? 'この熟語の意味は？' : 'この単語の意味は？';
+    qt.innerHTML = `${esc(it.w)}<span class="pos">${POS_NAME[it.pos]}</span>`;
+  } else {
+    qt.className = 'question vq ja';
+    $('qPrompt').textContent = it.set === 'id' ? 'この意味を表す熟語は？' : 'この意味を表す英単語は？';
+    qt.innerHTML = `${esc(it.m)}<span class="pos">${POS_NAME[it.pos]}</span>`;
+  }
+  $('etyBox').classList.add('hidden');
   const box = $('choices'); box.innerHTML = '';
-  current.opts.forEach((text, i) => {
+  current.opts.forEach((o, i) => {
     const b = document.createElement('button');
-    b.className = 'choice'; b.innerHTML = `<span class="key">${'ABCD'[i]}</span>${esc(text)}`;
+    b.className = 'choice' + (current.dir === 'ej' ? ' ja' : '');
+    b.innerHTML = `<span class="key">${'ABCD'[i]}</span>${esc(o.text)}`;
     b.addEventListener('click', () => answer(i));
     box.appendChild(b);
   });
@@ -770,146 +3671,180 @@ function nextQuestion(){
   $('btnNext').textContent = idx === total - 1 ? '結果を見る 📊' : '次の問題へ →';
   $('panel').scrollTop = 0;
 
-  let msg;
-  if (idx === 0) msg = `「${run.label}」スタート！\n${run.type === 'unit' ? '前半7問は基礎、後半3問は応用だよ。' : 'いろいろな単元から出題されるよ。'}わからなければヒントを使おう。`;
-  else if (run.type === 'unit' && idx === BASIC_N) msg = 'ここからは応用問題！\n基礎で確認したルールを組み合わせて考えよう。';
-  else msg = pick([`Q${idx+1}。空所の前後をよく見てね。`, `Q${idx+1}。文の形（主語・動詞・品詞）から絞り込もう。`, `Q${idx+1}。落ち着いて、根拠を持って選ぼう。`]) + (run.type !== 'unit' ? `\n単元：${current.unit.title}` : '');
-  say(msg, { title: '' });
+  if (idx === 0) say(`「${run.label}」スタート！${run.mult > 1 ? '\n🔥 このモードは経験値2倍！' : ''}\n連続正解でコンボボーナス、5秒以内の正解でスピードボーナスがつくよ。`, { title:'' });
+  else if (run.type === 'unit' && idx === BASIC_N) say('ここからは応用問題！（XPもアップ）\n基礎で確認したルールを組み合わせて考えよう。', { title:'' });
+  else if (it.kind === 'grammar') say(pick(['空所の前後をよく見てね。','文の形（主語・動詞・品詞）から絞り込もう。','落ち着いて、根拠を持って選ぼう。']) + (run.type !== 'unit' ? `\n単元：${it.group.title}` : ''), { title:'' });
+  else say(current.dir === 'ej' ? pick(['パッと意味が浮かぶかな？','品詞もヒントになるよ。','似た意味の選択肢に注意！']) : pick(['つづりをイメージしてから選ぼう。','品詞が合っているかもチェック！','似た形の単語に注意！']), { title:'' });
 
   qStart = performance.now();
   clearInterval(timerId);
   timerId = setInterval(() => { $('qTimer').textContent = '⏱ ' + ((performance.now()-qStart)/1000).toFixed(1) + 's'; }, 100);
+}
+function renderCombo(){
+  const c = $('qCombo');
+  if (combo >= 2){ c.textContent = `🔥${combo} COMBO`; c.classList.remove('hidden'); c.style.animation = 'none'; void c.offsetWidth; c.style.animation = ''; }
+  else c.classList.add('hidden');
 }
 
 function answer(i){
   if (answered) return; answered = true;
   const time = performance.now() - qStart; clearInterval(timerId);
   $('qTimer').textContent = '⏱ ' + (time/1000).toFixed(1) + 's';
-  const chosen = current.opts[i], ok = chosen === current.answer;
-  log.push({ item: current, correct: ok, time, hint: hintUsed, chosen });
+  const it = current.it, chosen = current.opts[i], ok = chosen.text === current.answer;
+  log.push({ q: current, it, correct: ok, time, hint: hintUsed, chosen: chosen.text });
 
-  // 苦手リストの更新
-  save.answered++;
-  const w = save.weak.indexOf(current.id);
-  if (!ok && w < 0) save.weak.push(current.id);
-  if (ok && w >= 0 && !hintUsed) save.weak.splice(w, 1);
+  // ---- 統計 ----
+  save.total++; if (ok) save.correct++;
+  const bump = (obj, k) => { const s = obj[k] || (obj[k] = { n:0, c:0 }); s.n++; if (ok) s.c++; };
+  bump(save.cat, it.cat);
+  bump(save.dir, it.kind === 'grammar' ? it.level : current.dir);
+  if (it.kind === 'vocab') save.vm[it.id] = ok && !hintUsed ? (save.vm[it.id] || 0) + 1 : ok ? (save.vm[it.id] || 0) : 0;
+  // 苦手問題集：間違えたら登録、ヒントなし2回連続正解で卒業
+  let graduated = false;
+  if (!ok){ const w = save.weak[it.id] || (save.weak[it.id] = { w:0, s:0 }); w.w++; w.s = 0; }
+  else if (save.weak[it.id] && !hintUsed){ save.weak[it.id].s++; if (save.weak[it.id].s >= 2){ delete save.weak[it.id]; graduated = true; } }
+
+  // ---- XP ----
+  let gain = 0;
+  if (touchDay()){ run.xp.daily += 20; gain += 20; }
+  if (ok){
+    combo++;
+    const base = it.kind === 'grammar' ? (it.level === '基礎' ? 10 : 16) : SETS[it.set].base;
+    const b = Math.round(base * (hintUsed ? .5 : 1));
+    const sp = time < 5000 && !hintUsed ? Math.ceil(base * .3) : 0;
+    const cb = combo >= 3 ? Math.min(combo, 10) : 0;
+    run.xp.base += b * run.mult; run.xp.speed += sp * run.mult; run.xp.combo += cb * run.mult;
+    gain += (b + sp + cb) * run.mult;
+  } else {
+    combo = 0; run.xp.base += 1 * run.mult; gain += 1 * run.mult;
+  }
+  run.xpTotal += gain;
+  const ups = addXp(gain); run.ups += ups;
   persist();
 
-  [...$('choices').children].forEach((b, j) => {
+  // ---- 表示 ----
+  const btns = [...$('choices').children];
+  btns.forEach((b, j) => {
     b.disabled = true;
-    if (current.opts[j] === current.answer) b.classList.add('correct');
+    if (current.opts[j].text === current.answer) b.classList.add('correct');
     else if (j === i) b.classList.add('wrong');
     else b.classList.add('dim');
   });
-  const blank = $('blank'); blank.textContent = current.answer; blank.classList.add('filled');
+  if (it.kind === 'grammar'){ const blank = $('blank'); blank.textContent = it.answer; blank.classList.add('filled'); }
+  if (it.kind === 'vocab'){
+    const box = $('etyBox'), note = noteOf(it);
+    let html = `<span class="word">${esc(it.w)}</span>　${esc(it.m)}`;
+    if (note){ const [label, ...rest] = note.split('\n'); html += `\n<b>${esc(label)}</b>${esc(rest.join('\n'))}`; }
+    if (!ok && chosen.src && chosen.src !== it){
+      const n2 = noteOf(chosen.src);
+      html += `<span class="sub">あなたが選んだ <b style="display:inline;color:#fecdd3">${esc(chosen.src.w)}</b>＝${esc(chosen.src.m)}${n2 ? '\n' + esc(n2.split('\n').slice(1).join('\n')) : ''}</span>`;
+    }
+    box.innerHTML = html; box.classList.remove('hidden');
+  }
   $('btnHint').classList.add('hidden');
   $('btnNext').classList.remove('hidden');
-  $('scorePill').textContent = '⭐ ' + log.filter(r => r.correct).length;
+  renderCombo();
+  xpFloat(btns[i], gain);
   if (navigator.vibrate) navigator.vibrate(ok ? 18 : [30, 40, 30]);
+  if (ups) setTimeout(showLevelUp, 450);
 
+  const exp = it.kind === 'grammar' ? it.exp : vocabExp(it, chosen, ok);
+  const extra = graduated ? '\n\n🎓 苦手問題集から卒業！' : '';
   if (ok){
-    toast('✓ 正解！', 'ok');
-    const lead = hintUsed ? 'ヒントをしっかり活かせたね！\n\n' : time < 6000 ? 'スピードも完璧！\n\n' : '';
-    say(lead + current.exp, { tone: 'ok', title: pick(OK_TITLES) });
+    toast(combo >= 3 ? `✓ ${combo}連続正解！` : '✓ 正解！', 'ok');
+    const lead = hintUsed ? 'ヒントをしっかり活かせたね！\n\n' : time < 5000 ? '⚡ スピードボーナス！\n\n' : '';
+    say(lead + exp + extra, { tone:'ok', title: pick(OK_TITLES) + `　+${gain}XP` });
   } else {
     toast('✗ おしい！', 'ng');
-    say(`正解は「${current.answer}」。\n\n` + current.exp + '\n\n（この問題は苦手リストに追加されたよ）', { tone: 'ng', title: pick(NG_TITLES) });
+    say(`正解は「${current.answer}」。\n` + exp + '\n（苦手問題集に追加されたよ）', { tone:'ng', title: pick(NG_TITLES) });
   }
-  setTimeout(() => $('btnNext').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 150);
+  setTimeout(() => $('btnNext').scrollIntoView({ behavior:'smooth', block:'nearest' }), 150);
+}
+function vocabExp(it, chosen, ok){
+  let s = `${it.w}［${POS_NAME[it.pos]}］＝ ${it.m}`;
+  if (!ok && chosen.src && chosen.src !== it) s += `\n選んだ「${chosen.text}」の単語も、下のカードでセットで覚えちゃおう！`;
+  s += '\n（語源・覚え方は下のカードを見てね）';
+  if (ok) s += `\n\n習得度：${'★'.repeat(Math.min(2, save.vm[it.id] || 0))}${'☆'.repeat(Math.max(0, 2 - (save.vm[it.id] || 0)))}`;
+  return s;
 }
 
 $('btnHint').addEventListener('click', () => {
   if (answered || hintUsed) return;
   hintUsed = true;
-  $('btnHint').disabled = true; $('btnHint').textContent = '💡 ヒント表示中';
-  say(current.hint, { tone: 'hint', title: 'ヒント 💡' });
+  $('btnHint').disabled = true; $('btnHint').textContent = '💡 ヒント表示中（XP半分）';
+  const it = current.it;
+  let h;
+  if (it.kind === 'grammar') h = it.hint;
+  else if (current.dir === 'ej') h = `品詞は「${POS_NAME[it.pos]}」。意味は「${Array.from(it.m)[0]}…」で始まるよ。`;
+  else if (it.set === 'id') h = `最初の単語は「${it.w.split(' ')[0]}」、全部で${it.w.split(' ').length}語の熟語だよ。`;
+  else h = `最初の文字は「${it.w[0]}」、${it.w.length}文字の${POS_NAME[it.pos]}だよ。`;
+  say(h, { tone:'hint', title:'ヒント 💡' });
 });
-$('btnNext').addEventListener('click', () => { idx++; if (idx >= run.items.length) showResult(); else nextQuestion(); });
+$('btnNext').addEventListener('click', () => { idx++; if (idx >= run.qs.length) showResult(); else nextQuestion(); });
 
-/* ================= 苦手分析 ================= */
-function analyze(){
-  const byUnit = new Set(log.map(r => r.item.unit.id)).size > 1;
-  const keyOf = r => byUnit ? r.item.unit.title : r.item.level;
-  const map = {};
-  log.forEach(r => {
-    const k = keyOf(r);
-    const c = map[k] || (map[k] = { key: k, unit: r.item.unit, total: 0, correct: 0, time: 0, hints: 0 });
-    c.total++; c.time += r.time; if (r.correct) c.correct++; if (r.hint) c.hints++;
-  });
-  const groups = Object.values(map).map(c => ({ ...c, acc: c.correct / c.total, avg: c.time / c.total }));
-  if (!byUnit) groups.sort((a, b) => (a.key === '基礎' ? -1 : 1));
-  const total = log.length, correct = log.filter(r => r.correct).length;
-  const avg = log.reduce((s, r) => s + r.time, 0) / total;
-  return {
-    byUnit, groups, total, correct, acc: correct / total, avg,
-    hints: log.filter(r => r.hint).length,
-    weak: groups.filter(g => g.acc < 1).sort((a, b) => a.acc - b.acc || b.avg - a.avg),
-    slow: groups.filter(g => g.acc === 1 && g.avg > avg * 1.3 && g.avg > 8000),
-    strong: groups.filter(g => g.acc === 1 && g.hints === 0),
-    fastWrong: log.filter(r => !r.correct && r.time < 5000).length,
-    slowWrong: log.filter(r => !r.correct && r.time > 20000).length
-  };
+/* ================= リザルト ================= */
+function groupKeyOf(r){
+  if (run.type === 'unit') return r.it.level;
+  if (run.type === 'stage') return r.q.dir === 'ej' ? '英→日（意味）' : '日→英（つづり）';
+  return r.it.cat;
 }
-
 function showResult(){
   mode = 'result'; clearInterval(timerId);
   $('progBar').style.width = '100%';
-  const A = analyze(), pct = Math.round(A.acc * 100);
-  const rank = pct === 100 ? 'S' : pct >= 80 ? 'A' : pct >= 60 ? 'B' : 'C';
-  const u = run.unit;
+  const total = log.length, correct = log.filter(r => r.correct).length, acc = correct / total, P = Math.round(acc * 100);
+  const avg = log.reduce((s, r) => s + r.time, 0) / total, hints = log.filter(r => r.hint).length;
+  const rank = P === 100 ? 'S' : P >= 80 ? 'A' : P >= 60 ? 'B' : 'C';
+  const g = run.group;
 
-  // 記録
+  // グループ集計
+  const map = {};
+  log.forEach(r => { const k = groupKeyOf(r); const c = map[k] || (map[k] = { key:k, n:0, c:0, t:0 }); c.n++; c.t += r.time; if (r.correct) c.c++; });
+  const groups = Object.values(map).map(c => ({ ...c, acc:c.c / c.n, avg:c.t / c.n }));
+  const weak = groups.filter(x => x.acc < 1).sort((a, b) => a.acc - b.acc);
+
+  // 記録・ボーナス
   let newClear = false, prevBest = null;
   if (run.type === 'unit'){
-    const s = save.units[u.id] || { best: 0, plays: 0 };
+    const s = save.units[g.id] || { best:0, plays:0 };
     prevBest = s.plays ? s.best : null;
-    newClear = s.best < 8 && A.correct >= 8;
-    s.best = Math.max(s.best, A.correct); s.plays++;
-    save.units[u.id] = s; persist();
+    newClear = s.best < 8 && correct >= 8;
+    s.best = Math.max(s.best, correct); s.plays++; save.units[g.id] = s;
   }
+  let bonus = 0;
+  if (newClear) bonus += 100;
+  if (P === 100 && total >= 10) bonus += 30;
+  if (run.type === 'stage' && groupCleared(g) && !run.stageWasCleared) bonus += 60;
+  if (bonus){ run.xp.bonus += bonus; run.xpTotal += bonus; run.ups += addXp(bonus); }
+  persist();
+  if (run.ups) setTimeout(showLevelUp, 600);
 
   // 分析メモ
-  const insights = [];
-  if (A.byUnit){
-    if (A.weak.length){
-      const w = A.weak[0];
-      insights.push(['🎯', `いちばんの伸びしろは「${w.key}」（${w.correct}/${w.total}）。${w.unit.tip}`]);
-      if (A.weak[1]) insights.push(['📌', `次に復習したいのは「${A.weak[1].key}」（${A.weak[1].correct}/${A.weak[1].total}）。`]);
-    } else insights.push(['🏆', '出題されたすべての単元で正解！ 基礎から応用までしっかり身についているよ。']);
-  } else {
-    const b = A.groups.find(g => g.key === '基礎'), a = A.groups.find(g => g.key === '応用');
-    if (b && b.acc < 1) insights.push(['🧱', `基礎問題で ${b.total - b.correct} 問ミス。まずは基礎の完全理解から！ ${u.tip}`]);
-    else if (b) insights.push(['🧱', '基礎問題は全問正解！ ルールはしっかり理解できているよ。']);
-    if (a && a.acc < 1) insights.push(['🚀', `応用問題は ${a.correct}/${a.total}。応用は「基礎のルールの組み合わせ」。間違えた問題の解説をもう一度読んで、なぜその答えになるのかを言葉で説明できるようにしよう。`]);
-    else if (a) insights.push(['🚀', '応用問題も全問正解！ この単元はもう得点源だね。']);
-  }
-  if (A.slow.length) insights.push(['⏱', `「${A.slow.map(g => g.key).join('」「')}」は正解だけど時間がかかったよ（平均 ${fmtSec(A.slow[0].avg)}）。パターンを覚えれば即答できるようになる！`]);
-  if (A.fastWrong >= 2) insights.push(['⚡', `5秒以内に答えて間違えた問題が ${A.fastWrong} 問。選ぶ前に空所の前後をもう一度見直すクセをつけよう。`]);
-  if (A.slowWrong >= 1) insights.push(['🧭', `20秒以上悩んで間違えた問題が ${A.slowWrong} 問。迷ったら「品詞」と「文の形」から消去法で絞り込もう。`]);
-  if (A.hints / A.total >= .4) insights.push(['💡', `ヒントを ${A.hints} 回使ったね。次はヒントを1回減らすのを目標にしよう。`]);
-  else if (A.hints === 0) insights.push(['🌟', 'ヒントなしで最後まで解き切ったね！']);
-  insights.push(['⏳', `平均回答時間は ${fmtSec(A.avg)}。1問15〜20秒以内が目標だよ。`]);
-  insights.push(['📕', `苦手リストには現在 ${save.weak.length} 問。間違えた問題はヒントなしで正解すると卒業できるよ。`]);
+  const ins = [];
+  if (weak.length) ins.push(['🎯', `今回いちばん間違いが多かったのは「${weak[0].key}」（${weak[0].c}/${weak[0].n}）。${run.type === 'unit' ? (weak[0].key === '基礎' ? g.tip : '応用は基礎ルールの組み合わせ。解説を読み直して「なぜその答えか」を説明できるようにしよう。') : run.type === 'stage' ? (weak[0].key.startsWith('日→英') ? '日→英は「つづりを思い出す力」。単語を見たら声に出して、手でも書いてみよう。' : '英→日が弱いときは、単語を見て0.5秒で意味が言えるまで繰り返そう。') : '下の「系統特訓」で集中的に復習できるよ。'}`]);
+  else ins.push(['🏆', '全問正解！ この範囲はもう得点源だね。']);
+  const fastWrong = log.filter(r => !r.correct && r.time < 4000).length;
+  if (fastWrong >= 2) ins.push(['⚡', `4秒以内に答えて間違えた問題が ${fastWrong} 問。選ぶ前にもう一度だけ見直そう。`]);
+  if (hints / total >= .4) ins.push(['💡', `ヒントを ${hints} 回使用（XP半分）。次はヒント1回減らしてXPを稼ごう！`]);
+  ins.push(['⏳', `平均回答時間 ${fmtSec(avg)}。${avg < 5000 ? 'スピードボーナス圏内！' : '5秒以内の正解でスピードボーナスがつくよ。'}`]);
+  const wc = weakCategories();
+  if (wc.length) ins.push(['🧠', `累計で苦手な系統：${wc.slice(0, 3).map(c => `「${c.key}」${pct(c.c, c.n)}%`).join('、')}。特訓モードは経験値2倍！`]);
+  ins.push(['📕', `苦手問題集：現在 ${Object.keys(save.weak).length} 問（ヒントなしで2回連続正解すると卒業）。`]);
 
   // ナレーション
-  let speech = {
-    S: `${A.total}問全問正解！ 文句なしの満点だよ！`,
-    A: `${A.correct}/${A.total}問正解！ かなり仕上がってきたね！`,
-    B: `${A.correct}/${A.total}問正解！ 基礎はできてる。あと一歩！`,
-    C: `${A.correct}/${A.total}問正解。間違えた問題は、全部これから伸びる部分だよ！`
-  }[rank];
-  if (newClear) speech += `\n\n🏅 Unit ${u.no}「${u.title}」クリア！`;
-  else if (prevBest !== null && A.correct > prevBest) speech += `\n\nベスト記録更新！（${prevBest} → ${A.correct}問）`;
-  if (A.weak.length) speech += `\n\n${A.byUnit ? `弱点は「${A.weak[0].key}」。${A.weak[0].unit.tip}` : (A.weak[0].key === '基礎' ? '基礎のルールをもう一度確認しよう。' : '基礎はOK！ 応用の解説を見直して、もう一度挑戦してみよう。')}`;
-  speech += '\n\n' + pick(['一歩ずつ、合格まで進んでいこう！','間違えるたびに強くなる。その積み重ねが合格につながるよ！','今日の努力は、確実に本番の力になるよ！']);
+  let speech = { S:`${total}問全問正解！ 文句なしの満点だよ！`, A:`${correct}/${total}問正解！ かなり仕上がってきたね！`, B:`${correct}/${total}問正解！ あと一歩！`, C:`${correct}/${total}問正解。間違えた問題は、全部これから伸びる部分だよ！` }[rank];
+  speech += `\n\n獲得 +${run.xpTotal} XP${run.mult > 1 ? '（2倍ボーナス込み）' : ''}`;
+  if (run.ups) speech += `\n🎉 レベルアップ！ Lv ${run.lvStart} → Lv ${save.lv}「${titleOf(save.lv)}」`;
+  if (newClear) speech += `\n🏅 Unit ${g.no}「${g.title}」クリア！ +100XP`;
+  else if (prevBest !== null && correct > prevBest) speech += `\nベスト記録更新！（${prevBest} → ${correct}問）`;
+  if (run.type === 'stage') speech += `\n習得語数：${masteredIn(g)} / ${g.items.length}`;
   say(speech, { tone: rank === 'C' ? '' : 'ok', title: `ランク ${rank}！おつかれさま 🎉` });
 
   // 描画
   const C = 2 * Math.PI * 50;
-  const color = acc => acc >= 1 ? 'linear-gradient(90deg,#34d399,#6ee7b7)' : acc >= .5 ? 'linear-gradient(90deg,#fbbf24,#fde68a)' : 'linear-gradient(90deg,#fb7185,#fda4af)';
+  const color = a => a >= 1 ? 'linear-gradient(90deg,#34d399,#6ee7b7)' : a >= .5 ? 'linear-gradient(90deg,#fbbf24,#fde68a)' : 'linear-gradient(90deg,#fb7185,#fda4af)';
   const wrongs = log.filter(r => !r.correct);
-  const nextUnit = run.type === 'unit' ? UNITS[u.no] : null;
-
+  const list = g ? GROUPS[g.set] : null, nextG = list ? list[list.indexOf(g) + 1] : null;
+  const X = run.xp;
   $('viewResult').innerHTML = `
     <div class="res-head">
       <div class="ring">
@@ -919,48 +3854,64 @@ function showResult(){
           <circle id="ringArc" cx="60" cy="60" r="50" fill="none" stroke="url(#rg)" stroke-width="11" stroke-linecap="round"
             stroke-dasharray="${C}" stroke-dashoffset="${C}" style="transition:stroke-dashoffset 1.2s cubic-bezier(.2,.9,.3,1)"/>
         </svg>
-        <div class="val"><div>${pct}%<small>${A.correct} / ${A.total}</small></div></div>
+        <div class="val"><div>${P}%<small>${correct} / ${total}</small></div></div>
       </div>
       <div class="rank">RANK<b>${rank}</b>${esc(run.label)}${newClear ? '<br>🏅 クリア！' : ''}</div>
     </div>
-    <div class="stats">
-      <div class="stat"><b>${A.correct}/${A.total}</b><span>正解数</span></div>
-      <div class="stat"><b>${(A.avg/1000).toFixed(1)}s</b><span>平均回答時間</span></div>
-      <div class="stat"><b>${A.hints}回</b><span>ヒント使用</span></div>
+    <div class="xpbox">
+      <div class="big"><b>+${run.xpTotal} XP</b><span>${run.ups ? `🎉 Lv ${run.lvStart} → ${save.lv}` : `Lv ${save.lv}`}${run.mult > 1 ? '　×2適用' : ''}</span></div>
+      <div class="bar xp"><i id="resXp"></i></div>
+      <ul>
+        <li><span>正解</span><span>+${X.base}</span></li>
+        <li><span>スピード</span><span>+${X.speed}</span></li>
+        <li><span>コンボ</span><span>+${X.combo}</span></li>
+        <li><span>ボーナス</span><span>+${X.bonus + X.daily}</span></li>
+      </ul>
     </div>
-    <div class="sec-title">📊 ${A.byUnit ? '単元別' : '基礎・応用別'}の分析</div>
-    ${A.groups.map(g => `
+    <div class="stats">
+      <div class="stat"><b>${correct}/${total}</b><span>正解数</span></div>
+      <div class="stat"><b>${(avg/1000).toFixed(1)}s</b><span>平均回答時間</span></div>
+      <div class="stat"><b>${Math.max(...log.reduce((a, r) => { a.cur = r.correct ? a.cur + 1 : 0; a.max.push(a.cur); return a; }, { cur:0, max:[0] }).max)}</b><span>最大コンボ</span></div>
+    </div>
+    <div class="sec-title">📊 ${run.type === 'unit' ? '基礎・応用別' : run.type === 'stage' ? '出題形式別' : '系統別'}の分析</div>
+    ${groups.sort((a, b) => a.acc - b.acc).map(x => `
       <div class="cat-row">
-        <div class="top">${esc(g.key)}
-          ${g.acc < 1 && g === A.weak[0] ? '<span class="tag weak">最優先で復習</span>' : g.acc < 1 ? '<span class="tag weak">要復習</span>' : A.slow.includes(g) ? '<span class="tag slow">スピードUP</span>' : '<span class="tag good">完璧</span>'}
-          <span class="meta">${g.correct}/${g.total} ・ 平均 ${(g.avg/1000).toFixed(1)}s</span>
+        <div class="top">${esc(x.key)}
+          ${x.acc < 1 && x === weak[0] ? '<span class="tag weak">最優先で復習</span>' : x.acc < 1 ? '<span class="tag weak">要復習</span>' : '<span class="tag good">完璧</span>'}
+          <span class="meta">${x.c}/${x.n} ・ 平均 ${(x.avg/1000).toFixed(1)}s</span>
         </div>
-        <div class="bar"><i data-w="${Math.max(4, g.acc*100)}" style="background:${color(g.acc)}"></i></div>
+        <div class="bar"><i data-w="${Math.max(4, x.acc*100)}" style="background:${color(x.acc)}"></i></div>
       </div>`).join('')}
     <div class="sec-title" style="margin-top:18px">🧠 分析メモ</div>
-    <div class="insights">${insights.map(([ic, t]) => `<div class="insight"><span class="ic">${ic}</span><span>${esc(t)}</span></div>`).join('')}</div>
+    <div class="insights">${ins.map(([ic, t]) => `<div class="insight"><span class="ic">${ic}</span><span>${esc(t)}</span></div>`).join('')}</div>
     ${wrongs.length ? `
       <div class="sec-title">📖 間違えた問題の復習</div>
-      <div class="review">${wrongs.map(r => `
-        <details><summary>[${r.item.level}] ${esc(r.item.q.replace('___','(　　)'))}</summary>
-          <div class="body"><div class="ans"><span style="background:rgba(251,113,133,.18);color:#fecdd3">あなた：${esc(r.chosen)}</span><span style="background:rgba(52,211,153,.18);color:#a7f3d0">正解：${esc(r.item.answer)}</span></div>${esc(r.item.exp)}</div>
+      <div class="review">${wrongs.map(r => r.it.kind === 'grammar' ? `
+        <details><summary>[${esc(r.it.level)}] ${esc(r.it.q.replace('___','(　　)'))}</summary>
+          <div class="body"><div class="ans"><span style="background:rgba(251,113,133,.18);color:#fecdd3">あなた：${esc(r.chosen)}</span><span style="background:rgba(52,211,153,.18);color:#a7f3d0">正解：${esc(r.it.answer)}</span></div>${esc(r.it.exp)}</div>
+        </details>` : `
+        <details><summary>${esc(r.it.w)} ＝ ${esc(r.it.m)}</summary>
+          <div class="body"><div class="ans"><span style="background:rgba(251,113,133,.18);color:#fecdd3">あなた：${esc(r.chosen)}</span></div>${esc(POS_NAME[r.it.pos])}／${esc(SETS[r.it.set].label)} ${r.it.group.title}${noteOf(r.it) ? '\n\n' + esc(noteOf(r.it)) : ''}</div>
         </details>`).join('')}</div>` : ''}
     <div class="res-actions">
-      ${wrongs.length ? '<button class="btn hintbtn big" id="btnRetryWrong">🔁 間違えた問題だけ解き直す</button>' : ''}
-      ${nextUnit ? `<button class="btn primary big" id="btnNextUnit">次へ：Unit ${nextUnit.no} ${esc(nextUnit.title)} →</button>` : ''}
-      <button class="btn ${nextUnit ? 'ghost' : 'primary'} big" id="btnRetry">もう一度 ↻</button>
-      <button class="btn ghost big" id="btnHome">ユニット選択へ</button>
+      ${wrongs.length ? '<button class="btn hintbtn big" id="btnRetryWrong">🔁 間違えた問題を解き直す（XP×2）</button>' : ''}
+      ${run.type === 'stage' && !groupCleared(g) ? '<button class="btn primary big" id="btnAgain">続けて10問 ▶</button>' : ''}
+      ${nextG ? `<button class="btn ${run.type === 'stage' && !groupCleared(g) ? 'ghost' : 'primary'} big" id="btnNextG">次へ：${esc(nextG.title)} →</button>` : ''}
+      <button class="btn ghost big" id="btnRetry">もう一度 ↻</button>
+      <button class="btn ghost big" id="btnHome">ホームへ</button>
     </div>`;
   show('viewResult');
   requestAnimationFrame(() => requestAnimationFrame(() => {
-    $('ringArc').style.strokeDashoffset = C * (1 - A.acc);
-    document.querySelectorAll('#viewResult .bar i').forEach(i => i.style.width = i.dataset.w + '%');
+    $('ringArc').style.strokeDashoffset = C * (1 - acc);
+    $('resXp').style.width = (save.xp / needXp(save.lv) * 100) + '%';
+    document.querySelectorAll('#viewResult .bar i[data-w]').forEach(i => i.style.width = i.dataset.w + '%');
   }));
-  const retryItems = run.items;
-  $('btnRetry').addEventListener('click', () => run.type === 'unit' ? startUnit(u) : run.type === 'random' ? startRandom() : startWeak());
+  const again = () => run.type === 'unit' || run.type === 'stage' ? startGroup(g) : run.type === 'random' ? startRandom() : run.type === 'weak' ? startWeak() : startRun(shuffle(run.qs.map(q => q.it)), { ...run });
+  $('btnRetry').addEventListener('click', again);
   $('btnHome').addEventListener('click', goHome);
-  if ($('btnNextUnit')) $('btnNextUnit').addEventListener('click', () => startUnit(nextUnit));
-  if ($('btnRetryWrong')) $('btnRetryWrong').addEventListener('click', () => startRun(shuffle(wrongs.map(r => BY_ID[r.item.id])), { type:'weak', label:'間違えた問題の解き直し' }));
+  if ($('btnAgain')) $('btnAgain').addEventListener('click', () => startGroup(g));
+  if ($('btnNextG')) $('btnNextG').addEventListener('click', () => startGroup(nextG));
+  if ($('btnRetryWrong')) $('btnRetryWrong').addEventListener('click', () => startRun(shuffle(wrongs.map(r => r.it)), { type:'retry', label:'間違えた問題の解き直し', mult:2 }));
 }
 
 /* ================= 雪 ================= */
